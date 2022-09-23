@@ -29,20 +29,28 @@ Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
     
 });
 
+// --------------------------------------------DASHBOARD------------------------------------------
+Route::get('/dashboard-admingudang', function () {
+    return view('dashboard/dashboard-admingudang');
+});
 
-Route::get('/admingudang', function () {
-    return view('adminGudang/dashboard');
+Route::get('/dashboard-adminteknisi', function () {
+    return view('dashboard/dashboard-adminteknisi');
 });
 
 
-Route::get('/adminteknisi', function () {
-    return view('adminTeknisi/dashboard');
+Route::get('/dashboard-teknisi', function () {
+    return view('dashboard/dashboard-teknisi');
 });
 
-Route::get('/teknisi', function () {
-    return view('teknisi/dashboard');
+
+Route::get('/dashboard-karyawan', function () {
+    return view('dashboard/dashboard-karyawan');
 });
 
-Route::get('/karyawan', function () {
-    return view('karyawan/dashboard');
+// --------------------------------------------HISTORY------------------------------------------
+Route::get('/admingudang-history', function () {
+    return view('adminGudang/history');
 });
+
+

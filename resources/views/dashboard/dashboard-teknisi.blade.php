@@ -1,56 +1,6 @@
-@extends('layout/tadmin')
+@extends('layout/template')
 
-@section('title', 'Dashboard Karyawan')
-
-<!-- start: sidebar -->
-@section('sidebar')
-				<aside id="sidebar-left" class="sidebar-left">
-				
-					<div class="sidebar-header">
-						<div class="sidebar-title">
-							Navigation
-						</div>
-						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-						</div>
-					</div>
-				
-					<div class="nano">
-						<div class="nano-content">
-							<nav id="menu" class="nav-main" role="navigation">
-								<ul class="nav nav-main">
-									<li class="nav-active">
-										<a href="index.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>Dashboard</span>
-										</a>
-									</li>
-									<li>
-										<a href="mailbox-folder.html">
-											<span class="pull-right label label-primary">182</span>
-											<i class="fa fa-envelope" aria-hidden="true"></i>
-											<span>Mailbox</span>
-										</a>
-									</li>
-									<li>
-										<a href="http://themeforest.net/item/JSOFT-responsive-html5-template/4106987?ref=JSOFT" target="_blank">
-											<i class="fa fa-external-link" aria-hidden="true"></i>
-											<span>Front-End <em class="not-included">(Not Included)</em></span>
-										</a>
-									</li>
-								</ul>
-							</nav>
-				
-							<hr class="separator" />
-				
-						
-						</div>
-				
-					</div>
-				
-				</aside>
-@endsection
-<!-- end: sidebar -->
+@section('title', 'Dashboard Teknisi')
 
 <!-- start: page -->
 @section('content')
@@ -287,32 +237,3 @@
 @endsection
 <!-- end: page -->
 
-<!-- start: rightbar -->	
-@section('rightbar')
-			<aside id="sidebar-right" class="sidebar-right">
-				<div class="nano">
-					<div class="nano-content">
-						<a href="#" class="mobile-close visible-xs">
-							Collapse <i class="fa fa-chevron-right"></i>
-						</a>
-			
-						<div class="sidebar-right-wrapper">
-			
-							<div class="sidebar-widget widget-calendar">
-								<h6>Upcoming Tasks</h6>
-								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
-			
-								<ul>
-									<li>
-										<time datetime="2014-04-19T00:00+00:00">04/19/2014</time>
-										<span>Company Meeting</span>
-									</li>
-								</ul>
-							</div>
-			
-						</div>
-					</div>
-				</div>
-			</aside>
-@endsection
-<!-- end: rightbar -->				

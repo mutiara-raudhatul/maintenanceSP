@@ -266,7 +266,7 @@
 
 			<div class="inner-wrapper">
 				<!-- start: sidebar -->
-					@yield('sidebar')
+					@include('layout.tsidebar')
 				<!-- end: sidebar -->
 
 				<!-- start: page -->
@@ -275,7 +275,7 @@
 			</div>
 
 				<!-- start: rightbar -->
-					@yield('rightbar')
+					@include('layout.trightbar')
 				<!-- end: rightbar -->
 
 		</section>
