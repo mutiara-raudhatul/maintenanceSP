@@ -26,6 +26,21 @@
 		<link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
 		<link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
 		<link rel="stylesheet" href="assets/vendor/morris/morris.css" />
+		<!--css maintenance-->
+		<link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="assets/vendor/select2/select2.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-colorpicker/css/bootstrap-colorpicker.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="assets/vendor/dropzone/css/basic.css" />
+		<link rel="stylesheet" href="assets/vendor/dropzone/css/dropzone.css" />
+		<link rel="stylesheet" href="assets/vendor/bootstrap-markdown/css/bootstrap-markdown.min.css" />
+		<link rel="stylesheet" href="assets/vendor/summernote/summernote.css" />
+		<link rel="stylesheet" href="assets/vendor/summernote/summernote-bs3.css" />
+		<link rel="stylesheet" href="assets/vendor/codemirror/lib/codemirror.css" />
+		<link rel="stylesheet" href="assets/vendor/codemirror/theme/monokai.css" />
+
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="assets/stylesheets/theme.css" />
@@ -315,7 +330,28 @@
 		<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js"></script>
 		<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js"></script>
 		<script src="assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js"></script>
-		
+		<!-- css maintenance -->
+		<script src="assets/vendor/select2/select2.js"></script>
+		<script src="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+		<script src="assets/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
+		<script src="assets/vendor/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+		<script src="assets/vendor/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+		<script src="assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+		<script src="assets/vendor/fuelux/js/spinner.js"></script>
+		<script src="assets/vendor/dropzone/dropzone.js"></script>
+		<script src="assets/vendor/bootstrap-markdown/js/markdown.js"></script>
+		<script src="assets/vendor/bootstrap-markdown/js/to-markdown.js"></script>
+		<script src="assets/vendor/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+		<script src="assets/vendor/codemirror/lib/codemirror.js"></script>
+		<script src="assets/vendor/codemirror/addon/selection/active-line.js"></script>
+		<script src="assets/vendor/codemirror/addon/edit/matchbrackets.js"></script>
+		<script src="assets/vendor/codemirror/mode/javascript/javascript.js"></script>
+		<script src="assets/vendor/codemirror/mode/xml/xml.js"></script>
+		<script src="assets/vendor/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="assets/vendor/codemirror/mode/css/css.js"></script>
+		<script src="assets/vendor/summernote/summernote.js"></script>
+		<script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+		<script src="assets/vendor/ios7-switch/ios7-switch.js"></script>
 		<!-- Theme Base, Components and Settings -->
 		<script src="assets/javascripts/theme.js"></script>
 		

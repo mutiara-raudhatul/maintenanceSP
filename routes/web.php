@@ -54,3 +54,52 @@ Route::get('/admingudang-history', function () {
 });
 
 
+// ------------------------------------------Maintenance------------------------------------------
+Route::get('/permintaan-maintenance', function () {
+    return view('maintenance/form-permintaan-maintenance');
+});
+Route::get('/list-permintaan-maintenance', function () {
+    return view('maintenance/list-permintaan-maintenance');
+});
+Route::get('/form-respon-maintenance', function () {
+    return view('maintenance/form-respon-maintenance');
+});
+Route::get('/maintenance-teknisi', function () {
+    return view('maintenance/form-maintenance-teknisi');
+});
+Route::get('/status', function () {
+    return view('maintenance/lihat-status');
+});
+Route::get('/tambah-status', function () {
+    return view('maintenance/tambah-status');
+});
+Route::get('/update-status', function () {
+    return view('maintenance/update-status');
+});
+Route::get('/jenis-maintenance', function () {
+    return view('maintenance/list-jenis-maintenance');
+});
+Route::get('/tambah-jenis-maintenance', function () {
+    return view('maintenance/tambah-jenis-maintenance');
+});
+Route::get('/update-jenis-maintenance', function () {
+    return view('maintenance/update-jenis-maintenance');
+});
+Route::get('/jenis-check', function () {
+    return view('maintenance/list-jenis-check');
+});
+Route::get('/tambah-jenis-check', function () {
+    return view('maintenance/tambah-jenis-check');
+});
+Route::get('/update-jenis-check', function () {
+    return view('maintenance/update-jenis-check');
+});
+Route::get('/check', function () {
+    return view('maintenance/list-check');
+});
+Route::get('/tambah-check', function () {
+    return view('maintenance/tambah-check');
+});
+Route::get('/update-check', function () {
+    return view('maintenance/update-check');
+});
