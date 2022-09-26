@@ -103,3 +103,14 @@ Route::get('/tambah-check', function () {
 Route::get('/update-check', function () {
     return view('maintenance/update-check');
 });
+
+// ------------------------------------------Permintaan Barang------------------------------------------
+
+Route::get('/karyawan-form-permintaan', function () {
+    return view('karyawan/form-permintaan');
+});
+
+Route::get('/karyawandata', function () {
+    return view('karyawan/data');
+});
+
