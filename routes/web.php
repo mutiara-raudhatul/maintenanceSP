@@ -106,11 +106,15 @@ Route::get('/update-check', function () {
 
 // ------------------------------------------Permintaan Barang------------------------------------------
 
-Route::get('/karyawan-form-permintaan', function () {
-    return view('karyawan/form-permintaan');
+Route::get('/permintaan-barang', function () {
+    return view('permintaan-barang/form-permintaan');
 });
 
-Route::get('/karyawandata', function () {
-    return view('karyawan/data');
+Route::get('/respon-permintaan-barang', function () {
+    return view('permintaan-barang/respon-permintaan');
+});
+
+Route::get('/list-permintaan-barang', function () {
+    return view('permintaan-barang/list-permintaan-barang');
 });
 

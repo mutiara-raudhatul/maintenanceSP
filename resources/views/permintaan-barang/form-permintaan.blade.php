@@ -39,10 +39,54 @@
 									</header>
 									<div class="panel-body">
 										<form class="form-horizontal form-bordered" method="get">
+                                            <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 1</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md">
+                                                            <option>Komputer</option>
+                                                            <option>Laptop</option>
+                                                            <option>Printer</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Default</label>
+												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
 												<div class="col-md-6">
-													<input type="text" class="form-control" id="inputDefault">
+													<input type="number" class="form-control" id="inputDefault">
+												</div>
+											</div>
+
+                                            <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 2</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md">
+                                                            <option>Komputer</option>
+                                                            <option>Laptop</option>
+                                                            <option>Printer</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
+												<div class="col-md-6">
+													<input type="number" class="form-control" id="inputDefault">
+												</div>
+											</div>
+
+                                            <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 3</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md">
+                                                            <option>Komputer</option>
+                                                            <option>Laptop</option>
+                                                            <option>Printer</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
+												<div class="col-md-6">
+													<input type="number" class="form-control" id="inputDefault">
 												</div>
 											</div>
 
@@ -80,6 +124,10 @@
 
 										</form>
 									</div>
+                                    <footer class="panel-footer" >
+                                        <button class="btn btn-primary">Submit </button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </footer>
 								</section>
                         </div>
                             </div>

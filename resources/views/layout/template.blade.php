@@ -41,6 +41,10 @@
 		<link rel="stylesheet" href="assets/vendor/codemirror/lib/codemirror.css" />
 		<link rel="stylesheet" href="assets/vendor/codemirror/theme/monokai.css" />
 
+		<!-- css permintaan-barang -->
+		<link rel="stylesheet" href="assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
+		<link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+		
 
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="assets/stylesheets/theme.css" />
@@ -352,6 +356,13 @@
 		<script src="assets/vendor/summernote/summernote.js"></script>
 		<script src="assets/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
 		<script src="assets/vendor/ios7-switch/ios7-switch.js"></script>
+
+		<!-- css permintaan-barang -->
+		<script src="assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
+		<script src="assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+		<script src="assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+		<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+		
 		<!-- Theme Base, Components and Settings -->
 		<script src="assets/javascripts/theme.js"></script>
 		
@@ -364,5 +375,10 @@
 
 		<!-- Examples -->
 		<script src="assets/javascripts/dashboard/examples.dashboard.js"></script>
+		
+		<!-- Examples Permintaan Barang-->
+		<script src="assets/javascripts/tables/examples.datatables.default.js"></script>
+		<script src="assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
+		<script src="assets/javascripts/tables/examples.datatables.tabletools.js"></script>
 	</body>
 </html>
