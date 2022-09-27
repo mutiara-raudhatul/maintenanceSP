@@ -118,3 +118,6 @@ Route::get('/list-permintaan-barang', function () {
     return view('permintaan-barang/list-permintaan-barang');
 });
 
+Route::get('/tolak-permintaan-barang', function () {
+    return view('permintaan-barang/tolak-permintaan-barang');
+});

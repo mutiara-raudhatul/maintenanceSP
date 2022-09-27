@@ -42,17 +42,19 @@
                                 <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Jenis Barang</th>
                                             <th>Jumlah Barang</th>
                                             <th>Diminta Oleh</th>
-                                            <th>Tanggal</th>
+                                            <th>Tanggal Permintaan</th>
                                             <th>Surat Izin</th>
                                             <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="gradeX">
+                                            <td>1</td>
                                             <td>Laptop</td>
                                             <td>1</td>
                                             <td>Dadang</td>
@@ -63,13 +65,14 @@
                                                 <div class="panel-body">
 
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
                                                 </div>
                                             </td>
                                             
                                         </tr>
                                         <tr class="gradeX">
+                                            <td>2</td>
                                             <td>Laptop</td>
                                             <td>1</td>
                                             <td>Dadang</td>
@@ -80,14 +83,15 @@
                                                 <div class="panel-body">
 
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="gradeX">
+                                            <td>3</td>
                                             <td>Laptop</td>
-                                            <td>1</td>
+                                            <td>2</td>
                                             <td>Dadang</td>
                                             <td>13-08-2022</td>
                                             <td><a href="/media/images/apacaracom.png" download>surat-izin.pdf</a></td>
@@ -96,7 +100,7 @@
                                                 <div class="panel-body">
 
                                                 <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-
+                                                <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
                                                 <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
 
                                                 </div>

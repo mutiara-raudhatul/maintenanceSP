@@ -52,9 +52,30 @@
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
 												<div class="col-md-6">
-													<input type="number" class="form-control" id="inputDefault">
+													<input type="number" min="1" class="form-control" id="inputDefault">
 												</div>
 											</div>
+                                            <!-- <div class="form-group">
+												<label class="col-md-3 control-label">Jumlah</label>
+												<div class="col-md-6">
+													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
+														<div class="input-group" style="width:150px;">
+															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
+															<div class="spinner-buttons input-group-btn">
+																<button type="button" class="btn btn-default spinner-up">
+																	<i class="fa fa-angle-up"></i>
+																</button>
+																<button type="button" class="btn btn-default spinner-down">
+																	<i class="fa fa-angle-down"></i>
+																</button>
+															</div>
+														</div>
+													</div>
+													<p>
+														with <code>max</code> value set to 10
+													</p>
+												</div>
+											</div> -->
 
                                             <div class="form-group">
                                                     <label class="col-md-3 control-label" for="inputSuccess">Barang 2</label>
@@ -66,10 +87,31 @@
                                                         </select>
                                                     </div>
                                             </div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
 												<div class="col-md-6">
 													<input type="number" class="form-control" id="inputDefault">
+												</div>
+											</div> -->
+                                            <div class="form-group">
+												<label class="col-md-3 control-label">Jumlah</label>
+												<div class="col-md-6">
+													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
+														<div class="input-group" style="width:150px;">
+															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
+															<div class="spinner-buttons input-group-btn">
+																<button type="button" class="btn btn-default spinner-up">
+																	<i class="fa fa-angle-up"></i>
+																</button>
+																<button type="button" class="btn btn-default spinner-down">
+																	<i class="fa fa-angle-down"></i>
+																</button>
+															</div>
+														</div>
+													</div>
+													<p>
+														with <code>max</code> value set to 10
+													</p>
 												</div>
 											</div>
 
@@ -83,10 +125,31 @@
                                                         </select>
                                                     </div>
                                             </div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
 												<div class="col-md-6">
 													<input type="number" class="form-control" id="inputDefault">
+												</div>
+											</div> -->
+                                            <div class="form-group">
+												<label class="col-md-3 control-label">Jumlah</label>
+												<div class="col-md-6">
+													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
+														<div class="input-group" style="width:150px;">
+															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
+															<div class="spinner-buttons input-group-btn">
+																<button type="button" class="btn btn-default spinner-up">
+																	<i class="fa fa-angle-up"></i>
+																</button>
+																<button type="button" class="btn btn-default spinner-down">
+																	<i class="fa fa-angle-down"></i>
+																</button>
+															</div>
+														</div>
+													</div>
+													<p>
+														with <code>max</code> value set to 10
+													</p>
 												</div>
 											</div>
 

@@ -118,10 +118,10 @@
                                             </tbody>
                                         </table>							
                                     </div>
-                                </section>
+                        </section>
 
 
-                                <section class="panel">
+                        <section class="panel">
                             <header class="panel-heading">
                                 <div class="panel-actions">
                                     <a href="#" class="fa fa-caret-down"></a>
@@ -136,12 +136,14 @@
                                         <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                                             <thead>
                                                 <tr>
+                                                    <th>No</th>
                                                     <th>Jenis Barang</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="gradeX">
+                                                    <td>1</td>
                                                     <td>Laptop</td>
                                                     <td>
                                                         <div class="panel-body">
@@ -154,6 +156,7 @@
                                                     
                                                 </tr>
                                                 <tr class="gradeX">
+                                                <td>2</td>
                                                 <td>Laptop</td>
                                                     <td>
                                                         <div class="panel-body">
@@ -165,6 +168,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr class="gradeX">
+                                                <td>3</td>
                                                 <td>Laptop</td>
                                                     <td>
                                                         <div class="panel-body">
