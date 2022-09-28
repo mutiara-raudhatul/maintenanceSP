@@ -17,7 +17,7 @@ class CreateBarangTable extends Migration
             $table->unsignedBigInteger('id_barang')->autoIncrement();
             $table->string('id_serial_number', 10)->unique();
             $table->string('asset_tag', 23)->unique();
-            $table->string('hostname', 8)->unique();
+            $table->string('hostname', 8)->unique()->nullable($value=true);
         });
 
         Schema::table('barang', function (Blueprint $table) {
