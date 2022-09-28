@@ -1,6 +1,6 @@
 @extends('layout/template')
 
-@section('title', 'History Admin Gudang')
+@section('title', 'History Admin Teknisi')
 
 
 <!-- start: page -->
@@ -16,7 +16,7 @@
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
-								<li><span>Dashboard</span></li>
+								<li><span>History</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -32,7 +32,7 @@
 										<a href="#" class="fa fa-times"></a>
 									</div>
 
-									<h2 class="panel-title">Status Permintaan Barang</h2>
+									<h2 class="panel-title">Status Maintenance</h2>
 								</header>
 								<div class="panel-body">
 									<div class="table-responsive">
@@ -51,10 +51,10 @@
 												<tr>
 													<td>1</td>
 													<td>Mutiara Raudhatul Jannah</td>
-													<td>Printer</td>
+													<td>Monitor Komputer rusak</td>
 													<td>ICT - Kantor Pusat</td>
-													<td>12 September 2022</td>
-													<td><span class="label label-success">Success</span></td>
+													<td>09 September 2022</td>
+													<td><span class="label label-warning">Proses</span></td>
 												</tr>
 												<tr>
 													<td>2</td>
