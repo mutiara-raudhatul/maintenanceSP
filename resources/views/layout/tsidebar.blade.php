@@ -34,6 +34,163 @@
 											<span>Front-End <em class="not-included">(Not Included)</em></span>
 										</a>
 									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/dashboard-admingudang">
+												Dashboard Admin Gudang
+												</a>
+											</li>
+											<li>
+												<a href="/dashboard-adminteknisi">
+												Dashboard Admin Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/dashboard-teknisi">
+												Dashboard Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/dashboard-karyawan">
+												Dashboard Karyawan
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>History</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/history-admingudang">
+												History Admin Gudang
+												</a>
+											</li>
+											<li>
+												<a href="/history-adminteknisi">
+												History Admin Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/history-teknisi">
+												History Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/history-karyawan">
+												History Karyawan
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Permintaan Barang</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/permintaan-barang">
+												Form Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/respon-permintaan-barang">
+												Respon Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/list-permintaan-barang">
+												List Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/tolak-permintaan-barang">
+												Tolak Permintaan Barang
+												</a>
+											</li>
+										</ul>
+									</li>									
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Maintenance</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/permintaan-maintenance">
+												Form Permintaan Maintenance
+												</a>
+											</li>
+											<li>
+												<a href="/form-respon-maintenance">
+												Respon Permintaan Maintenance
+												</a>
+											</li>
+											<li>
+												<a href="/list-permintaan-maintenance">
+												List Permintaan Maintenance
+												</a>
+											</li>
+											<li>
+												<a href="/maintenance-teknisi">
+												Form Maintenance Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/status">
+												Lihat status
+												</a>
+											</li>
+											<li>
+												<a href="/tambah-status">
+												Tambah status
+												</a>
+											</li>
+											<li>
+												<a href="/update-status">
+												Update Status
+												</a>
+											</li>
+											<li>
+												<a href="/tambah-jenis-check">
+												Tambah Jenis Check
+												</a>
+											</li>
+											<li>
+												<a href="/jenis-check">
+												List Jenis Check
+												</a>
+											</li>
+											<li>
+												<a href="/update-jenis-check">
+												Update Jenis Check
+												</a>
+											</li>
+											<li>
+												<a href="/check">
+												List Check
+												</a>
+											</li>
+											<li>
+												<a href="/tambah-check">
+												Tambah Check
+												</a>
+											</li>
+											<li>
+												<a href="/update-check">
+												Update Check
+												</a>
+											</li>
+										</ul>
+									</li>
 								</ul>
 							</nav>
 				
