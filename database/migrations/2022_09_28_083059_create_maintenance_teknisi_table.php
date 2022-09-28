@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateMaintenanceTeknisiTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('maintenance_teknisi', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_maintenance_teknisi')->autoIncrement();
+            $table->date('detail_kerusakan')->nullable($value=false);
+            $table->integer('lama_pengerjaan')->nullable($value=false);
+            $table->string('note')->nullable($value=true);
+            $table->string('lokasi')->nullable($value=false);
+        });
+
+        Schema::table('maintenance_teknisi', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_permintaan_maintenance');
+            $table->unsignedBigInteger('id_barang');
+            $table->unsignedBigInteger('id_jenis_maintenance');
+            $table->foreign('id_permintaan_maintenance')->references('id_permintaan_maintenance')->on('permintaan_maintenance');
+            $table->foreign('id_barang')->references('id_barang')->on('barang');
+            $table->foreign('id_jenis_maintenance')->references('id_jenis_maintenance')->on('jenis_maintenance');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('maintenance_teknisi');
+    }
+}
