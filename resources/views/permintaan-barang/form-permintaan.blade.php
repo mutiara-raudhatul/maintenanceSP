@@ -35,124 +35,171 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-										<h2 class="panel-title">Form Permintaan Barang</h2>
+									<h2 class="panel-title">Form Permintaan Barang</h2>
 									</header>
 									<div class="panel-body">
+
+										<!-- start: page -->
+						<section class="panel">
+							
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<div class="mb-md">
+														<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+													</div>
+												</div>
+											</div>
+											<table class="table table-bordered table-striped mb-none" id="datatable-editable">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Barang</th>
+														<th>Jumlah</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr class="gradeX">
+														<td>1</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeC">
+														<td>2</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeA">
+														<td>3</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeA">
+														<td>4</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeA">
+														<td>4</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													
+													<tr class="gradeA">
+														<td>5</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeA">
+														<td>6</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeA">
+														<td>7</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeX">
+														<td>8</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeX">
+														<td>9</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													<tr class="gradeX">
+														<td>10</td>
+														<td> Laptop
+														</td>
+														<td>2</td>
+														<td class="actions">
+															<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+															<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+															<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+															<a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+													
+												</tbody>
+											</table>
+										</div>
+
+										<br>
 										<form class="form-horizontal form-bordered" method="get">
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 1</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Komputer</option>
-                                                            <option>Laptop</option>
-                                                            <option>Printer</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
-												<div class="col-md-6">
-													<input type="number" min="1" class="form-control" id="inputDefault">
-												</div>
-											</div>
-                                            <!-- <div class="form-group">
-												<label class="col-md-3 control-label">Jumlah</label>
-												<div class="col-md-6">
-													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
-														<div class="input-group" style="width:150px;">
-															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
-															<div class="spinner-buttons input-group-btn">
-																<button type="button" class="btn btn-default spinner-up">
-																	<i class="fa fa-angle-up"></i>
-																</button>
-																<button type="button" class="btn btn-default spinner-down">
-																	<i class="fa fa-angle-down"></i>
-																</button>
-															</div>
-														</div>
-													</div>
-													<p>
-														with <code>max</code> value set to 10
-													</p>
-												</div>
-											</div> -->
-
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 2</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Komputer</option>
-                                                            <option>Laptop</option>
-                                                            <option>Printer</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
-												<div class="col-md-6">
-													<input type="number" class="form-control" id="inputDefault">
-												</div>
-											</div> -->
-                                            <div class="form-group">
-												<label class="col-md-3 control-label">Jumlah</label>
-												<div class="col-md-6">
-													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
-														<div class="input-group" style="width:150px;">
-															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
-															<div class="spinner-buttons input-group-btn">
-																<button type="button" class="btn btn-default spinner-up">
-																	<i class="fa fa-angle-up"></i>
-																</button>
-																<button type="button" class="btn btn-default spinner-down">
-																	<i class="fa fa-angle-down"></i>
-																</button>
-															</div>
-														</div>
-													</div>
-													<p>
-														with <code>max</code> value set to 10
-													</p>
-												</div>
-											</div>
-
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Barang 3</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Komputer</option>
-                                                            <option>Laptop</option>
-                                                            <option>Printer</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Jumlah</label>
-												<div class="col-md-6">
-													<input type="number" class="form-control" id="inputDefault">
-												</div>
-											</div> -->
-                                            <div class="form-group">
-												<label class="col-md-3 control-label">Jumlah</label>
-												<div class="col-md-6">
-													<div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
-														<div class="input-group" style="width:150px;">
-															<input type="text" class="spinner-input form-control" maxlength="3" readonly>
-															<div class="spinner-buttons input-group-btn">
-																<button type="button" class="btn btn-default spinner-up">
-																	<i class="fa fa-angle-up"></i>
-																</button>
-																<button type="button" class="btn btn-default spinner-down">
-																	<i class="fa fa-angle-down"></i>
-																</button>
-															</div>
-														</div>
-													</div>
-													<p>
-														with <code>max</code> value set to 10
-													</p>
-												</div>
-											</div>
-
                                             <div class="form-group">
 												<label class="col-md-3 control-label">Tanggal Permintaan</label>
 												<div class="col-md-6">
@@ -192,8 +239,30 @@
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </footer>
 								</section>
+								<div id="dialog" class="modal-block mfp-hide">
+									<section class="panel">
+										<header class="panel-heading">
+											<h2 class="panel-title">Are you sure?</h2>
+										</header>
+										<div class="panel-body">
+											<div class="modal-wrapper">
+												<div class="modal-text">
+													<p>Are you sure that you want to delete this row?</p>
+												</div>
+											</div>
+										</div>
+										<footer class="panel-footer">
+											<div class="row">
+												<div class="col-md-12 text-right">
+													<button id="dialogConfirm" class="btn btn-primary">Confirm</button>
+													<button id="dialogCancel" class="btn btn-default">Cancel</button>
+												</div>
+											</div>
+										</footer>
+									</section>
+								</div>
                         </div>
-                            </div>
+                    </div>
 </section>
 
 

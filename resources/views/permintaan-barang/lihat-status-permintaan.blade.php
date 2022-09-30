@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'Check Maintenance')
+@section('title', 'Status Permintaan Barang')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Check Maintenance</h2>
+        <h2>Status Permintaan Barang</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,7 +34,7 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Check Maintenance</h2>
+                        <h2 class="panel-title">Status Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
 
@@ -43,7 +43,7 @@
                         <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-md">
-                                            <a href="/tambah-check">
+                                            <a href="/tambah-status">
                                             <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                                             </a>
                                         </div>
@@ -52,49 +52,51 @@
                                 <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                                     <thead>
                                         <tr>
-                                            <th>ID Check</th>
-                                            <th>Jenis Check</th>
-                                            <th>Jenis Barang</th>
-                                            <th>Check</th>
-                                            <th>Kondisi</th>
-                                            <th>Informasi</th>
+                                            <th>ID Status</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="gradeX">
                                             <td>1</td>
-                                            <td>Check Device Function</td>
-                                            <td>TV atau LCD</td>
-                                            <td>Device Button</td>
-                                            <td>Normal</td>
-                                            <td>-</td>
+                                            <td>Diterima</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="/update-check" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="/update-status-permintaan" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Device Data</td>
-                                            <td>TV atau LCD</td>
-                                            <td>Live Time</td>
-                                            <td>-</td>
-                                            <td>3 jam</td>
+                                        <tr class="gradeC">
+                                            <td>2</td>
+                                            </td>
+                                            <td>Diproses</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="/update-check" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="/update-status-permintaan" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                                 <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                        
+                                        <tr class="gradeC">
+                                            <td>3</td>
+                                            </td>
+                                            <td>Ditolak</td>
+                                            <td class="actions">
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                                <a href="/update-status-permintaan" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                     </div>
                 </section>
+        
+               
+        
             </div>
         </div>
     <!-- end: page -->

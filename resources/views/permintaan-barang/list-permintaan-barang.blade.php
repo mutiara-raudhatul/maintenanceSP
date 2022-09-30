@@ -7,7 +7,7 @@
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Permintaan Barang</h2>
+        <h2>List Permintaan Barang</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,7 +34,7 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Permintaan Barang</h2>
+                        <h2 class="panel-title">List Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
 
@@ -43,80 +43,53 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Jenis Barang</th>
-                                            <th>Jumlah Barang</th>
                                             <th>Diminta Oleh</th>
-                                            <th>Tanggal Permintaan</th>
-                                            <th>Surat Izin</th>
+                                            <th>Tanggal</th>
+                                            <th>Surat Izin Permintaan</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr class="gradeX">
                                             <td>1</td>
-                                            <td>Laptop</td>
-                                            <td>1</td>
                                             <td>Dadang</td>
                                             <td>13-08-2022</td>
-                                            <td><a href="/media/images/apacaracom.png" download>surat-izin.pdf</a></td>
-                                            <td>Diterima</td>
-                                            <td>
-                                                <div class="panel-body">
-
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
-                                                </div>
+                                            <td><a href="link.html">surat izin.pdf</a></td>
+                                            <td>Lapor</td>
+                                            <td class="actions">
+                                                <a href="/detail-permintaan-barang">
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                </a>
                                             </td>
-                                            
                                         </tr>
                                         <tr class="gradeX">
                                             <td>2</td>
-                                            <td>Laptop</td>
-                                            <td>1</td>
                                             <td>Dadang</td>
                                             <td>13-08-2022</td>
-                                            <td><a href="/media/images/apacaracom.png" download>surat-izin.pdf</a></td>
-                                            <td>Diterima</td>
-                                            <td>
-                                                <div class="panel-body">
-
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
-                                                </div>
+                                            <td><a href="link.html">surat izin.pdf</a></td>
+                                            <td>Lapor</td>
+                                            <td class="actions">
+                                                <a href="/detail-permintaan-barang">
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr class="gradeX">
                                             <td>3</td>
-                                            <td>Laptop</td>
-                                            <td>2</td>
                                             <td>Dadang</td>
                                             <td>13-08-2022</td>
-                                            <td><a href="/media/images/apacaracom.png" download>surat-izin.pdf</a></td>
-                                            <td>Diterima</td>                    
-                                            <td>
-                                                <div class="panel-body">
-
-                                                <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-                                                <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Diproses</button>
-                                                <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
-
-                                                </div>
+                                            <td><a href="link.html">surat izin.pdf</a></td>
+                                            <td>Lapor</td>
+                                            <td class="actions">
+                                                <a href="/detail-permintaan-barang">
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                     </div>
-                </section>
-        
-               
-        
-            </div>
-        </div>
-    <!-- end: page -->
-</section>
-				
+                </section>	
 @endsection
 <!-- end: page -->
