@@ -49,10 +49,25 @@ Route::get('/dashboard-karyawan', function () {
 });
 
 // --------------------------------------------HISTORY------------------------------------------
-Route::get('/admingudang-history', function () {
-    return view('adminGudang/history');
+Route::get('/history-admingudang', function () {
+    return view('history/history-admingudang');
 });
 
+Route::get('/history-adminteknisi', function () {
+    return view('history/history-adminteknisi');
+});
+
+Route::get('/history-teknisi', function () {
+    return view('history/history-teknisi');
+});
+
+Route::get('/history-karyawan', function () {
+    return view('history/history-karyawan');
+});
+
+Route::get('/status-admingudang', function () {
+    return view('history/status-admingudang');
+});
 
 // ------------------------------------------Maintenance------------------------------------------
 Route::get('/permintaan-maintenance', function () {
