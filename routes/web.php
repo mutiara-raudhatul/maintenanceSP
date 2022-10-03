@@ -120,6 +120,17 @@ Route::get('/update-check', function () {
 });
 
 // ------------------------------------------Permintaan Barang------------------------------------------
+Route::get('/status-permintaan', function () {
+    return view('permintaan-barang/lihat-status-permintaan');
+});
+
+Route::get('/tambah-status-permintaan', function () {
+    return view('permintaan-barang/tambah-status-permintaan');
+});
+
+Route::get('/update-status-permintaan', function () {
+    return view('permintaan-barang/update-status-permintaan');
+});
 
 Route::get('/permintaan-barang', function () {
     return view('permintaan-barang/form-permintaan');
@@ -135,4 +146,8 @@ Route::get('/list-permintaan-barang', function () {
 
 Route::get('/tolak-permintaan-barang', function () {
     return view('permintaan-barang/tolak-permintaan-barang');
+});
+
+Route::get('/detail-permintaan-barang', function () {
+    return view('permintaan-barang/detail-permintaan-barang');
 });

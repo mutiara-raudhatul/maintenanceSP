@@ -44,6 +44,8 @@
 		<!-- css permintaan-barang -->
 		<link rel="stylesheet" href="assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
 		<link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+		<link rel="stylesheet" href="assets/vendor/select2/select2.css" />
+		<link rel="stylesheet" href="assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
 		
 
 		<!-- Theme CSS -->
@@ -362,6 +364,9 @@
 		<script src="assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 		<script src="assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
 		<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+		<script src="assets/vendor/select2/select2.js"></script>
+		<script src="assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+		<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="assets/javascripts/theme.js"></script>
@@ -380,5 +385,6 @@
 		<script src="assets/javascripts/tables/examples.datatables.default.js"></script>
 		<script src="assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
 		<script src="assets/javascripts/tables/examples.datatables.tabletools.js"></script>
+		<script src="assets/javascripts/tables/examples.datatables.editable.js"></script>
 	</body>
 </html>

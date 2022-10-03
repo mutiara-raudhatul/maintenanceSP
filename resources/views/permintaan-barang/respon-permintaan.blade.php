@@ -120,70 +120,6 @@
                                     </div>
                         </section>
 
-
-                        <section class="panel">
-                            <header class="panel-heading">
-                                <div class="panel-actions">
-                                    <a href="#" class="fa fa-caret-down"></a>
-                                    <!-- <a href="#" class="fa fa-times"></a> -->
-                                </div>
-                
-                                <h2 class="panel-title">Barang Yang Dipenuhi</h2>
-                            </header>
-                            <div class="panel-body">
-
-
-                                        <table class="table table-bordered table-striped mb-none" id="datatable-editable">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Jenis Barang</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="gradeX">
-                                                    <td>1</td>
-                                                    <td>Laptop</td>
-                                                    <td>
-                                                        <div class="panel-body">
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Dipenuhi</button>
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tidak Dipenuhi</button>
-                                                        </div>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="gradeX">
-                                                <td>2</td>
-                                                <td>Laptop</td>
-                                                    <td>
-                                                        <div class="panel-body">
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Dipenuhi</button>
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tidak Dipenuhi</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr class="gradeX">
-                                                <td>3</td>
-                                                <td>Laptop</td>
-                                                    <td>
-                                                        <div class="panel-body">
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Dipenuhi</button>
-
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tidak Dipenuhi</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                            </div>
-                        </section>
-
                         <div class="row">
 							<div class="col-lg-12">
 								<section class="panel">
@@ -193,17 +129,11 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-										<h2 class="panel-title">Form Respon Permintaan Barang</h2>
+									    <h2 class="panel-title">Form Respon Permintaan Barang</h2>
 									</header>
-									<div class="panel-body">
+									
+                                    <div class="panel-body">
 										<form class="form-horizontal form-bordered" method="get">
-
-                                             <div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Hostname</label>
-												<div class="col-md-6">
-													<input type="text" class="form-control" id="inputDefault">
-												</div>
-											</div>
 
                                             <div class="form-group">
                                                     <label class="col-md-3 control-label" for="inputSuccess">Teknisi Yang ditugaskan</label>
@@ -227,7 +157,61 @@
 													</div>
 												</div>
 											</div>
+										</form>
+									</div>
 
+                                    <footer class="panel-footer" >
+                                        <button class="btn btn-primary">Submit </button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
+                                    </footer>
+								</section>
+                            </div>
+                        </div>
+
+                        <div class="row">
+							<div class="col-lg-12">
+								<section class="panel">
+									<header class="panel-heading">
+										<div class="panel-actions">
+											<a href="#" class="fa fa-caret-down"></a>
+											<a href="#" class="fa fa-times"></a>
+										</div>
+						
+									    <h2 class="panel-title">Form Respon Permintaan Barang</h2>
+									</header>
+									
+                                    <div class="panel-body">
+										<form class="form-horizontal form-bordered" method="get">
+
+                                            <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="inputSuccess">Pilih Barang</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md">
+                                                            <option>Laptop</option>
+                                                            <option>Mouse</option>
+                                                            <option>Kabel</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label class="col-md-3 control-label" for="inputSuccess">Model Barang</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md">
+                                                            <option>Toshiba</option>
+                                                            <option>Acer</option>
+                                                            <option>HP</option>
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                            <div class="form-group">
+												<label class="col-md-3 control-label" for="inputDefault">Jumlah Barang</label>
+												<div class="col-md-6">
+													<input type="number" min = '1' class="form-control" id="inputDefault">
+												</div>
+											</div>
+                                            
+                                            <button class="btn btn-primary btn-md pull-right">Tambah Barang </button>
+                                        
                                             
 
 										</form>
@@ -238,8 +222,10 @@
                                         <button type="reset" class="btn btn-default">Reset</button>
                                     </footer>
 								</section>
-                        </div>
                             </div>
+                        </div>
+
+
 </section>
 
 
