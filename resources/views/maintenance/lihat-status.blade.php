@@ -43,13 +43,16 @@
                         <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-md">
-                                            <a href="/tambah-status">
+                                            <a href="{{ route('tambah-status')}}">
                                             <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+
+                                
+
+                                <table class="table table-bordered table-striped mb-none">
                                     <thead>
                                         <tr>
                                             <th>ID Status</th>
@@ -57,10 +60,12 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
+                                        @foreach ($dtStatus as $item)
                                         <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Lapor</td>
+                                            <td>{{$item->id_status_maintenance}}</td>
+                                            <td>{{$item->status_maintenance}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
@@ -68,30 +73,11 @@
                                                 <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeC">
-                                            <td>2</td>
-                                            </td>
-                                            <td>Proses</td>
-                                            <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeC">
-                                            <td>3</td>
-                                            </td>
-                                            <td>Selesai</td>
-                                            <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
+                                        @endforeach 
+                                        
                                     </tbody>
                                 </table>
+                                
                     </div>
                 </section>
         

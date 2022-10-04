@@ -15,4 +15,6 @@ class Status_maintenance extends Model
     protected $fillable = [
         'id_status_maintenance', 'status_maintenance'    
     ];
+
+    public $timestamps = false;
 }
