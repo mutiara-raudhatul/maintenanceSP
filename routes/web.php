@@ -1,15 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\StatusPermintaanController;
 =======
 use App\Http\Controllers\StatusController;
-
->>>>>>> 92ac3aac94287df78ea4fd7d750cd494500664bf
-use App\Http\Controllers\PermintaanBarangController;
-use App\Http\Controllers\StatusPermintaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
