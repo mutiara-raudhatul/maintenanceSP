@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,15 +83,19 @@ Route::get('/form-respon-maintenance', function () {
 Route::get('/maintenance-teknisi', function () {
     return view('maintenance/form-maintenance-teknisi');
 });
-Route::get('/status', function () {
-    return view('maintenance/lihat-status');
-});
-Route::get('/tambah-status', function () {
-    return view('maintenance/tambah-status');
-});
-Route::get('/update-status', function () {
-    return view('maintenance/update-status');
-});
+//lihat-status
+Route::get('/status',[StatusController::class, 'index'])->name('status');
+//tambah-status
+Route::get('/tambah-status',[StatusController::class, 'getTambahStatus'])->name('tambah-status');
+Route::post('/simpan-statusM',[StatusController::class, 'createStatus'])->name('simpan-statusM');
+//update-status
+Route::get('/update-status/{id_status_maintenance}',[StatusController::class, 'getUpdate'])->name('updateStatus');
+//simpan update-kepengurusan
+Route::post('/update-kepengurusan/{id_kepengurusan}',[KepengurusanController::class, 'setUpdate'])->name('simpan-update-kepengurusan');
+
+// Route::get('/update-status', function () {
+//     return view('maintenance/update-status');
+// });
 Route::get('/jenis-maintenance', function () {
     return view('maintenance/list-jenis-maintenance');
 });
