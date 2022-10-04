@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\StatusPermintaanController;
 use App\Http\Controllers\StatusController;
