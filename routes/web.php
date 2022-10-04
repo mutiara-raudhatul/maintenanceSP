@@ -1,15 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
 use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\StatusPermintaanController;
-=======
 use App\Http\Controllers\StatusController;
-
->>>>>>> 92ac3aac94287df78ea4fd7d750cd494500664bf
-use App\Http\Controllers\PermintaanBarangController;
-use App\Http\Controllers\StatusPermintaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,7 +128,12 @@ Route::get('/update-check', function () {
 // ------------------------------------------Permintaan Barang------------------------------------------
 
 //-------STATUS PERMINTAAN----------
+//read status
 Route::get('/status-permintaan', [StatusPermintaanController::class, 'index']);
+//create status
+Route::get('/tambah-status-permintaan',[StatusPermintaanController::class, 'getTambahStatus'])->name('tambah-status-permintaan');
+Route::post('/simpan-statusP',[StatusPermintaanController::class, 'createStatus'])->name('simpan-statusP');
+//delete status
 Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
 Route::get('/tambah-status-permintaan', function () {
     return view('permintaan-barang/tambah-status-permintaan');
