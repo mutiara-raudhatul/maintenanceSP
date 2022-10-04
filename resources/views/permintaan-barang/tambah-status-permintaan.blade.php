@@ -42,12 +42,12 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="inputDefault" >
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Status</label>
+                                <label class="col-md-3 control-label" for="inputDefault" >Status</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="inputDefault">
                                 </div>

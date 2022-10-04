@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PermintaanBarangController;
+use App\Http\Controllers\StatusPermintaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,10 +121,10 @@ Route::get('/update-check', function () {
 });
 
 // ------------------------------------------Permintaan Barang------------------------------------------
-Route::get('/status-permintaan', function () {
-    return view('permintaan-barang/lihat-status-permintaan');
-});
 
+//-------STATUS PERMINTAAN----------
+Route::get('/status-permintaan', [StatusPermintaanController::class, 'index']);
+Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
 Route::get('/tambah-status-permintaan', function () {
     return view('permintaan-barang/tambah-status-permintaan');
 });
@@ -140,9 +141,10 @@ Route::get('/respon-permintaan-barang', function () {
     return view('permintaan-barang/respon-permintaan');
 });
 
-Route::get('/list-permintaan-barang', function () {
-    return view('permintaan-barang/list-permintaan-barang');
-});
+Route::get('/list-permintaan-barang',[PermintaanBarangController::class, 'listpermintaanbarang']);
+// Route::get('/list-permintaan-barang', function (listpermintaanbarang) {
+//     return view('permintaan-barang/list-permintaan-barang');
+// });
 
 Route::get('/tolak-permintaan-barang', function () {
     return view('permintaan-barang/tolak-permintaan-barang');

@@ -42,7 +42,7 @@
                                 <table class="table table-bordered table-striped mb-none" id="datatable-editable">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <!-- <th>No</th> -->
                                             <th>Diminta Oleh</th>
                                             <th>Tanggal</th>
                                             <th>Surat Izin Permintaan</th>
@@ -50,46 +50,27 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
+
+                                    @foreach ($minta as $p)
                                     <tbody>
                                         <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
+                                            <td>{{ $p->id_user }}</td>
+                                            <td>{{ $p->tanggal_permintaan }}</td>
+                                            <td>{{ $p->surat_izin }}</td>
+                                            <td>{{ $p->id_status_permintaan }}</td>
                                             <td class="actions">
-                                                <a href="/detail-permintaan-barang">
+                                                <a href="/detail-permintaan-barang/{{ $per->id_permintaan }}">
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeX">
-                                            <td>2</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
-                                            <td class="actions">
-                                                <a href="/detail-permintaan-barang">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeX">
-                                            <td>3</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
-                                            <td class="actions">
-                                                <a href="/detail-permintaan-barang">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                     </div>
                 </section>	
+            </div>
+        </div>
+</section>
 @endsection
 <!-- end: page -->

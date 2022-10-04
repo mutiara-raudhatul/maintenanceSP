@@ -42,7 +42,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="1">
+                                    <input type="text" class="form-control" id="inputDefault" value="1" readonly="readonly">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
