@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+                                <table class="table table-bordered table-striped mb-none" >
                                     <thead>
                                         <tr>
                                             <th>ID Jenis Maintenace</th>
@@ -58,27 +58,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($dtJenisM as $item)
                                         <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Multimedia</td>
+                                            <td>{{$item->id_jenis_maintenance}}</td>
+                                            <td>{{$item->jenis_maintenance}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="/update-jenis-maintenance" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{url('delete-jenis-maintenance',$item->id_jenis_maintenance)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeC">
-                                            <td>2</td>
-                                            </td>
-                                            <td>Network</td>
-                                            <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
+                                        @endforeach 
                                     </tbody>
                                 </table>
                     </div>

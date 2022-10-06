@@ -8,22 +8,13 @@ use App\Models\Status_maintenance;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
          $dtStatus = Status_maintenance::all();
         return view('maintenance.lihat-status', compact('dtStatus'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function getTambahStatus()
     {
         return view('maintenance.tambah-status');
@@ -39,59 +30,20 @@ class StatusController extends Controller
         return redirect('status')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function getUpdate()
+    public function getUpdate($id_status_maintenance)
     {
-        return view('maintenance.update-status');
+        $editSt = Status_maintenance:: select('id_status_maintenance', 'status_maintenance')
+        ->where('id_status_maintenance', '=', $id_status_maintenance)
+        ->first();
+        //dd($editSt);
+        return view('maintenance.update-status', compact('editSt'));
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function destroy($id_status_maintenance)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $status_hapus = Status_maintenance::findorfail($id_status_maintenance);
+        $status_hapus->delete();
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }

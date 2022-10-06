@@ -9,6 +9,7 @@ class Jenis_maintenance extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "jenis_maintenance"; //cek
     protected $primaryKey = "id_jenis_maintenance"; //cek
 

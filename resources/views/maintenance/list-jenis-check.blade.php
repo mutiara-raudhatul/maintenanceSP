@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+                                <table class="table table-bordered table-striped mb-none" id="">
                                     <thead>
                                         <tr>
                                             <th>ID Jenis Check</th>
@@ -60,31 +60,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($dtJenisC as $item)
                                         <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Check Device Function</td>
-                                            <td>Check Box</td>
-                                            <td>Multimedia</td>
+                                            <td>{{$item->id_jenis_check}}</td>
+                                            <td>{{$item->jenis_check}}</td>
+                                            <td>{{$item->tipe_check}}x</td>
+                                            <td>{{$item->id_jenis_maintenance}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="/update-jenis-check" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{url('delete-jenis-check',$item->id_jenis_check)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeX">
-                                            <td>2</td>
-                                            <td>Device Data</td>
-                                            <td>information</td>
-                                            <td>Multimedia</td>
-                                            <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="/update-jenis-check" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        
+                                         @endforeach 
                                     </tbody>
                                 </table>
                     </div>

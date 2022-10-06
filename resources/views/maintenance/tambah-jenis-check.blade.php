@@ -36,30 +36,32 @@
         
                         <h2 class="panel-title">Tambah Jenis Check</h2>
                     </header>
+                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan-jenisC')}}">
+                        {{ csrf_field()}}
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+                       
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Jenis Check</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="inputDefault" name="id_jenis_check">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Jenis Check</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="inputDefault" name="jenis_check">
                                 </div>
                             </div>
                             <!-- Input Select -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tipe Check</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate">
+                                    <select class="form-control populate" name="tipe_check">
                                         <option disabled selected>Pilih</option>
-                                        <option value="CT">Check Box</option>
-                                        <option value="DE">Information</option>
+                                        <option value="Check">Check Box</option>
+                                        <option value="Info">Information</option>
                                     </select>
                                 </div>
                             </div>
@@ -67,19 +69,21 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate">
+                                    <select class="form-control populate" name="id_jenis_maintenance">
                                         <option disabled selected>Pilih</option>
-                                        <option value="CT">Multimedia</option>
-                                        <option value="DE">Network</option>
+                                        @foreach ($jenis_maintenance as $item)
+                                        <option value="{{ $item->id_jenis_maintenance }}">{{ $item->jenis_maintenance }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section>
         
                
