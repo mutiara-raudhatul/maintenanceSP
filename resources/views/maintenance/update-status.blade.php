@@ -36,7 +36,7 @@
         
                         <h2 class="panel-title">Update Status Maintenance</h2>
                     </header>
-                    <form class="form-horizontal form-bordered" method="post" action="/update-status/{id_status_maintenance}">
+                    <form class="form-horizontal form-bordered" method="post" action="/update-status/{{$editSt->id_status_maintenance}}">
                     {{ csrf_field()}}
                         <div class="panel-body">
                             

@@ -29,6 +29,29 @@ class JenisMaintenanceController extends Controller
         return redirect('jenis-maintenance')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 
+    public function getUpdate($id_jenis_maintenance)
+    {
+        $edit = Jenis_maintenance:: select('id_jenis_maintenance', 'jenis_maintenance')
+        ->where('id_jenis_maintenance', '=', $id_jenis_maintenance)
+        ->first();
+        //dd($editSt);
+        return view('maintenance.update-jenis-maintenance', compact('edit'));
+        
+    }
+
+    public function setUpdate(Request $request,$id_jenis_maintenance)
+    {
+        $update = Jenis_maintenance::where('id_jenis_maintenance', $id_jenis_maintenance)->update([
+            'jenis_maintenance' => $request->jenis_maintenance,
+        ]);
+        if($update == true){
+            return redirect('/jenis-maintenance')->with('toast_success', 'Update Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/jenis-maintenance')->with('error', 'Update Gagal Dilakukan!');
+        }
+    }
+
     public function destroy($id_jenis_maintenance)
     {
         $hapus = Jenis_maintenance::findorfail($id_jenis_maintenance);

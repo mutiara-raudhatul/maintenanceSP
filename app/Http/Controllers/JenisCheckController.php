@@ -11,7 +11,7 @@ class JenisCheckController extends Controller
     public function index()
     {
         $dtJenisC = Jenis_check::join('jenis_maintenance', 'jenis_maintenance.id_jenis_maintenance', '=', 'jenis_check.id_jenis_maintenance')
-        ->select('jenis_check.id_jenis_check', 'jenis_check.jenis_check', 'jenis_check.tipe_check', 'jenis_maintenance.id_jenis_maintenance')
+        ->select('jenis_check.id_jenis_check', 'jenis_check.jenis_check', 'jenis_check.tipe_check', 'jenis_maintenance.id_jenis_maintenance', 'jenis_maintenance.jenis_maintenance')
         ->paginate(15);
         //dd($dtJenisC);
         return view('maintenance.list-jenis-check', ['dtJenisC' => $dtJenisC]);
@@ -32,7 +32,6 @@ class JenisCheckController extends Controller
             'tipe_check' =>$request->tipe_check,
             'id_jenis_maintenance' =>$request->id_jenis_maintenance,
         ]);
-        $jenis_maintenance = Jenis_maintenance::select('');
 
         return redirect('jenis-check')->with('toast_success', 'Data Berhasil Tersimpan');
 
