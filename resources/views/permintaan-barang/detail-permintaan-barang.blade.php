@@ -38,8 +38,8 @@
                     </header>
 
                     <div class="panel-body">
-                        <p class="mb-lg"> Nama Pemohon         :   </p>
-                        <p class="mb-lg"> Bidang Kerja Pemohon :   </p>         
+                        <p class="mb-lg"> Nama Pemohon         :  {{ $detail->name }} </p>
+                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $detail->unit_kerja }}</p>         
                     </div>
                 </section>	
 
@@ -65,21 +65,13 @@
 														<th>Jumlah</th>														
 													</tr>
 												</thead>
+												<?php $no = 1; ?>
+                                    			@foreach($data_detail as $detail)
 												<tbody>
 													<tr>
-														<td>1</td>
-														<td>Laptop</td>
-														<td>1</td>														
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>kabel</td>
-														<td>1</td>	
-													</tr>
-													<tr>
-														<td>3</td>
-														<td>flashdisk</td>
-														<td>4</td>	
+														<td>{{$no++}}</td>>
+														<td>{{ $detail->jenis_barang }}</td>
+														<td>{{ $detail->jumlah_permitaan }}</td>														
 													</tr>
 												</tbody>
 											</table>

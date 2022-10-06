@@ -107,7 +107,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="/list-permintaan-barang">
+												<a href="/permintaan-barang">
 												List Permintaan Barang
 												</a>
 											</li>

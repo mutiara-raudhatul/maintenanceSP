@@ -37,4 +37,18 @@ class StatusPermintaanController extends Controller
 
         return redirect('status-permintaan')->with('toast_success', 'Data Berhasil Tersimpan');
     }
+
+    public function edit($id_status_permintaan)
+    {
+        $edit_permintaan = Status_permintaan::findorfail($id_status_permintaan);
+        return view('permintaan-barang.update-status-permintaan', compact('edit_permintaan'));
+    }
+
+    public function update(Request $request, $id_status_permintaan)
+    {
+        $updt = Status_permintaan::findorfail($id_status_permintaan);
+        $updt->update($request->all());
+        return redirect('status-permintaan')->with('success', 'Data berhasil diedit!');
+    }
+
 }
