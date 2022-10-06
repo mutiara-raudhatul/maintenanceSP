@@ -15,7 +15,7 @@ class CreateJenisCheckTable extends Migration
     {
         Schema::create('jenis_check', function (Blueprint $table) {
             $table->unsignedBigInteger('id_jenis_check')->autoIncrement();
-            $table->string('jenis_check', 10)->nullable($value=false);
+            $table->string('jenis_check', 30)->nullable($value=false);
             $table->string('tipe_check', 10)->nullable($value=false);
         });
 

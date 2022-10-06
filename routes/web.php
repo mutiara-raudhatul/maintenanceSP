@@ -95,10 +95,6 @@ Route::get('/tambah-status',[StatusController::class, 'getTambahStatus'])->name(
 Route::post('/simpan-statusM',[StatusController::class, 'createStatus'])->name('simpan-statusM');
 Route::get('/update-status/{id_status_maintenance}',[StatusController::class, 'getUpdate'])->name('updateStatus');
 Route::post('/update-status/{id_status_maintenance}',[StatusController::class, 'setUpdate']);
-
-// Route::get('/update-status', function () {
-//     return view('maintenance/update-status');
-// });
 Route::get('/delete-status-maintenance/{id_status_maintenance}', [StatusController::class, 'destroy']);
 
 //-----------------------------------JENIS MAINTENANCE
@@ -106,10 +102,9 @@ Route::get('/jenis-maintenance',[JenisMaintenanceController::class, 'index'])->n
 Route::get('/tambah-jenis-maintenance',[JenisMaintenanceController::class, 'getTambah']);
 Route::post('/simpan-jenis-maintenance',[JenisMaintenanceController::class, 'setTambah'])->name('simpan-jenis');
 Route::get('/delete-jenis-maintenance/{id_jenis_maintenance}', [JenisMaintenanceController::class, 'destroy']);
+Route::get('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'getUpdate'])->name('updateJenisM');
+Route::post('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'setUpdate']);
 
-Route::get('/update-jenis-maintenance', function () {
-    return view('maintenance/update-jenis-maintenance');
-});
 //----------------------------------JENIS CHECK
 
 Route::get('/jenis-check',[JenisCheckController::class, 'index'])->name('jenis-check');

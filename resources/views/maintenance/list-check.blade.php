@@ -53,11 +53,9 @@
                                     <thead>
                                         <tr>
                                             <th>ID Check</th>
+                                            <th>Check</th>
                                             <th>Jenis Check</th>
                                             <th>Jenis Barang</th>
-                                            <th>Check</th>
-                                            <th>Kondisi</th>
-                                            <th>Informasi</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -65,16 +63,14 @@
                                         @foreach ($dtCheck as $item)
                                         <tr class="gradeX">
                                             <td>{{$item->id_check}}</td>
+                                            <td>{{$item->check}}</td>
                                             <td>{{$item->jenis_check}}</td>
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->check}}</td>
-                                            <td>{{$item->kondisi}}</td>
-                                            <td>{{$item->informasi}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="/update-check" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{url('delete-check',$item->id_check)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach 

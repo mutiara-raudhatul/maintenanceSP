@@ -40,6 +40,19 @@ class StatusController extends Controller
         
     }
 
+    public function setUpdate(Request $request,$id_status_maintenance)
+    {
+        $update = Status_maintenance::where('id_status_maintenance', $id_status_maintenance)->update([
+            'status_maintenance' => $request->status_maintenance,
+        ]);
+        if($update == true){
+            return redirect('/status')->with('toast_success', 'Update Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/status')->with('error', 'Update Gagal Dilakukan!');
+        }
+    }
+
     public function destroy($id_status_maintenance)
     {
         $status_hapus = Status_maintenance::findorfail($id_status_maintenance);

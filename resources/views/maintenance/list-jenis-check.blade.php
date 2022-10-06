@@ -64,8 +64,8 @@
                                         <tr class="gradeX">
                                             <td>{{$item->id_jenis_check}}</td>
                                             <td>{{$item->jenis_check}}</td>
-                                            <td>{{$item->tipe_check}}x</td>
-                                            <td>{{$item->id_jenis_maintenance}}</td>
+                                            <td>{{$item->tipe_check}}</td>
+                                            <td>{{$item->jenis_maintenance}}</td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>

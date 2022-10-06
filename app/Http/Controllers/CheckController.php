@@ -12,9 +12,9 @@ class CheckController extends Controller
 {
     public function index()
     {
-        $dtCheck = Check::join('jenis-check', 'jenis-check.id_jenis_check', '=', 'check.id_jenis_check')
+        $dtCheck = Check::join('jenis_check', 'jenis_check.id_jenis_check', '=', 'check.id_jenis_check')
         ->join('jenis_barang', 'jenis_barang.id_jenis_barang', '=', 'check.id_jenis_barang')
-        ->select('check.id_check','check.check','check.kondisi','check.informasi','jenis_check.id_jenis_check','jenis-check.jenis-check', 'jenis_barang.id_jenis_barang', 'jenis_barang.jenis_barang')
+        ->select('check.id_check','check.check','check.kondisi','check.informasi','jenis_check.id_jenis_check','jenis_check.jenis_check', 'jenis_barang.id_jenis_barang', 'jenis_barang.jenis_barang')
         ->paginate(15);
         //dd($dtJenisC);
         return view('maintenance.list-check', ['dtCheck' => $dtCheck]);
@@ -22,29 +22,29 @@ class CheckController extends Controller
 
     public function getTambah()
     {
-        $jenis_maintenance = Jenis_maintenance::all();
+        $jenis_check = Jenis_check::all();
+        $jenis_barang = Jenis_barang::all();
 
-        return view('maintenance.tambah-jenis-check', ['jenis_maintenance' => $jenis_maintenance]);
+        return view('maintenance.tambah-check', ['jenis_check' => $jenis_check, 'jenis_barang' => $jenis_barang]);
     }
 
     public function setTambah(Request $request)
     {        
-        Jenis_check::create([
-            'id_jenis_check' => $request->id_jenis_check,
-            'jenis_check' =>$request->jenis_check,
+        Check::create([
+            'id_check' => $request->id_jenis_check,
+            'check' => $request->check,
+            'id_jenis_check' =>$request->jenis_check,
             'tipe_check' =>$request->tipe_check,
-            'id_jenis_maintenance' =>$request->id_jenis_maintenance,
+            'id_jenis_barang' =>$request->jenis_barang,
         ]);
-        $jenis_maintenance = Jenis_maintenance::select('');
-
-        return redirect('jenis-check')->with('toast_success', 'Data Berhasil Tersimpan');
+        return redirect('check')->with('toast_success', 'Data Berhasil Tersimpan');
 
 
     }
 
-    public function destroy($id_jenis_check)
+    public function destroy($id_check)
     {
-        $hapus = Jenis_check::findorfail($id_jenis_check);
+        $hapus = Check::findorfail($id_check);
         $hapus->delete();
         return back()->with('success', 'Data berhasil dihapus!');
     }
