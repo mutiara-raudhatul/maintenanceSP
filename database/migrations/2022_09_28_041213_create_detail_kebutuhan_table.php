@@ -15,7 +15,7 @@ class CreateDetailKebutuhanTable extends Migration
     {
         Schema::create('detail_kebutuhan', function (Blueprint $table) {
             $table->unsignedBigInteger('id_detail_kebutuhan')->autoIncrement();
-            $table->integer('jumlah_permitaan')->nullable($value=false);        
+            $table->integer('jumlah_permintaan')->nullable($value=false);        
         });
 
         Schema::table('detail_kebutuhan', function (Blueprint $table) {

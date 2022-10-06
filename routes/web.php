@@ -8,6 +8,7 @@ use App\Http\Controllers\StatusController;
 use App\Http\Controllers\JenisMaintenanceController;
 use App\Http\Controllers\JenisCheckController;
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\DetailPermintaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,25 +134,29 @@ Route::get('/update-check', function () {
 // ------------------------------------------Permintaan Barang------------------------------------------
 
 //-------STATUS PERMINTAAN----------
+//read status
 Route::get('/status-permintaan', [StatusPermintaanController::class, 'index']);
+//create status
+Route::get('/tambah-status-permintaan',[StatusPermintaanController::class, 'getTambahStatus'])->name('tambah-status-permintaan');
+Route::post('/simpan-statusP',[StatusPermintaanController::class, 'createStatus'])->name('simpan-statusP');
+//delete status
 Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
-Route::get('/tambah-status-permintaan', function () {
-    return view('permintaan-barang/tambah-status-permintaan');
-});
+//update status
+Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
+Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'update'])->name('update-status-permintaan');
 
-Route::get('/update-status-permintaan', function () {
-    return view('permintaan-barang/update-status-permintaan');
-});
+//-------STATUS PERMINTAAN----------
+//read permintaan
+// Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
+Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
+Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [DetailPermintaanController::class, 'index'])->name('detail-permintaan-barang');
 
-Route::get('/permintaan-barang', function () {
-    return view('permintaan-barang/form-permintaan');
-});
 
 Route::get('/respon-permintaan-barang', function () {
     return view('permintaan-barang/respon-permintaan');
 });
 
-Route::get('/list-permintaan-barang',[PermintaanBarangController::class, 'listpermintaanbarang']);
+// Route::get('/list-permintaan-barang',[PermintaanBarangController::class, 'listpermintaanbarang']);
 // Route::get('/list-permintaan-barang', function (listpermintaanbarang) {
 //     return view('permintaan-barang/list-permintaan-barang');
 // });

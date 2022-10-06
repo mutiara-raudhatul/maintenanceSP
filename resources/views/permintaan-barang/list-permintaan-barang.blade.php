@@ -33,16 +33,14 @@
                             <a href="#" class="fa fa-caret-down"></a>
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
-        
                         <h2 class="panel-title">List Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
-
-
-                                <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+                                <table class="table table-bordered table-striped mb-none">
                                     <thead>
+                                    <tbody>
                                         <tr>
-                                            <!-- <th>No</th> -->
+                                            <th>No</th>
                                             <th>Diminta Oleh</th>
                                             <th>Tanggal</th>
                                             <th>Surat Izin Permintaan</th>
@@ -50,16 +48,17 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-
-                                    @foreach ($minta as $p)
+                                    <?php $no = 1; ?>
+                                    @foreach($data_permintaan as $minta)
                                     <tbody>
                                         <tr class="gradeX">
-                                            <td>{{ $p->id_user }}</td>
-                                            <td>{{ $p->tanggal_permintaan }}</td>
-                                            <td>{{ $p->surat_izin }}</td>
-                                            <td>{{ $p->id_status_permintaan }}</td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$minta->name}}</td>
+                                            <td>{{$minta->tanggal_permintaan }}</td>
+                                            <td>{{$minta->surat_izin }}</td>
+                                            <td>{{$minta->status_permintaan }}</td>
                                             <td class="actions">
-                                                <a href="/detail-permintaan-barang/{{ $per->id_permintaan }}">
+                                                <a href="{{url('detail-permintaan-barang',$minta->id_permintaan_barang)}}">
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
                                                 </a>
                                             </td>
