@@ -48,22 +48,16 @@
 												</tr>
 											</thead>
 											<tbody>
+											@foreach ($dtHistory as $dth)
 												<tr>
-													<td>1</td>
-													<td>Mutiara Raudhatul Jannah</td>
-													<td>Monitor Komputer rusak</td>
-													<td>ICT - Kantor Pusat</td>
-													<td>09 September 2022</td>
-													<td><span class="label label-warning">Proses</span></td>
+													<td>{{ $no++ }}</td>
+													<td>{{ $dth->name }}</td>
+													<td>{{ $dth->jenis_barang }}</td>
+													<td>{{ $dth->unit_kerja }}</td>
+													<td>{{ $dth->tanggal_permintaan }}</td>
+													<td><span class="label label-success">Success</span></td>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>Mutiara Raudhatul Jannah</td>
-													<td>Projector</td>
-													<td>ICT - Kantor Pusat</td>
-													<td>20 September 2022</td>
-													<td><span class="label label-info">New</span></td>
-												</tr>
+											@endforeach
 											</tbody>
 										</table>
 									</div>
