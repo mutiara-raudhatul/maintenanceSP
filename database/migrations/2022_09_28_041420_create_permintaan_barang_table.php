@@ -17,7 +17,7 @@ class CreatePermintaanBarangTable extends Migration
             $table->unsignedBigInteger('id_permintaan_barang')->autoIncrement();
             $table->date('tanggal_permintaan')->nullable($value=false);
             $table->string('surat_izin')->nullable($value=true);
-            $table->integer('jumlah_permintaan')->nullable($value=false);  
+              
         });
 
         Schema::table('permintaan_barang', function (Blueprint $table) {

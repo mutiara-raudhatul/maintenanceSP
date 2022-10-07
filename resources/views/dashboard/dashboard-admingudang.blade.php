@@ -22,7 +22,7 @@
 						</div>
 					</header>
 
-						<div class="row">
+					<div class="row">
 
 					</div>
 				
@@ -45,22 +45,66 @@
 														</strong>
 													</h2>
 
+													<div class="container">
+														<div class="row">
+															<div class="col-md-5 offset-md-1">
+																<div class="panel panel-default">
+																	<div class="panel-body">
+																		<canvas id="canvas" height="20" width="30"></canvas>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+													<script>
+														var year = <?php echo $year; ?>;
+														var user = <?php echo $user; ?>;
+														var barChartData = {
+															labels: year,
+															datasets: [{
+																label: 'User',
+																backgroundColor: "lightblue",
+																data: user
+															}]
+														};
+
+														window.onload = function() {
+															var ctx = document.getElementById("canvas").getContext("2d");
+															window.myBar = new Chart(ctx, {
+																type: 'bar',
+																data: barChartData,
+																options: {
+																	elements: {
+																		rectangle: {
+																			borderWidth: 2,
+																			borderColor: '#c1c1c1',
+																			borderSkipped: 'bottom'
+																		}
+																	},
+																	responsive: true,
+																	title: {
+																		display: true,
+																		text: 'Yearly User Joined'
+																	}
+																}
+															});
+														};
+													</script>
+
 													<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
 														<!-- Flot: Sales JSOFT Admin -->
 														<div class="chart chart-sm" data-sales-rel="JSOFT Admin" id="flotDashSales1" class="chart-active"></div>
 														<script>
 
 															var flotDashSales1Data = [{
-																data: [
-																	["Jan", 140],
-																	["Feb", 240],
-																	["Mar", 190],
-																	["Apr", 140],
-																	["May", 180],
-																	["Jun", 320],
-																	["Jul", 270],
-																	["Aug", 180]
-																],
+																
+																labels: year,
+																	datasets: [{
+																	label: 'User',
+																	backgroundColor: "lightblue",
+																	data: user
+																}],
 																color: "#0088cc"
 															}];
 
