@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PermintaanBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,11 @@ Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 });
 
 // --------------------------------------------DASHBOARD------------------------------------------
-Route::get('/dashboard-admingudang', function () {
-    return view('dashboard/dashboard-admingudang');
-});
+
+Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
+// Route::get('/dashboard-admingudang', function () {
+//     return view('dashboard/dashboard-admingudang');
+// });
 
 Route::get('/dashboard-adminteknisi', function () {
     return view('dashboard/dashboard-adminteknisi');
@@ -49,11 +52,21 @@ Route::get('/dashboard-karyawan', function () {
 });
 
 // --------------------------------------------HISTORY------------------------------------------
-Route::get('/history-admingudang', function () {
-    return view('history/history-admingudang');
-});
+// Route::get('/history-admingudang', function () {
+//     return view('history/history-admingudang');
+// });
 
-Route::get('/history-adminteknisi', function () {
+// Route::get('/history-admingudang', function () {
+//     return view('history/history-admingudang');
+// });
+
+Route::get('/history-admingudang', 'App\Http\Controllers\HistoriController@indexAG')->name('history-admingudang');
+Route::post('/history-admingudang', 'App\Http\Controllers\HistoriController@search')->name('search');
+Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')->name('history-karyawan');
+Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
+Route::get('/history-adminteknisi', [PermintaanMaintenanceController::class, 'index'])->name('history-adminteknisi');
+
+Route::get('/historyp-adminteknisi', function () {
     return view('history/history-adminteknisi');
 });
 
@@ -61,9 +74,9 @@ Route::get('/history-teknisi', function () {
     return view('history/history-teknisi');
 });
 
-Route::get('/history-karyawan', function () {
-    return view('history/history-karyawan');
-});
+// Route::get('/history-karyawan', function () {
+//     return view('history/history-karyawan');
+// });
 
 Route::get('/status-admingudang', function () {
     return view('history/status-admingudang');
