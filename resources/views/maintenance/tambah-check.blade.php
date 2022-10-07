@@ -36,23 +36,33 @@
         
                         <h2 class="panel-title">Tambah Check</h2>
                     </header>
+                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan-Check')}}">
+                        {{ csrf_field()}}
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+                       
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Check</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="inputDefault" name="id_check">
+                                </div>
+                            </div>
+                            <!-- Input Biasa -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="inputDefault">Check</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="inputDefault" name="check">
                                 </div>
                             </div>
                             <!-- Input Select -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Check</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate">
+                                    <select class="form-control populate" name="jenis_check">
                                         <option disabled selected>Pilih</option>
-                                        <option value="CT">Check Box</option>
-                                        <option value="DE">Information</option>
+                                        @foreach ($jenis_check as $item)
+                                        <option value="{{ $item->id_jenis_check }}">{{ $item->jenis_check }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -60,26 +70,22 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate">
+                                    <select class="form-control populate" name="jenis_barang">
                                         <option disabled selected>Pilih</option>
-                                        <option value="CT">TV atau LCD</option>
-                                        <option value="DE">Projector</option>
+                                        @foreach ($jenis_barang as $item)
+                                        <option value="{{ $item->id_jenis_barang }}">{{ $item->jenis_barang }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <!-- Input Biasa -->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Check</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
-                                </div>
-                            </div>
-                        </form>
+                            
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section>
         
                

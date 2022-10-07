@@ -36,28 +36,31 @@
         
                         <h2 class="panel-title">Tambah Status Permintaan Barang</h2>
                     </header>
+                    <form class="form-horizontal form-bordered" action="{{route('simpan-statusP')}}" method="post">
+                    {{ csrf_field()}}
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">ID Status</label>
+                                <label class="col-md-3 control-label">ID Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="id_status_permintaan" name="id_status_permintaan">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Status</label>
+                                <label class="col-md-3 control-label" >Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="status_permintaan" name="status_permintaan">
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section>
         
                

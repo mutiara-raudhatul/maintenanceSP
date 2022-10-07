@@ -37,27 +37,30 @@
                         <h2 class="panel-title">Update Status Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+                    <form action="/update-status-permintaan/{{$updt->id_status_permintaan}}" class="form-horizontal form-bordered" method="POST">
+                    {{csrf_field()}}
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="1">
+                                    <input type="text" class="form-control" id="inputDefault" name="id_status_permintaan" value="{{$updt->id_status_permintaan}}">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Status</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="Lapor">
+                                    <input type="text" class="form-control" id="inputDefault" name="status_permintaan" value="{{$updt->status_permintaan}}">
                                 </div>
                             </div>
-                        </form>
+                        
+                    
                     </div>
                     <footer class="panel-footer" >
                         <button class="btn btn-primary">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section> 
             </div>
         </div>

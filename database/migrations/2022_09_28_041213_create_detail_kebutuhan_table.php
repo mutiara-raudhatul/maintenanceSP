@@ -15,12 +15,14 @@ class CreateDetailKebutuhanTable extends Migration
     {
         Schema::create('detail_kebutuhan', function (Blueprint $table) {
             $table->unsignedBigInteger('id_detail_kebutuhan')->autoIncrement();
-            $table->integer('jumlah_permitaan')->nullable($value=false);        
+            $table->integer('jumlah_permintaan')->nullable($value=false);        
         });
 
         Schema::table('detail_kebutuhan', function (Blueprint $table) {
             $table->unsignedBigInteger('id_jenis_barang');
+            $table->unsignedBigInteger('id_permintaan_barang');
             $table->foreign('id_jenis_barang')->references('id_jenis_barang')->on('jenis_barang');
+            $table->foreign('id_permintaan_barang')->references('id_permintaan_barang')->on('permintaan_barang');
         });
     }
 

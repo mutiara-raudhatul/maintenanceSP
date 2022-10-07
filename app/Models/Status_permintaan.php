@@ -15,4 +15,6 @@ class Status_permintaan extends Model
     protected $fillable = [
         'id_status_permintaan', 'status_permintaan'   
     ];
+
+    public $timestamps = false;
 }

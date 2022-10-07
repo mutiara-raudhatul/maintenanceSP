@@ -36,28 +36,31 @@
         
                         <h2 class="panel-title">Update Jenis Maintenance</h2>
                     </header>
-                    <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+                    <form class="form-horizontal form-bordered" method="post" action="/update-jenis-maintenance/{{$edit->id_jenis_maintenance}}">
+                        {{ csrf_field()}}
+                        <div class="panel-body">
+                        
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="1">
+                                    <input type="text" class="form-control" id="inputDefault" value="{{$edit->id_jenis_maintenance}}" name="id_jenis_maintenance">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="Multimedia">
+                                    <input type="text" class="form-control" id="inputDefault" value="{{$edit->jenis_maintenance}}" name="jenis_maintenance">
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                </form>
                 </section>
         
                

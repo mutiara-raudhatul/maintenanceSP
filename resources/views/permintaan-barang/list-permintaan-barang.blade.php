@@ -33,14 +33,12 @@
                             <a href="#" class="fa fa-caret-down"></a>
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
-        
                         <h2 class="panel-title">List Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
-
-
-                                <table class="table table-bordered table-striped mb-none" id="datatable-editable">
+                                <table class="table table-bordered table-striped mb-none">
                                     <thead>
+                                    <tbody>
                                         <tr>
                                             <th>No</th>
                                             <th>Diminta Oleh</th>
@@ -50,46 +48,28 @@
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
+                                    <?php $no = 1; ?>
+                                    @foreach($data_permintaan as $minta)
                                     <tbody>
                                         <tr class="gradeX">
-                                            <td>1</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$minta->name}}</td>
+                                            <td>{{$minta->tanggal_permintaan }}</td>
+                                            <td>{{$minta->surat_izin }}</td>
+                                            <td>{{$minta->status_permintaan }}</td>
                                             <td class="actions">
-                                                <a href="/detail-permintaan-barang">
+                                                <a href="{{url('detail-permintaan-barang',$minta->id_permintaan_barang)}}">
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr class="gradeX">
-                                            <td>2</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
-                                            <td class="actions">
-                                                <a href="/detail-permintaan-barang">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr class="gradeX">
-                                            <td>3</td>
-                                            <td>Dadang</td>
-                                            <td>13-08-2022</td>
-                                            <td><a href="link.html">surat izin.pdf</a></td>
-                                            <td>Lapor</td>
-                                            <td class="actions">
-                                                <a href="/detail-permintaan-barang">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                     </div>
                 </section>	
+            </div>
+        </div>
+</section>
 @endsection
 <!-- end: page -->

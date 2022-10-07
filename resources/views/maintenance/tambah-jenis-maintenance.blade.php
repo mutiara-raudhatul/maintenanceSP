@@ -36,28 +36,32 @@
         
                         <h2 class="panel-title">Tambah Jenis Maintenance</h2>
                     </header>
+
+                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan-jenis')}}">
+                        {{ csrf_field()}}
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
+                        
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">ID Jenis Maintenance</label>
+                                <label class="col-md-3 control-label" for="jenis_maintenance">ID Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="jenis_maintenance" name="id_jenis_maintenance">
                                 </div>
                             </div>
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Jenis Maintenance</label>
+                                <label class="col-md-3 control-label" for="jenis_maintenance">Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
+                                    <input type="text" class="form-control" id="jenis_maintenance" name="jenis_maintenance">
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section>
         
                

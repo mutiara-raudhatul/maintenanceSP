@@ -159,11 +159,6 @@
 											</div>
 										</form>
 									</div>
-
-                                    <footer class="panel-footer" >
-                                        <button class="btn btn-primary">Submit </button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </footer>
 								</section>
                             </div>
                         </div>
@@ -177,7 +172,7 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-									    <h2 class="panel-title">Form Respon Permintaan Barang</h2>
+									    <h2 class="panel-title">Pilih Barang Yang Dipenuhi</h2>
 									</header>
 									
                                     <div class="panel-body">
@@ -208,13 +203,48 @@
 												<div class="col-md-6">
 													<input type="number" min = '1' class="form-control" id="inputDefault">
 												</div>
-											</div>
-                                            
-                                            <button class="btn btn-primary btn-md pull-right">Tambah Barang </button>
-                                        
-                                            
-
+											</div>   
+                                            <button class="btn btn-primary btn-md pull-middle">Tambah Barang </button>
 										</form>
+                                        
+                                        <br>
+                                        <div class="panel-body">
+										<div class="table-responsive">
+											<table class="table table-bordered mb-none">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Barang</th>
+														<th>Jumlah</th>
+                                                        <th>Aksi</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>Laptop</td>
+														<td>3</td>
+                                                        <td>Buttton</td>
+													</tr>
+													<tr>
+														<td>2</td>
+														<td>Kabel</td>
+														<td>4</td>
+                                                        <td>Buttton</td>
+													</tr>
+													<tr>
+														<td>3</td>
+														<td>Mouse</td>
+														<td>1</td>
+                                                        <td>Buttton</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+
+
+
 									</div>
 
                                     <footer class="panel-footer" >
@@ -225,7 +255,9 @@
                             </div>
                         </div>
 
-
+                   
+									
+							
 </section>
 
 
