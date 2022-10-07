@@ -154,7 +154,7 @@ class HistoriController extends Controller
         -> first();
         
         $wkt=$waktu['tanggal_permintaan'];
-s        $tgl = date('d/F/Y', strtotime($wkt));
+        $tgl = date('d/F/Y', strtotime($wkt));
         $tgl2 = date('d/M/Y', strtotime($wkt));
 
         $array=explode('/',$tgl);
