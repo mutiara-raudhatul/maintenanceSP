@@ -137,13 +137,18 @@ Route::post('/simpan-statusP',[StatusPermintaanController::class, 'createStatus'
 //delete status
 Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
 //update status
-Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
-Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'update'])->name('update-status-permintaan');
+// Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
+Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'getUpdate'])->name('edit-status-permintaan');
+Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'setUpdate'])->name('update-status-permintaan');;
 
-//-------STATUS PERMINTAAN----------
+//------- PERMINTAAN----------
 //read permintaan
 // Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
 Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
+
+
+//-------DETAIL PERMINTAAN----------
+//read
 Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [DetailPermintaanController::class, 'index'])->name('detail-permintaan-barang');
 
 

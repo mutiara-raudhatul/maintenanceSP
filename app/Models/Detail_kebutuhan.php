@@ -13,6 +13,6 @@ class Detail_kebutuhan extends Model
     protected $primaryKey = "id_detail_kebutuhan"; //cek
 
     protected $fillable = [
-        'id_detail_kebutuhan', 'jumlah_permintaan', 'id_jenis_barang'    
+        'id_detail_kebutuhan', 'id_permintaan_barang', 'jumlah_permintaan', 'id_jenis_barang'    
     ];
 }

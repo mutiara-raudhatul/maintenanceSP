@@ -21,10 +21,8 @@ class CreatePermintaanBarangTable extends Migration
 
         Schema::table('permintaan_barang', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_detail_kebutuhan');
             $table->unsignedBigInteger('id_status_permintaan');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_detail_kebutuhan')->references('id_detail_kebutuhan')->on('detail_kebutuhan');
             $table->foreign('id_status_permintaan')->references('id_status_permintaan')->on('status_permintaan');      
         });
     }

@@ -16,13 +16,6 @@ class StatusPermintaanController extends Controller
         return view('permintaan-barang.lihat-status-permintaan',compact('status_minta'));
     }
 
-    public function destroy($id_status_permintaan)
-    {
-        $status_hapus = Status_permintaan::findorfail($id_status_permintaan);
-        $status_hapus->delete();
-        return back()->with('success', 'Data berhasil dihapus!');
-    }
-
     public function getTambahStatus()
     {
         return view('permintaan-barang.tambah-status-permintaan');
@@ -38,17 +31,32 @@ class StatusPermintaanController extends Controller
         return redirect('status-permintaan')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 
-    public function edit($id_status_permintaan)
+    public function getUpdate($id_status_permintaan)
     {
-        $edit_permintaan = Status_permintaan::findorfail($id_status_permintaan);
-        return view('permintaan-barang.update-status-permintaan', compact('edit_permintaan'));
+        $updt = Status_permintaan:: select('id_status_permintaan', 'status_permintaan')
+        ->where('id_status_permintaan', '=', $id_status_permintaan)
+        ->first();
+        //dd($editSt);
+        return view('permintaan-barang.update-status-permintaan', compact('updt'));  
     }
 
-    public function update(Request $request, $id_status_permintaan)
+    public function setUpdate(Request $request,$id_status_permintaan)
     {
-        $updt = Status_permintaan::findorfail($id_status_permintaan);
-        $updt->update($request->all());
-        return redirect('status-permintaan')->with('success', 'Data berhasil diedit!');
+        $update = Status_permintaan::where('id_status_permintaan', $id_status_permintaan)->update([
+            'status_permintaan' => $request->status_permintaan,
+        ]);
+        if($update == true){
+            return redirect('/status-permintaan')->with('toast_success', 'Update Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/status-permintaan')->with('error', 'Update Gagal Dilakukan!');
+        }
     }
-
+    
+    public function destroy($id_status_permintaan)
+    {
+        $status_hapus = Status_permintaan::findorfail($id_status_permintaan);
+        $status_hapus->delete();
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
 }

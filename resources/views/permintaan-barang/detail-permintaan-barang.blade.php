@@ -38,8 +38,10 @@
                     </header>
 
                     <div class="panel-body">
-                        <p class="mb-lg"> Nama Pemohon         :  {{ $detail->name }} </p>
-                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $detail->unit_kerja }}</p>         
+                    @foreach($data_user as $d)
+                        <p class="mb-lg"> Nama Pemohon         :  {{ $d->name }} </p>
+                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $d->unit_kerja }}</p>    
+                    @endforeach     
                     </div>
                 </section>	
 
@@ -69,11 +71,12 @@
                                     			@foreach($data_detail as $detail)
 												<tbody>
 													<tr>
-														<td>{{$no++}}</td>>
+														<td>{{$no++}}</td>
 														<td>{{ $detail->jenis_barang }}</td>
-														<td>{{ $detail->jumlah_permitaan }}</td>														
+														<td>{{ $detail->jumlah_permintaan }}</td>														
 													</tr>
 												</tbody>
+                                                @endforeach
 											</table>
 										</div>
 									</div>
