@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermintaanBarangController;
-
-use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\StatusPermintaanController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\JenisMaintenanceController;
 use App\Http\Controllers\JenisCheckController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DetailPermintaanController;
+use App\Http\Controllers\HistoriController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
