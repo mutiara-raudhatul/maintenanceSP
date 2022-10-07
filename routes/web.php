@@ -145,7 +145,7 @@ Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaa
 //read permintaan
 // Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
 Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
-
+Route::get('/permintaan-barang-user', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
 
 //-------DETAIL PERMINTAAN----------
 //read
@@ -167,4 +167,8 @@ Route::get('/tolak-permintaan-barang', function () {
 
 Route::get('/detail-permintaan-barang', function () {
     return view('permintaan-barang/detail-permintaan-barang');
+});
+
+Route::get('/form-permintaan', function () {
+    return view('permintaan-barang/form-permintaan');
 });

@@ -40,7 +40,7 @@
                     <div class="panel-body">
                     @foreach($data_user as $d)
                         <p class="mb-lg"> Nama Pemohon         :  {{ $d->name }} </p>
-                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $d->unit_kerja }}</p>    
+                        <p class="mb-lg"> Tanggal permintaan   :  {{ $d->unit_kerja }}</p>    
                     @endforeach     
                     </div>
                 </section>	
@@ -55,7 +55,7 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-										<h2 class="panel-title">Data Barang Diminta</h2>
+										<h2 class="panel-title">Tabel Permintaan Barang</h2>
 									</header>
 									<div class="panel-body">
 										<div class="table-responsive">
