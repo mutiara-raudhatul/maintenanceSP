@@ -146,47 +146,17 @@
 											</li>
 											<li>
 												<a href="/status">
-												Lihat status
+												Jenis Maintenance
 												</a>
 											</li>
 											<li>
-												<a href="/tambah-status">
-												Tambah status
+												<a href="/status">
+												Status Maintenance
 												</a>
 											</li>
 											<li>
-												<a href="/update-status">
-												Update Status
-												</a>
-											</li>
-											<li>
-												<a href="/tambah-jenis-check">
-												Tambah Jenis Check
-												</a>
-											</li>
-											<li>
-												<a href="/jenis-check">
-												List Jenis Check
-												</a>
-											</li>
-											<li>
-												<a href="/update-jenis-check">
-												Update Jenis Check
-												</a>
-											</li>
-											<li>
-												<a href="/check">
-												List Check
-												</a>
-											</li>
-											<li>
-												<a href="/tambah-check">
-												Tambah Check
-												</a>
-											</li>
-											<li>
-												<a href="/update-check">
-												Update Check
+												<a href="#">
+												Dokumen Maintenance
 												</a>
 											</li>
 										</ul>

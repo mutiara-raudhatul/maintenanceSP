@@ -15,7 +15,7 @@ class CreateJenisMaintenanceTable extends Migration
     {
         Schema::create('jenis_maintenance', function (Blueprint $table) {
             $table->unsignedBigInteger('id_jenis_maintenance')->autoIncrement();
-            $table->string('jenis_maintenance', 10)->nullable($value=false); 
+            $table->string('jenis_maintenance', 30)->nullable($value=false); 
         });
 
 

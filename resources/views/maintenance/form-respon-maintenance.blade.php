@@ -50,14 +50,9 @@
                                 <label class="col-md-3 control-label">Teknisi</label>
                                 <div class="col-md-6">
                                     <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }'>
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>
-                                        <!-- <optgroup label="Eastern Time Zone">
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                        </optgroup> -->
+                                        @foreach ($respon as $item)
+                                        <option value="{{ $item->id }}">{{$item->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div> 

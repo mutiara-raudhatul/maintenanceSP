@@ -13,6 +13,6 @@ class Jenis_barang extends Model
     protected $primaryKey = "id_jenis_barang"; //cek
 
     protected $fillable = [
-        'id_jenis_barang', 'jenis_barang'
+        'id_jenis_barang', 'jenis_barang','doc_maintenance', 'id_maintenance'
     ];
 }

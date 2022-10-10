@@ -16,6 +16,7 @@ class CreatePermintaanMaintenanceTable extends Migration
         Schema::create('permintaan_maintenance', function (Blueprint $table) {
             $table->unsignedBigInteger('id_permintaan_maintenance')->autoIncrement();
             $table->date('tanggal_permintaan')->nullable($value=false);
+            $table->string('keterangan')->nullable($value=false);
         });
 
         Schema::table('permintaan_maintenance', function (Blueprint $table) {
