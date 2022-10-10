@@ -40,7 +40,7 @@
                     <div class="panel-body">
                     @foreach($data_user as $d)
                         <p class="mb-lg"> Nama Pemohon         :  {{ $d->name }} </p>
-                        <p class="mb-lg"> Tanggal permintaan   :  {{ $d->unit_kerja }}</p>    
+                        <p class="mb-lg"> Tanggal permintaan   :  {{ $d->tanggal_permintaan }}</p>    
                     @endforeach     
                     </div>
                 </section>	
@@ -83,12 +83,10 @@
 
                                     <footer class="panel-footer" >
                                    
-                                        <a href="/respon-permintaan-barang">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Respon</button>
+                                        <a href="/permintaan-barang-user">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Kembali</button>
                                         </a>
-                                        <a href="/tolak-permintaan-barang">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
-                                        </a>
+                                     
                                     </footer>
                                     </footer>
 								</section>

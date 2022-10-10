@@ -204,7 +204,7 @@
 													<input type="number" min = '1' class="form-control" id="inputDefault">
 												</div>
 											</div>   
-                                            <button class="btn btn-primary btn-md pull-middle">Tambah Barang </button>
+                                            <button class="btn btn-primary btn-md pull-center" center>Tambah Barang </button>
 										</form>
                                         
                                         <br>

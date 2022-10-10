@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermintaanBarangController;
-
-use App\Http\Controllers\PermintaanBarangController;
+use App\Http\Controllers\PermintaanBarangUserController;
 use App\Http\Controllers\StatusPermintaanController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\JenisMaintenanceController;
 use App\Http\Controllers\JenisCheckController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DetailPermintaanController;
+use App\Http\Controllers\DetailPermintaanUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,22 +152,28 @@ Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanControl
 //update status
 // Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
 Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'getUpdate'])->name('edit-status-permintaan');
-Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'setUpdate'])->name('update-status-permintaan');;
+Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'setUpdate'])->name('update-status-permintaan');
 
-//------- PERMINTAAN----------
+//------- PERMINTAAN ADMIN----------
 //read permintaan
 // Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
 Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
-Route::get('/permintaan-barang-user', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
+
+//------- PERMINTAAN USER----------
+Route::get('/permintaan-barang-user', [PermintaanBarangUserController::class, 'index'])->name('permintaan-barang-user');
+Route::get('/cancel-permintaan-barang/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'cancel']);
 
 //-------DETAIL PERMINTAAN----------
 //read
 Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [DetailPermintaanController::class, 'index'])->name('detail-permintaan-barang');
+Route::get('/detail-permintaan-barang-user/{id_permintaan_barang}', [DetailPermintaanUserController::class, 'index'])->name('detail-permintaan-barang-user');
+// tolak permintaan barang
+Route::get('/tolak-permintaan-barang/{id_permintaan_barang}',[DetailPermintaanController::class, 'reject'])->name('tolak-permintaan-barang');
 
 
-Route::get('/respon-permintaan-barang', function () {
-    return view('permintaan-barang/respon-permintaan');
-});
+// Route::get('/respon-permintaan-barang/{id_permintaan_barang}', function () {
+//     return view('permintaan-barang/respon-permintaan');
+// });
 
 // Route::get('/list-permintaan-barang',[PermintaanBarangController::class, 'listpermintaanbarang']);
 // Route::get('/list-permintaan-barang', function (listpermintaanbarang) {
