@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\StatusPermintaanController;
 use App\Http\Controllers\StatusController;
@@ -25,9 +26,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+// ----------------------------------------authenticate------------------------------------
+Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')-> middleware('guest');
+Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
+Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
+
+// Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')->middleware('guest');
+// Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
+// Route::post('/logout', 'App\Http\Controllers\LoginController@logout');
 
 Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 
@@ -39,7 +45,7 @@ Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 
 // --------------------------------------------DASHBOARD------------------------------------------
 
-Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
+Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
 // Route::get('/dashboard-admingudang', function () {
 //     return view('dashboard/dashboard-admingudang');
 // });
