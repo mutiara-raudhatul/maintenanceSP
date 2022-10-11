@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'Form Respon Maintenance')
+@section('title', 'Tambah Jenis Maintenance')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Form Respon Maintenance</h2>
+        <h2>Dokumen Maintenance</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,38 +34,27 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Respon Maintenance</h2>
+                        <h2 class="panel-title">Tambah Dokumen Maintenance</h2>
                     </header>
-                    <form class="form-horizontal form-bordered" method="post" action="/form-respon-maintenance/{{$id_permintaan_maintenance->id_permintaan_maintenance}}">
-                          {{ csrf_field()}}
+
+                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan-dokumen')}}">
+                        {{ csrf_field()}}
                     <div class="panel-body">
-                            <!-- Input select-->
+                        
+                            <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Teknisi</label>
+                                <label class="col-md-3 control-label" for="jenis_maintenance">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }' name="id_user">
-                                      
-                                        @foreach ($respon as $item)
-                                          @if ($item->role=="teknisi")
-                                        <option value="{{ $item->id }}">{{$item->name}}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" id="jenis_barang" name="jenis_barang">
                                 </div>
-                            </div> 
-                            <!-- Input Date -->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Jadwal Perbaikan</label>
-                                    <div class="col-md-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input type="date" class="form-control" name="jadwal_perbaikan">
-                                        </div>
-                                    </div>
                             </div>
-                            
+                            <!-- Input Biasa -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="jenis_maintenance">Dokumen</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="dokumen" name="dokumen">
+                                </div>
+                            </div>
                         
                     </div>
                     <footer class="panel-footer" >

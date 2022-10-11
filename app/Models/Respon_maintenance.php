@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Respon_maintenance extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = "respon_maintenance"; //cek
     protected $primaryKey = "id_respon_maintenance"; //cek
 

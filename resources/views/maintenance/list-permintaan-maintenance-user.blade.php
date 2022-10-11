@@ -43,18 +43,16 @@
                                     <thead>
                                         <tr>
                                             <th>Jenis Barang</th>
-                                            <th>Diminta Oleh</th>
                                             <th>Tanggal</th>
                                             <th>Keterangan</th>
                                             <th>Status</th>
-                                            <th>Actions</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
+                                        @foreach ($dataU as $item)
                                         <tr class="gradeX">
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->name}}</td>
                                             <td>{{$item->tanggal_permintaan}}</td>
                                             <td>{{$item->status_maintenance}}</td>
                                             <td class="status">
@@ -67,11 +65,15 @@
                                                 @endif
                                             </td>
                                             <td class="actions">
-                                            @if ($item->status_maintenance=='Dilaporkan')
-                                                        <!-- button detail -->
-                                                            <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Respon </button></a>
+                                                @if ($item->status_maintenance=='Dilaporkan')
+                                                        <a href="{{url('update-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Edit</button>
+                                                        </a>
+                                                        <!-- button cancel -->
+                                                        <a href="{{url('cancel-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Maintenance Dibatalkan?')">Cancel</button>
+                                                        </a>
                                                 @endif
-                                                
                                             </td>
                                         </tr>
                                         @endforeach 

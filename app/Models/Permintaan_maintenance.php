@@ -9,6 +9,7 @@ class Permintaan_maintenance extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = "permintaan_maintenance"; //cek
     protected $primaryKey = "id_permintaan_maintenance"; //cek
 

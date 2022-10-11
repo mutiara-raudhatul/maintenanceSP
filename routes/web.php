@@ -101,21 +101,27 @@ Route::get('/status-admingudang', function () {
 });
 
 // ------------------------------------------MAINTENANCE------------------------------------------
-Route::get('/permintaan-maintenance', function () {
-    return view('maintenance/form-permintaan-maintenance');
-});
-// Route::get('/list-permintaan-maintenance', function () {
-//     return view('maintenance/list-permintaan-maintenance');
-// });
-Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
-Route::get('/form-respon-maintenance',[ResponMaintenanceController::class, 'getTambah']);
 
-// Route::get('/form-respon-maintenance', function () {
-//     return view('maintenance/form-respon-maintenance');
-// });
+
 Route::get('/maintenance-teknisi', function () {
     return view('maintenance/form-maintenance-teknisi');
 });
+//permintaan maintenance admin
+Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
+Route::get('/permintaan-maintenance',[PermintaanMaintenanceController::class, 'getTambah']);
+Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpan');
+Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate'])->name('updateStatus');
+Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate']);
+//respon maintenance
+Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
+Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
+Route::post('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'setTambah'])->name('responS');
+
+
+//list permintaan maintenance user
+Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');
+Route::get('/cancel-permintaan-maintenance/{id_permintaan_maintenance}', [PermintaanMaintenanceController::class, 'cancel']);
+
 //------------------------------------STATUS
 Route::get('/status',[StatusController::class, 'index'])->name('status');
 Route::get('/tambah-status',[StatusController::class, 'getTambahStatus'])->name('tambah-status');
@@ -132,26 +138,6 @@ Route::get('/delete-jenis-maintenance/{id_jenis_maintenance}', [JenisMaintenance
 Route::get('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'getUpdate'])->name('updateJenisM');
 Route::post('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'setUpdate']);
 
-//----------------------------------JENIS CHECK
-
-Route::get('/jenis-check',[JenisCheckController::class, 'index'])->name('jenis-check');
-Route::get('/tambah-jenis-check',[JenisCheckController::class, 'getTambah'])->name('tJenisCheck');
-Route::post('/simpan-jenis-check',[JenisCheckController::class, 'setTambah'])->name('simpan-jenisC');
-Route::get('/delete-jenis-check/{id_jenis_check}', [JenisCheckController::class, 'destroy']);
-
-Route::get('/update-jenis-check', function () {
-    return view('maintenance/update-jenis-check');
-});
-//---------------------------------CHECK
-Route::get('/check',[CheckController::class, 'index'])->name('check');
-Route::get('/tambah-check',[CheckController::class, 'getTambah'])->name('tCheck');
-Route::post('/simpan-check',[CheckController::class, 'setTambah'])->name('simpan-Check');
-Route::get('/delete-check/{id_check}', [CheckController::class, 'destroy']);
-
-
-Route::get('/update-check', function () {
-    return view('maintenance/update-check');
-});
 
 // ------------------------------------------Permintaan Barang------------------------------------------
 

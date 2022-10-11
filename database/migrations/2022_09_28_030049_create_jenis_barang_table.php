@@ -17,7 +17,7 @@ class CreateJenisBarangTable extends Migration
             $table->unsignedBigInteger('id_jenis_barang')->autoIncrement();
             $table->string('kode_barang', 2)->nullable($value=false);
             $table->string('jenis_barang', 50)->nullable($value=false);
-            $table->string('doc_maintenance', 50)->nullable($value=false);
+            $table->string('template_form_maintenance', 50)->nullable($value=false);
         });
 
         Schema::table('jenis_barang', function (Blueprint $table) {

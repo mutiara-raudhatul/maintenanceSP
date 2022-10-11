@@ -17,8 +17,9 @@ class CreateMaintenanceTeknisiTable extends Migration
             $table->unsignedBigInteger('id_maintenance_teknisi')->autoIncrement();
             $table->date('detail_kerusakan')->nullable($value=false);
             $table->integer('lama_pengerjaan')->nullable($value=false);
-            $table->string('note')->nullable($value=true);
             $table->string('lokasi')->nullable($value=false);
+            $table->string('upload_form_maintenance')->nullable($value=false);
+            $table->string('note')->nullable($value=true);
         });
 
         Schema::table('maintenance_teknisi', function (Blueprint $table) {
