@@ -13,6 +13,8 @@ use App\Http\Controllers\DetailPermintaanController;
 
 use App\Http\Controllers\DetailPermintaanUserController;
 use App\Http\Controllers\HistoriController;
+use App\Http\Controllers\PermintaanMaintenanceController;
+use App\Http\Controllers\ResponMaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,12 +104,15 @@ Route::get('/status-admingudang', function () {
 Route::get('/permintaan-maintenance', function () {
     return view('maintenance/form-permintaan-maintenance');
 });
-Route::get('/list-permintaan-maintenance', function () {
-    return view('maintenance/list-permintaan-maintenance');
-});
-Route::get('/form-respon-maintenance', function () {
-    return view('maintenance/form-respon-maintenance');
-});
+// Route::get('/list-permintaan-maintenance', function () {
+//     return view('maintenance/list-permintaan-maintenance');
+// });
+Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
+Route::get('/form-respon-maintenance',[ResponMaintenanceController::class, 'getTambah']);
+
+// Route::get('/form-respon-maintenance', function () {
+//     return view('maintenance/form-respon-maintenance');
+// });
 Route::get('/maintenance-teknisi', function () {
     return view('maintenance/form-maintenance-teknisi');
 });
