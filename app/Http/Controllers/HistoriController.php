@@ -44,7 +44,7 @@ class HistoriController extends Controller
         $waktu = Permintaan_barang :: select ('tanggal_permintaan')
         -> first();
         
-        $wkt=$waktu->tanggal_permintaan;
+        $wkt=$waktu['tanggal_permintaan'];
         $tgl = date('d/F/Y', strtotime($wkt));
         $tgl2 = date('d/M/Y', strtotime($wkt));
 
@@ -77,7 +77,7 @@ class HistoriController extends Controller
   
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
-        -> join ('detail_kebutuhan', 'detail_kebutuhan.id_detail_kebutuhan', '=', 'permintaan_barang.id_detail_kebutuhan')
+        -> join('detail_kebutuhan', 'permintaan_barang.id_permintaan_barang', '=', 'detail_kebutuhan.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> orderBy('tanggal_permintaan', 'desc')
@@ -96,7 +96,7 @@ class HistoriController extends Controller
         $waktu = Permintaan_barang :: select ('tanggal_permintaan')
         -> first();
         
-        $wkt=$waktu->tanggal_permintaan;
+        $wkt=$waktu['tanggal_permintaan'];
         $tgl = date('d/F/Y', strtotime($wkt));
         $tgl2 = date('d/M/Y', strtotime($wkt));
 
@@ -115,7 +115,7 @@ class HistoriController extends Controller
     {
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
-        -> join ('detail_kebutuhan', 'detail_kebutuhan.id_detail_kebutuhan', '=', 'permintaan_barang.id_detail_kebutuhan')
+        -> join('detail_kebutuhan', 'permintaan_barang.id_permintaan_barang', '=', 'detail_kebutuhan.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> where ('id_user', '=', '1')
@@ -153,7 +153,7 @@ class HistoriController extends Controller
         $waktu = Permintaan_maintenance :: select ('tanggal_permintaan')
         -> first();
         
-        $wkt=$waktu->tanggal_permintaan;
+        $wkt=$waktu['tanggal_permintaan'];
         $tgl = date('d/F/Y', strtotime($wkt));
         $tgl2 = date('d/M/Y', strtotime($wkt));
 

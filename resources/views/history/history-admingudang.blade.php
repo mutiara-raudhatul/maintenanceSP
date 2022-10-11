@@ -99,7 +99,7 @@
 								<div class="panel-body panel-heading-transparent timeline" >
 									<div class="tm-body">
 										@foreach ($by as $p)
-											<div class="tm-title">
+										<div class="tm-title">
 												<h3 class="h5 text-uppercase">{{ $bulannn = date('F Y', strtotime($p->month_year))}}</h3>
 											</div>													
 											@foreach ($dtHistory as $dh)

@@ -22,7 +22,7 @@
 						</div>
 					</header>
 
-					<div class="row">
+						<div class="row">
 
 					</div>
 				
@@ -45,66 +45,22 @@
 														</strong>
 													</h2>
 
-													<div class="container">
-														<div class="row">
-															<div class="col-md-5 offset-md-1">
-																<div class="panel panel-default">
-																	<div class="panel-body">
-																		<canvas id="canvas" height="20" width="30"></canvas>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-													<script>
-														var year = <?php echo $year; ?>;
-														var user = <?php echo $user; ?>;
-														var barChartData = {
-															labels: year,
-															datasets: [{
-																label: 'User',
-																backgroundColor: "lightblue",
-																data: user
-															}]
-														};
-
-														window.onload = function() {
-															var ctx = document.getElementById("canvas").getContext("2d");
-															window.myBar = new Chart(ctx, {
-																type: 'bar',
-																data: barChartData,
-																options: {
-																	elements: {
-																		rectangle: {
-																			borderWidth: 2,
-																			borderColor: '#c1c1c1',
-																			borderSkipped: 'bottom'
-																		}
-																	},
-																	responsive: true,
-																	title: {
-																		display: true,
-																		text: 'Yearly User Joined'
-																	}
-																}
-															});
-														};
-													</script>
-
 													<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
 														<!-- Flot: Sales JSOFT Admin -->
 														<div class="chart chart-sm" data-sales-rel="JSOFT Admin" id="flotDashSales1" class="chart-active"></div>
 														<script>
 
 															var flotDashSales1Data = [{
-																
-																labels: year,
-																	datasets: [{
-																	label: 'User',
-																	backgroundColor: "lightblue",
-																	data: user
-																}],
+																data: [
+																	["Jan", 140],
+																	["Feb", 240],
+																	["Mar", 190],
+																	["Apr", 140],
+																	["May", 180],
+																	["Jun", 320],
+																	["Jul", 270],
+																	["Aug", 180]
+																],
 																color: "#0088cc"
 															}];
 
@@ -177,8 +133,7 @@
 							</div>
 							<div class="col-md-6 col-lg-12 col-xl-6">
 								<div class="row">
-									<!-- highchart -->
-									<div class="col-md-12 col-lg-6 col-xl-6" id="chart-permintaan">
+									<div class="col-md-12 col-lg-6 col-xl-6">
 										<section class="panel panel-featured-left panel-featured-primary">
 											<div class="panel-body">
 												<div class="widget-summary">
@@ -281,80 +236,3 @@
 				</section>
 @endsection
 <!-- end: page -->
-
-@section('footer')
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-	<script>
-		Highcharts.chart('chart-permintaan', {
-			chart: {
-				type: 'column'
-			},
-			title: {
-				text: 'Emissions to air in Norway'
-			},
-			subtitle: {
-				text: 'Source: ' +
-					'<a href="https://www.ssb.no/en/statbank/table/08940/" ' +
-					'target="_blank">SSB</a>'
-			},
-			xAxis: {
-				categories: [
-					'2010',
-					'2011',
-					'2012',
-					'2013',
-					'2014',
-					'2015',
-					'2016',
-					'2017',
-					'2018',
-					'2019',
-					'2010',
-					'2021'
-				],
-				crosshair: true
-			},
-			yAxis: {
-				title: {
-					useHTML: true,
-					text: 'Million tonnes CO<sub>2</sub>-equivalents'
-				}
-			},
-			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
-			},
-			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0
-				}
-			},
-			series: [{
-				name: 'Oil and gas extraction',
-				data: [13.93, 13.63, 13.73, 13.67, 14.37, 14.89, 14.56,
-					14.32, 14.13, 13.93, 13.21, 12.16]
-
-			}, {
-				name: 'Manufacturing industries and mining',
-				data: [12.24, 12.24, 11.95, 12.02, 11.65, 11.96, 11.59,
-					11.94, 11.96, 11.59, 11.42, 11.76]
-
-			}, {
-				name: 'Road traffic',
-				data: [10.00, 9.93, 9.97, 10.01, 10.23, 10.26, 10.00,
-					9.12, 9.36, 8.72, 8.38, 8.69]
-
-			}, {
-				name: 'Agriculture',
-				data: [4.35, 4.32, 4.34, 4.39, 4.46, 4.52, 4.58, 4.55,
-					4.53, 4.51, 4.49, 4.57]
-
-			}]
-		});
-	</script>
-@endsection

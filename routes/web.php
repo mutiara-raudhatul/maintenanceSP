@@ -3,13 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermintaanBarangController;
 use App\Http\Controllers\PermintaanBarangUserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StatusPermintaanController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\JenisMaintenanceController;
 use App\Http\Controllers\JenisCheckController;
 use App\Http\Controllers\CheckController;
 use App\Http\Controllers\DetailPermintaanController;
+
 use App\Http\Controllers\DetailPermintaanUserController;
+use App\Http\Controllers\HistoriController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,9 +29,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+// ----------------------------------------authenticate------------------------------------
+Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')-> middleware('guest');
+Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
+Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
+
+// Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')->middleware('guest');
+// Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
+// Route::post('/logout', 'App\Http\Controllers\LoginController@logout');
 
 Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 
@@ -39,7 +48,7 @@ Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 
 // --------------------------------------------DASHBOARD------------------------------------------
 
-Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
+Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
 // Route::get('/dashboard-admingudang', function () {
 //     return view('dashboard/dashboard-admingudang');
 // });
@@ -191,3 +200,67 @@ Route::get('/detail-permintaan-barang', function () {
 Route::get('/form-permintaan', function () {
     return view('permintaan-barang/form-permintaan');
 });
+//-----------------------------------------BARANG DI GUDANG-------------------------------------
+Route::get('/barang-masuk', function () {
+    return view('gudang/barang-masuk');
+});
+
+Route::get('/data-barang', function () {
+    return view('gudang/data-barang');
+});
+
+Route::get('/edit-barang', function () {
+    return view('gudang/edit-barang');
+});
+
+//---------------------------------------------AUNTENTIKASI--------------------------------------------
+//LOGIN
+Route::get('/sign-in', function () {
+    return view('auth/sign-in');
+});
+
+Route::get('/sign-up', function () {
+    return view('auth/sign-up');
+});
+
+Route::get('/verify', function () {
+    return view('auth/verify');
+});
+
+//PASSWORD
+Route::get('/reset', function () {
+    return view('auth/password/reset');
+});
+
+//---------------------------------------------HALAMAN UTAMA--------------------------------------------
+Route::get('/halaman-utama', function () {
+    return view('gudang/halaman-utama');
+});
+
+Route::get('/register', function () {
+    return view('user/register');
+});
+
+Route::get('/data-user', function () {
+    return view('user/data-user');
+});
+
+Route::get('/edit-user', function () {
+    return view('user/edit-user');
+});
+
+Route::get('/coba', function () {
+    return view('user/coba');
+});
+
+// Route::get('/coba-data-barang', function () {
+//     return view('gudang/coba-data-barang');
+// });
+
+// Route::get('/tabel', function () {
+//     return view('gudang/tabel');
+// });
+
+// Route::get('/bismillah_barang', function () {
+//     return view('gudang/bismillah_barang');
+// });
