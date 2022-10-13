@@ -58,7 +58,7 @@
 								<div class="panel-body">
 									<div class="table-responsive">
 										
-										<table class="table table-striped mb-none" id="datatable-tabletools">
+										<table class="table table-striped mb-none" id="history-datatable-tabletools">
 											<thead>
 												<tr>
 													<th>#</th>
@@ -115,7 +115,7 @@
 															</div>
 															<div class="tm-box appear-animation" data-appear-animation="fadeInRight"data-appear-animation-delay="100">
 																<p>
-																	{{ $dh->name }} mengajukan permintaan barang {{ $dh->jenis_barang }} sebanyak {{ $dh->jumlah_permitaan }} untuk  {{ $dh->unit_kerja }}. 
+																	{{ $dh->name }} mengajukan permintaan barang {{ $dh->jenis_barang }} sebanyak {{ $dh->jumlah_permintaan }} untuk  {{ $dh->unit_kerja }}. 
 																	<br>Status permintaan<span class="text-primary"> #{{ $dh->status_permintaan}}</span>
 																</p>
 																<div class="tm-meta">

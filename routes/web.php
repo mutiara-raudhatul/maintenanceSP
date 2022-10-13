@@ -37,6 +37,9 @@ Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login'
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
 Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
+Route::get('/registrasi', 'App\Http\Controllers\RegistrasiController@index')->name('registrasi')-> middleware('guest');
+Route::post('/registrasi', 'App\Http\Controllers\RegistrasiController@store')->name('registrasi')-> middleware('guest');
+
 // Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')->middleware('guest');
 // Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
 // Route::post('/logout', 'App\Http\Controllers\LoginController@logout');
@@ -51,24 +54,29 @@ Route::group(['middleware' => ['auth', 'checkRole:adminGudang']], function(){
 
 // --------------------------------------------DASHBOARD------------------------------------------
 
-Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
+Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
+// -> middleware('auth');
+Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi');
+Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi');
+Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK')->name('dashboard-karyawan');
+
 // Route::get('/dashboard-admingudang', function () {
 //     return view('dashboard/dashboard-admingudang');
 // });
 
-Route::get('/dashboard-adminteknisi', function () {
-    return view('dashboard/dashboard-adminteknisi');
-});
+// Route::get('/dashboard-adminteknisi', function () {
+//     return view('dashboard/dashboard-adminteknisi');
+// });
 
 
-Route::get('/dashboard-teknisi', function () {
-    return view('dashboard/dashboard-teknisi');
-});
+// Route::get('/dashboard-teknisi', function () {
+//     return view('dashboard/dashboard-teknisi');
+// });
 
 
-Route::get('/dashboard-karyawan', function () {
-    return view('dashboard/dashboard-karyawan');
-});
+// Route::get('/dashboard-karyawan', function () {
+//     return view('dashboard/dashboard-karyawan');
+// });
 
 // --------------------------------------------HISTORY------------------------------------------
 // Route::get('/history-admingudang', function () {
@@ -85,13 +93,15 @@ Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')
 Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
 Route::get('/history-adminteknisi', [PermintaanMaintenanceController::class, 'index'])->name('history-adminteknisi');
 
-Route::get('/historyp-adminteknisi', function () {
-    return view('history/history-adminteknisi');
-});
+// Route::get('/history-adminteknisi', function () {
+//     return view('history/history-adminteknisi');
+// });
+Route::get('/history-adminteknisi', 'App\Http\Controllers\HistoriController@indexAT')->name('history-adminteknisi');
+Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@search')->name('search');
 
-Route::get('/history-teknisi', function () {
-    return view('history/history-teknisi');
-});
+// Route::get('/history-teknisi', function () {
+//     return view('history/history-teknisi');
+// });
 
 // Route::get('/history-karyawan', function () {
 //     return view('history/history-karyawan');
@@ -233,9 +243,9 @@ Route::get('/halaman-utama', function () {
     return view('gudang/halaman-utama');
 });
 
-Route::get('/register', function () {
-    return view('user/register');
-});
+// Route::get('/register', function () {
+//     return view('user/register');
+// });
 
 Route::get('/data-user', function () {
     return view('user/data-user');

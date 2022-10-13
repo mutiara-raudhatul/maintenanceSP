@@ -37,10 +37,10 @@
                         <h2 class="panel-title">Tambah Dokumen Maintenance</h2>
                     </header>
 
-                    <form class="form-horizontal form-bordered" method="post" action="/update-dokumen-maintenance/{id_jenis_barang}" enctype="multipart/form-data">
+                    <form class="form-horizontal form-bordered" method="post" action="/update-dokumen-maintenance/{{$data->id_jenis_barang}}" enctype="multipart/form-data">
                         {{ csrf_field()}}
                     <div class="panel-body">
-                            <!-- Input Biasa -->
+                            <!-- Input Biasa --> 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="template_form_maintenance">Dokumen</label>
                                 <div class="col-md-6">

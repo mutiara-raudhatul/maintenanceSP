@@ -13,14 +13,17 @@ class DokumenMaintenanceController extends Controller
         return view('maintenance.list-dokumen-maintenance', compact('data'));
     }
 
-    public function getUpdate()
+    public function getUpdate($id_jenis_barang)
     {
-         $data = Jenis_barang::all();
+         $data = Jenis_barang::select('id_jenis_barang', 'jenis_barang')
+         ->where('id_jenis_barang', '=', $id_jenis_barang)
+         ->first();
         return view('maintenance.tambah_doc_maintenance', compact('data'));
     }
 
     public function setUpdate(Request $request,$id_jenis_barang)
     {        
+        
         $template_name = $request->template_form_maintenance->getClientOriginalName() . '-' . time() . '-' . $request->template_form_maintenance->extension();
         $request->template_form_maintenance->move(public_path('template-doc'), $template_name);
 
@@ -28,7 +31,7 @@ class DokumenMaintenanceController extends Controller
             'template_form_maintenance' => $template_name,
         ]);
         if($update == true){
-            return redirect('/dokumen-maintenance')->with('toast_success', 'Update Berhasil Dilakukan');
+            return redirect('/list-dokumen-maintenance')->with('toast_success', 'Update Berhasil Dilakukan');
         }
         else{
             return redirect('/list-dokumen-maintenance')->with('error', 'Update Gagal Dilakukan!');
