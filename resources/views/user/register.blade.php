@@ -31,20 +31,14 @@
 										<h2 class="panel-title">Registrasi</h2>
 									</header>
 									<div class="panel-body">
-										<form class="form-horizontal form-bordered" method="get">
+										<form class="form-horizontal form-bordered" action="/registrasi" method="post">
+											@csrf
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputPlaceholder">Name</label>
+												<label class="col-md-3 control-label" for="name">Name</label>
 												<div class="col-md-6">
-													<input type="text" class="form-control" placeholder="Name" id="inputPlaceholder">
+													<input  type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" required>
 												</div>
 											</div>
-						
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label" for="inputPlaceholder">Nick Name</label>
-												<div class="col-md-6">
-													<input type="text" class="form-control" placeholder="Nick Name" id="inputPlaceholder">
-												</div>
-											</div> -->
 						
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="fc_inputmask_1">NIP</label>
@@ -53,7 +47,7 @@
 														<span class="input-group-addon">
 																<!-- <i class="fa fa-plus"></i> -->
 														</span>
-														<input id="fc_inputmask_1" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control">
+														<input required type="number" id="fc_inputmask_1" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control @error('email') is-invalid @enderror">
 													</div>
 												</div>
 											</div>
@@ -61,7 +55,7 @@
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputSuccess">Role</label>
 												<div class="col-md-6">
-													<select class="form-control mb-md">
+													<select required class="form-control mb-md">
 														<option >Karyawan</option>
 														<option>Teknisi</option>
 														<option>Admin Teknisi</option>
@@ -69,41 +63,10 @@
 												</div>
 											</div>
 
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label">Place and Date of Birth</label>
-												<div class="col-md-6">
-													<div class="input-group">
-														<input type="text" class="form-control" name="start" placeholder="Place">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" data-plugin-datepicker class="form-control" placeholder="Date of Birth">
-													</div>
-												</div>
-											</div> -->
-
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label" for="inputPlaceholder">Address</label>
-												<div class="col-md-6">
-													<input type="text" class="form-control" placeholder="Address" id="inputPlaceholder">
-												</div>
-											</div> -->
-											
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label" for="inputSuccess">Job Title</label>
-												<div class="col-md-6">
-													<select class="form-control mb-md">
-														<option disabled selected hidden>Job Title</option>
-														<option>Manager</option>
-														<option>Teknisi</option>
-													</select>
-												</div>
-											</div> -->
-
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputSuccess">Work Unit</label>
 												<div class="col-md-6">
-													<select class="form-control mb-md">
+													<select required class="form-control mb-md">
 														<option>Unit 1</option>
 														<option>Unit 2</option>
 													</select>
@@ -113,7 +76,7 @@
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="inputSuccess">Eselon</label>
 												<div class="col-md-6">
-													<select class="form-control mb-md">
+													<select  required class="form-control mb-md">
 														<option>1</option>
 														<option>2</option>
 														<option>3</option>
@@ -122,30 +85,14 @@
 												</div>
 											</div>
 
-											<!-- <div class="panel-body">
-											<form class="form-horizontal form-bordered" action="#">
-											<div class="form-group">
-												<label class="col-md-3 control-label">Basic select</label>
-												<div class="col-md-6">
-													<select data-plugin-selectTwo class="form-control populate">
-														<optgroup label="Eselon">
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-														</optgroup>
-													</select>
-												</div>
-											</div> -->
-
 											<div class="form-group">
 												<label class="col-md-3 control-label">Phone</label>
 													<div class="col-md-6 control-label">
 														<div class="input-group">
 															<span class="input-group-addon">
-																<!-- <i class="fa fa-phone"></i> -->
+																<i class="fa fa-phone"></i>
 															</span>
-															<input id="phone" data-plugin-masked-input data-input-mask="(+99) 999-9999-9999" placeholder="(+62) 123-1234-1234" class="form-control">
+															<input required id="phone" data-plugin-masked-input data-input-mask="(+99) 999-9999-9999" placeholder="(+62) 123-1234-1234" class="form-control">
 														</div>
 													</div>
 											</div>
@@ -154,7 +101,7 @@
 												<label class="col-md-3 control-label">E-Mail</label>
 												<div class="col-md-6">
 													<section class="form-group-vertical">
-														<input class="form-control" type="text" placeholder="Email">
+														<input required class="form-control" type="text" placeholder="Email">
 													</section>
 												</div>
 											</div>
@@ -163,41 +110,19 @@
 												<label class="col-md-3 control-label">Password</label>
 												<div class="col-md-6">
 													<section class="form-group-vertical">
-														<input class="form-control last" type="password" placeholder="Password">
+														<input required class="form-control last" type="password" placeholder="Password">
 													</section>
 												</div>
 											</div>
 						
-											<!-- <div class="form-group">
-												<label class="col-md-3 control-label">File Upload</label>
-												<div class="col-md-6">
-													<div class="fileupload fileupload-new" data-provides="fileupload">
-														<div class="input-append">
-															<div class="uneditable-input" style="width:368px;">
-																<i class="fa fa-file fileupload-exists"></i>
-																<span class="fileupload-preview"></span>
-															</div>
-															<span class="btn btn-default btn-file">
-																<span class="fileupload-exists">Change</span>
-																<span class="fileupload-new">Select file</span>
-																<input type="file" />
-															</span>
-															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-														</div>
+												<div class="row">
+													<div class="col-sm-9 col-sm-offset-7">
+														<button type="submit" class="btn btn-primary">Submit</button>
+														<button type="reset" class="btn btn-default">Reset</button>
 													</div>
 												</div>
-											</div> -->
-
 										</form>
 									</div>
-									<footer class="panel-footer">
-										<div class="row">
-											<div class="col-sm-9 col-sm-offset-7">
-												<button class="btn btn-primary">Submit</button>
-												<button type="reset" class="btn btn-default">Reset</button>
-											</div>
-										</div>
-									</footer>
 								</section>
 
 				</section>

@@ -287,8 +287,10 @@
 								<img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
-								<span class="name">{{\Auth::user()->name}}</span>
-								<span class="role">{{\Auth::user()->role}}</span>
+								<span class="name">
+								</span>
+								<span class="role">
+								</span>
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -411,19 +413,18 @@
 
 
 		<!-- Examples -->
-<<<<<<< Updated upstream
 		<script src="{{asset('assets/javascripts/dashboard/examples.dashboard.js')}}"></script>
 		
 		<!-- Examples Permintaan Barang-->
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.default.js')}}"></script>
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.row.with.details.js')}}"></script>
-		<script src="{{asset('assets/javascripts/tables/examples.datatables.tabletools.js')}}"></script>
+		<script src="{{asset('assets/javascripts/tables/t.datatables.tabletools.js')}}"></script>
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.editable.js')}}"></script>
-<<<<<<< HEAD
+
 
 		@yield('footer')
-=======
-=======
+
+
 		<script src="assets/javascripts/dashboard/examples.dashboard.js"></script>
 
 		
@@ -477,7 +478,6 @@
 		<!-- Barang Masuk -->
 		<!-- Specific Page Vendor -->
 		<script src="assets/vendor/fuelux/js/spinner.js"></script>
->>>>>>> Stashed changes
->>>>>>> a111b63ac87803db1dd37d61f8c4b731c9d9a216
+
 	</body>
 </html>

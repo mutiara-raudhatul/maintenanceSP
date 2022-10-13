@@ -44,7 +44,7 @@
 										
 										<ul class="nav nav-children">
 											<li>
-												<a href="/register">Registrasi</a>
+												<a href="/registrasi">Registrasi</a>
 											</li>
 											<li >
 												<a href="/data-user">Data User</a>
