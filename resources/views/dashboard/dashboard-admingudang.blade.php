@@ -29,156 +29,9 @@
 
 					<div class="row">
 							<div class="col-md-6 col-lg-12 col-xl-6">
-								<section class="panel">
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-lg-8">
-												<div class="chart-data-selector" id="salesSelectorWrapper">
-													<h2>
-														Sales:
-														<strong>
-															<select class="form-control" id="salesSelector">
-																<option value="JSOFT Admin" selected>JSOFT Admin</option>
-																<option value="JSOFT Drupal" >JSOFT Drupal</option>
-																<option value="JSOFT Wordpress" >JSOFT Wordpress</option>
-															</select>
-														</strong>
-													</h2>
-
-													<div class="container">
-														<div class="row">
-															<div class="col-md-5 offset-md-1">
-																<div class="panel panel-default">
-																	<div class="panel-body">
-																		<canvas id="canvas" height="20" width="30"></canvas>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-													<script>
-														var year = <?php echo $year; ?>;
-														var user = <?php echo $user; ?>;
-														var barChartData = {
-															labels: year,
-															datasets: [{
-																label: 'User',
-																backgroundColor: "lightblue",
-																data: user
-															}]
-														};
-
-														window.onload = function() {
-															var ctx = document.getElementById("canvas").getContext("2d");
-															window.myBar = new Chart(ctx, {
-																type: 'bar',
-																data: barChartData,
-																options: {
-																	elements: {
-																		rectangle: {
-																			borderWidth: 2,
-																			borderColor: '#c1c1c1',
-																			borderSkipped: 'bottom'
-																		}
-																	},
-																	responsive: true,
-																	title: {
-																		display: true,
-																		text: 'Yearly User Joined'
-																	}
-																}
-															});
-														};
-													</script>
-
-													<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
-														<!-- Flot: Sales JSOFT Admin -->
-														<div class="chart chart-sm" data-sales-rel="JSOFT Admin" id="flotDashSales1" class="chart-active"></div>
-														<script>
-
-															var flotDashSales1Data = [{
-																
-																labels: year,
-																	datasets: [{
-																	label: 'User',
-																	backgroundColor: "lightblue",
-																	data: user
-																}],
-																color: "#0088cc"
-															}];
-
-															// See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
-														</script>
-
-														<!-- Flot: Sales JSOFT Drupal -->
-														<div class="chart chart-sm" data-sales-rel="JSOFT Drupal" id="flotDashSales2" class="chart-hidden"></div>
-														<script>
-
-															var flotDashSales2Data = [{
-																data: [
-																	["Jan", 240],
-																	["Feb", 240],
-																	["Mar", 290],
-																	["Apr", 540],
-																	["May", 480],
-																	["Jun", 220],
-																	["Jul", 170],
-																	["Aug", 190]
-																],
-																color: "#2baab1"
-															}];
-
-															// See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
-														</script>
-
-														<!-- Flot: Sales JSOFT Wordpress -->
-														<div class="chart chart-sm" data-sales-rel="JSOFT Wordpress" id="flotDashSales3" class="chart-hidden"></div>
-														<script>
-
-															var flotDashSales3Data = [{
-																data: [
-																	["Jan", 840],
-																	["Feb", 740],
-																	["Mar", 690],
-																	["Apr", 940],
-																	["May", 1180],
-																	["Jun", 820],
-																	["Jul", 570],
-																	["Aug", 780]
-																],
-																color: "#734ba9"
-															}];
-
-															// See: assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
-														</script>
-													</div>
-
-												</div>
-											</div>
-											<div class="col-lg-4 text-center">
-												<h2 class="panel-title mt-md">Sales Goal</h2>
-												<div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
-													<div class="liquid-meter">
-														<meter min="0" max="100" value="35" id="meterSales"></meter>
-													</div>
-													<div class="liquid-meter-selector" id="meterSalesSel">
-														<a href="#" data-val="35" class="active">Monthly Goal</a>
-														<a href="#" data-val="28">Annual Goal</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</section>
-							</div>
-							<div class="col-md-6 col-lg-12 col-xl-6">
 								<div class="row">
 									<!-- highchart -->
-									<div class="col-md-12 col-lg-6 col-xl-6" id="chart-permintaan">
+									<div class="col-md-12 col-lg-6 col-xl-6">
 										<section class="panel panel-featured-left panel-featured-primary">
 											<div class="panel-body">
 												<div class="widget-summary">
@@ -189,9 +42,9 @@
 													</div>
 													<div class="widget-summary-col">
 														<div class="summary">
-															<h4 class="title">Support Questions</h4>
+															<h4 class="title">Permintaan Barang</h4>
 															<div class="info">
-																<strong class="amount">1281</strong>
+																<strong class="amount">{{$jumperminbarang}}</strong>
 																<span class="text-primary">(14 unread)</span>
 															</div>
 														</div>
@@ -209,14 +62,14 @@
 												<div class="widget-summary">
 													<div class="widget-summary-col widget-summary-col-icon">
 														<div class="summary-icon bg-secondary">
-															<i class="fa fa-usd"></i>
+															<i class="fa fa-cube"></i>
 														</div>
 													</div>
 													<div class="widget-summary-col">
 														<div class="summary">
-															<h4 class="title">Total Profit</h4>
+															<h4 class="title">Jenis Barang</h4>
 															<div class="info">
-																<strong class="amount">$ 14,890.30</strong>
+																<strong class="amount"> {{$jumjenisbarang}}</strong>
 															</div>
 														</div>
 														<div class="summary-footer">
@@ -238,9 +91,9 @@
 													</div>
 													<div class="widget-summary-col">
 														<div class="summary">
-															<h4 class="title">Today's Orders</h4>
+															<h4 class="title">Barang</h4>
 															<div class="info">
-																<strong class="amount">38</strong>
+																<strong class="amount">3</strong>
 															</div>
 														</div>
 														<div class="summary-footer">
@@ -262,7 +115,7 @@
 													</div>
 													<div class="widget-summary-col">
 														<div class="summary">
-															<h4 class="title">Today's Visitors</h4>
+															<h4 class="title">User</h4>
 															<div class="info">
 																<strong class="amount">3765</strong>
 															</div>
@@ -276,6 +129,40 @@
 										</section>
 									</div>
 								</div>
+							</div>
+							<div class="col-md-6 col-lg-12 col-xl-6">
+								<section class="panel">
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-lg-8">
+												<div class="chart-data-selector" id="salesSelectorWrapper">
+													<h2>
+														Sales:
+														<strong>
+															<select class="form-control" id="salesSelector">
+																<option value="JSOFT Admin" selected>JSOFT Admin</option>
+																<option value="JSOFT Drupal" >JSOFT Drupal</option>
+																<option value="JSOFT Wordpress" >JSOFT Wordpress</option>
+															</select>
+														</strong>
+													</h2>
+												</div>
+											</div>
+											<div class="col-lg-4 text-center">
+												<h2 class="panel-title mt-md">Sales Goal</h2>
+												<div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
+													<div class="liquid-meter">
+														<meter min="0" max="100" value="35" id="meterSales"></meter>
+													</div>
+													<div class="liquid-meter-selector" id="meterSalesSel">
+														<a href="#" data-val="35" class="active">Monthly Goal</a>
+														<a href="#" data-val="28">Annual Goal</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
 							</div>
 					</div>	
 				</section>
@@ -298,20 +185,7 @@
 					'target="_blank">SSB</a>'
 			},
 			xAxis: {
-				categories: [
-					'2010',
-					'2011',
-					'2012',
-					'2013',
-					'2014',
-					'2015',
-					'2016',
-					'2017',
-					'2018',
-					'2019',
-					'2010',
-					'2021'
-				],
+				categories:{!!json_encode($categories)!!},
 				crosshair: true
 			},
 			yAxis: {
@@ -335,26 +209,287 @@
 				}
 			},
 			series: [{
-				name: 'Oil and gas extraction',
-				data: [13.93, 13.63, 13.73, 13.67, 14.37, 14.89, 14.56,
-					14.32, 14.13, 13.93, 13.21, 12.16]
+				name: 'Jumlah Permintaan Barang',
+				data: {!!json_encode($pb)!!}
 
 			}, {
-				name: 'Manufacturing industries and mining',
-				data: [12.24, 12.24, 11.95, 12.02, 11.65, 11.96, 11.59,
-					11.94, 11.96, 11.59, 11.42, 11.76]
-
-			}, {
-				name: 'Road traffic',
-				data: [10.00, 9.93, 9.97, 10.01, 10.23, 10.26, 10.00,
-					9.12, 9.36, 8.72, 8.38, 8.69]
-
-			}, {
-				name: 'Agriculture',
-				data: [4.35, 4.32, 4.34, 4.39, 4.46, 4.52, 4.58, 4.55,
-					4.53, 4.51, 4.49, 4.57]
-
+				name: 'Jumlah Permintaan Maintenance',
+				data: {!!json_encode($pm)!!}
 			}]
+		});
+
+		// Create the chart
+		Highcharts.chart('jenisbarang', {
+			chart: {
+				type: 'pie'
+			},
+			title: {
+				text: 'Browser market shares. January, 2022'
+			},
+			subtitle: {
+				text: 'Click the slices to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+			},
+
+			accessibility: {
+				announceNewData: {
+					enabled: true
+				},
+				point: {
+					valueSuffix: '%'
+				}
+			},
+
+			plotOptions: {
+				series: {
+					dataLabels: {
+						enabled: true,
+						format: '{point.name}: {point.y:.1f}%'
+					}
+				}
+			},
+
+			tooltip: {
+				headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+				pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+			},
+
+			series: [
+				{
+					name: "Browsers",
+					colorByPoint: true,
+					data: [
+						{
+							name: "Chrome",
+							y: 61.04,
+							drilldown: "Chrome"
+						},
+						{
+							name: "Safari",
+							y: 9.47,
+							drilldown: "Safari"
+						},
+						{
+							name: "Edge",
+							y: 9.32,
+							drilldown: "Edge"
+						},
+						{
+							name: "Firefox",
+							y: 8.15,
+							drilldown: "Firefox"
+						},
+						{
+							name: "Other",
+							y: 11.02,
+							drilldown: null
+						}
+					]
+				}
+			],
+			drilldown: {
+				series: [
+					{
+						name: "Chrome",
+						id: "Chrome",
+						data: [
+							[
+								"v97.0",
+								36.89
+							],
+							[
+								"v96.0",
+								18.16
+							],
+							[
+								"v95.0",
+								0.54
+							],
+							[
+								"v94.0",
+								0.7
+							],
+							[
+								"v93.0",
+								0.8
+							],
+							[
+								"v92.0",
+								0.41
+							],
+							[
+								"v91.0",
+								0.31
+							],
+							[
+								"v90.0",
+								0.13
+							],
+							[
+								"v89.0",
+								0.14
+							],
+							[
+								"v88.0",
+								0.1
+							],
+							[
+								"v87.0",
+								0.35
+							],
+							[
+								"v86.0",
+								0.17
+							],
+							[
+								"v85.0",
+								0.18
+							],
+							[
+								"v84.0",
+								0.17
+							],
+							[
+								"v83.0",
+								0.21
+							],
+							[
+								"v81.0",
+								0.1
+							],
+							[
+								"v80.0",
+								0.16
+							],
+							[
+								"v79.0",
+								0.43
+							],
+							[
+								"v78.0",
+								0.11
+							],
+							[
+								"v76.0",
+								0.16
+							],
+							[
+								"v75.0",
+								0.15
+							],
+							[
+								"v72.0",
+								0.14
+							],
+							[
+								"v70.0",
+								0.11
+							],
+							[
+								"v69.0",
+								0.13
+							],
+							[
+								"v56.0",
+								0.12
+							],
+							[
+								"v49.0",
+								0.17
+							]
+						]
+					},
+					{
+						name: "Safari",
+						id: "Safari",
+						data: [
+							[
+								"v15.3",
+								0.1
+							],
+							[
+								"v15.2",
+								2.01
+							],
+							[
+								"v15.1",
+								2.29
+							],
+							[
+								"v15.0",
+								0.49
+							],
+							[
+								"v14.1",
+								2.48
+							],
+							[
+								"v14.0",
+								0.64
+							],
+							[
+								"v13.1",
+								1.17
+							],
+							[
+								"v13.0",
+								0.13
+							],
+							[
+								"v12.1",
+								0.16
+							]
+						]
+					},
+					{
+						name: "Edge",
+						id: "Edge",
+						data: [
+							[
+								"v97",
+								6.62
+							],
+							[
+								"v96",
+								2.55
+							],
+							[
+								"v95",
+								0.15
+							]
+						]
+					},
+					{
+						name: "Firefox",
+						id: "Firefox",
+						data: [
+							[
+								"v96.0",
+								4.17
+							],
+							[
+								"v95.0",
+								3.33
+							],
+							[
+								"v94.0",
+								0.11
+							],
+							[
+								"v91.0",
+								0.23
+							],
+							[
+								"v78.0",
+								0.16
+							],
+							[
+								"v52.0",
+								0.15
+							]
+						]
+					}
+				]
+			}
 		});
 	</script>
 @endsection

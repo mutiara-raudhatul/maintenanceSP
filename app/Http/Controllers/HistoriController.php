@@ -77,7 +77,7 @@ class HistoriController extends Controller
   
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
-        -> join('detail_kebutuhan', 'permintaan_barang.id_permintaan_barang', '=', 'detail_kebutuhan.id_permintaan_barang')
+        -> join('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> orderBy('tanggal_permintaan', 'desc')
@@ -111,21 +111,61 @@ class HistoriController extends Controller
         return view('History.history-admingudang', compact('dtHistory', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
     }
 
+    public function indexAT()
+    {
+
+        $dtHistoryAT = DB::table('permintaan_maintenance')
+        -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
+        -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> get();
+
+        $by = Permintaan_maintenance :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
+        -> orderBy('month_year', 'desc')
+        -> distinct()
+        -> get();
+
+        $dtWaktu = DB::table('permintaan_maintenance')
+        // ->where('id_user', '=', '1')
+        // ->where('id', '=', Auth::guard('anggota')->user()->id)
+        ->get('tanggal_permintaan');
+
+        $waktu = Permintaan_maintenance :: select ('tanggal_permintaan')
+        -> first();
+        
+        $wkt=$waktu['tanggal_permintaan'];
+        $tgl = date('d/F/Y', strtotime($wkt));
+        $tgl2 = date('d/M/Y', strtotime($wkt));
+
+        $array=explode('/',$tgl);
+        $tanggal=$array[0];
+        $bulan=$array[1];
+        $tahun=$array[2];
+
+        $array2=explode('/',$tgl2);
+        $bln=$array2[1];
+
+        return view('History.history-adminteknisi', compact('dtHistoryAT', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
+    }
+
     public function indexK()
     {
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
-        -> join('detail_kebutuhan', 'permintaan_barang.id_permintaan_barang', '=', 'detail_kebutuhan.id_permintaan_barang')
+        -> join('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
-        -> where ('id_user', '=', '1')
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> where ('id_user', '=', '2')
         -> get();
 
         $dtHistoryKM = DB::table('permintaan_maintenance')
         -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
         -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
-        -> where ('id_user', '=', '1')
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> where ('id_user', '=', '2')
         -> get();
 
         // $uniontabel= DB::table('permintaan_barang')
@@ -168,6 +208,64 @@ class HistoriController extends Controller
         return view('History.history-karyawan', compact('dtHistory', 'dtHistoryKM', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by')); 
     }
 
+    public function indexT()
+    {
+        $dtHistory = DB::table('permintaan_barang')
+        -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
+        -> join('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+        -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> where ('id_user', '=', '2')
+        -> get();
+
+        $dtHistoryKM = DB::table('permintaan_maintenance')
+        -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
+        -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> where ('id_user', '=', '2')
+        -> get();
+
+        // $uniontabel= DB::table('permintaan_barang')
+        // -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
+        // -> join ('detail_kebutuhan', 'detail_kebutuhan.id_detail_kebutuhan', '=', 'permintaan_barang.id_detail_kebutuhan')
+        // -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        // -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
+        // -> where ('id_user', '=', '1')
+        // -> UNION (DB::table('permintaan_maintenance')
+        // -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
+        // -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        // -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
+        // -> where ('id_user', '=', '1'));
+
+        $by = Permintaan_maintenance :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
+        -> orderBy('month_year', 'desc')
+        -> distinct()
+        -> get();
+        
+        $dtWaktu = DB::table('permintaan_maintenance')
+        // ->where('id_user', '=', '1')
+        // ->where('id', '=', Auth::guard('anggota')->user()->id)
+        ->get('tanggal_permintaan');
+
+        $waktu = Permintaan_maintenance :: select ('tanggal_permintaan')
+        -> first();
+        
+        $wkt=$waktu['tanggal_permintaan'];
+        $tgl = date('d/F/Y', strtotime($wkt));
+        $tgl2 = date('d/M/Y', strtotime($wkt));
+
+        $array=explode('/',$tgl);
+        $tanggal=$array[0];
+        $bulan=$array[1];
+        $tahun=$array[2];
+
+        $array2=explode('/',$tgl2);
+        $bln=$array2[1];
+
+        return view('History.history-teknisi', compact('dtHistory', 'dtHistoryKM', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by')); 
+    }
     /**
      * Show the form for creating a new resource.
      *
