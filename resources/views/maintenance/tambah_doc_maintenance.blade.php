@@ -1,6 +1,6 @@
 @extends('layout/template')
 
-@section('title', 'Tambah Jenis Maintenance')
+@section('title', 'Tambah Dokumen Maintenance')
 
 
 <!-- start: page -->
@@ -37,22 +37,19 @@
                         <h2 class="panel-title">Tambah Dokumen Maintenance</h2>
                     </header>
 
-                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan-dokumen')}}">
+                    <form class="form-horizontal form-bordered" method="post" action="/update-dokumen-maintenance/{id_jenis_barang}" enctype="multipart/form-data">
                         {{ csrf_field()}}
                     <div class="panel-body">
-                        
                             <!-- Input Biasa -->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="jenis_maintenance">Jenis Barang</label>
+                                <label class="col-md-3 control-label" for="template_form_maintenance">Dokumen</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="jenis_barang" name="jenis_barang">
-                                </div>
+                                    <input class="form-control @error('dokumen') is-invalid @enderror" type="file"  name="template_form_maintenance">
+                            @error('dokumen')
+                            <div class="invalid-feedback">
+                                 {{ $message }}
                             </div>
-                            <!-- Input Biasa -->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="jenis_maintenance">Dokumen</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="dokumen" name="dokumen">
+                            @enderror
                                 </div>
                             </div>
                         
