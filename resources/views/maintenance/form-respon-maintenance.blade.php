@@ -36,22 +36,19 @@
         
                         <h2 class="panel-title">Respon Maintenance</h2>
                     </header>
+                    <form class="form-horizontal form-bordered" method="post" action="/form-respon-maintenance/{{$id_permintaan_maintenance->id_permintaan_maintenance}}">
+                          {{ csrf_field()}}
                     <div class="panel-body">
-                        <form class="form-horizontal form-bordered" method="get">
-                            <!-- Input Biasa -->
-                            <!-- <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Default</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault">
-                                </div>
-                            </div> -->
                             <!-- Input select-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Teknisi</label>
                                 <div class="col-md-6">
-                                    <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }'>
+                                    <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }' name="id_user">
+                                      
                                         @foreach ($respon as $item)
+                                          @if ($item->role=="teknisi")
                                         <option value="{{ $item->id }}">{{$item->name}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -64,17 +61,18 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="text" data-plugin-datepicker class="form-control">
+                                            <input type="date" class="form-control" name="jadwal_perbaikan">
                                         </div>
                                     </div>
                             </div>
                             
-                        </form>
+                        
                     </div>
                     <footer class="panel-footer" >
-                        <button class="btn btn-primary">Submit </button>
+                        <button class="btn btn-primary" type="submit">Submit </button>
                         <button type="reset" class="btn btn-default">Reset</button>
                     </footer>
+                    </form>
                 </section>
         
                

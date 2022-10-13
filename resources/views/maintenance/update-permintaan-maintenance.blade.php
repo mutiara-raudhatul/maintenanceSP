@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'Form Permintaan Maintenance')
+@section('title', 'Form Update Permintaan Maintenance')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Form Permintaan Maintenance</h2>
+        <h2>Form Update Permintaan Maintenance</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,7 +34,7 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Permintaan Maintenance</h2>
+                        <h2 class="panel-title">Update Permintaan Maintenance</h2>
                     </header>
                     <form class="form-horizontal form-bordered" method="post" action="{{route('simpan')}}">
 

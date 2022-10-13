@@ -20,6 +20,14 @@ class PermintaanBarangUserController extends Controller
             'permintaan_barang.id_permintaan_barang', 'permintaan_barang.tanggal_permintaan', 'status_permintaan.status_permintaan'
         ]);
 
-        return view('permintaan-barang.list-permintaan-barang', compact('data_permintaan'));
+        return view('permintaan-barang.list-permintaan-barang-user', compact('data_permintaan'));
     }
+
+    public function cancel($id_status_permintaan)
+    {
+        $permintaan_batal = Permintaan_barang::findorfail($id_status_permintaan);
+        $permintaan_batal->delete();
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
+
 }

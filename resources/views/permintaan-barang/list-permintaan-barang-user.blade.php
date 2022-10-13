@@ -36,6 +36,15 @@
                         <h2 class="panel-title">List Permintaan Barang</h2>
                     </header>
                     <div class="panel-body">
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-md">
+                                    <a href="/tambah-status-permintaan">
+                                    <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                                 <table class="table table-bordered table-striped mb-none">
                                     <thead>
                                     <tbody>
@@ -54,12 +63,22 @@
                                             <td>{{$minta->tanggal_permintaan }}</td>
                                             <td>{{$minta->status_permintaan }}</td>
                                             <td class="actions">
-                                                <a href="{{url('detail-permintaan-barang-user',$minta->id_permintaan_barang)}}">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                </a>
-                                                <a href="{{url('cancel-permintaan-barang',$minta->id_permintaan_barang)}}">
-                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Yakin Hapus Data Ini?')">Cancel</button>
-                                                </a>
+
+                                                @if ($minta->status_permintaan=='Diajukan')
+                                                        <!-- button detail -->
+                                                        <a href="{{url('detail-permintaan-barang-user',$minta->id_permintaan_barang)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                        </a>
+                                                        <!-- button cancel -->
+                                                        <a href="{{url('cancel-permintaan-barang',$minta->id_permintaan_barang)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Dibatalkan?')">Cancel</button>
+                                                        </a>
+                                                @else 
+                                                        <!-- button detail -->
+                                                        <a href="{{url('detail-permintaan-barang-user',$minta->id_permintaan_barang)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                        </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

@@ -184,7 +184,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="/status">
+												<a href="/jenis-maintenance">
 												Jenis Maintenance
 												</a>
 											</li>

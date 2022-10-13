@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'List Permintaan Maintenance')
+@section('title', 'Dokumen Maintenance')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Permintaan Maintenance</h2>
+        <h2>Dokumen Maintenance</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,44 +34,30 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Permintaan Maintenance</h2>
+                        <h2 class="panel-title">Dokumen Maintenance</h2>
                     </header>
                     <div class="panel-body">
 
-
-                                <table class="table table-bordered table-striped mb-none" id="">
+                                <table class="table table-bordered table-striped mb-none" >
                                     <thead>
                                         <tr>
+                                            <th>ID Jenis Barang</th>
                                             <th>Jenis Barang</th>
-                                            <th>Diminta Oleh</th>
-                                            <th>Tanggal</th>
-                                            <th>Keterangan</th>
-                                            <th>Status</th>
+                                            <th>Dokumen</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $item)
                                         <tr class="gradeX">
+                                            <td>{{$item->id_jenis_barang}}</td>
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td>{{$item->tanggal_permintaan}}</td>
-                                            <td>{{$item->status_maintenance}}</td>
-                                            <td class="status">
-                                                @if ($item->status_maintenance=='Dilaporkan')
-                                                        <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Dilaporkan</button>
-                                                @else 
-                                                        <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
-                                                @endif
-                                            </td>
+                                            <td>{{$item->template_form_maintenance}}</td>
                                             <td class="actions">
-                                            @if ($item->status_maintenance=='Dilaporkan')
-                                                        <!-- button detail -->
-                                                            <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Respon </button></a>
-                                                @endif
-                                                
+                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
+                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                                <a href="/update-dokumen-maintenance/{{ $item->id_jenis_barang}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{url('delete-dokumen-maintenance',$item->id_jenis_barang)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach 

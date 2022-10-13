@@ -85,12 +85,12 @@
                                    
                                         <a href="/respon-permintaan-barang">
                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Respon</button>
-                                        </a>
-                                        <a href="/tolak-permintaan-barang">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger">Tolak</button>
-                                        </a>
+                                        </a> 
+                                        <a href="{{url('tolak-permintaan-barang',$detail->id_permintaan_barang)}}">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah yakin menolak permintaan barang?')">Tolak</button>
+                                        </a> 
                                     </footer>
-                                    </footer>
+                                   
 								</section>
 							</div>
 
