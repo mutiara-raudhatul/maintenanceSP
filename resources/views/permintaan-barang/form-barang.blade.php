@@ -40,11 +40,67 @@
 									<div class="panel-body">
 
 										<!-- start: page -->
-			<section class="panel">
+						<section class="panel">
 							
 									<div class="panel-body">
-						
-								
+							
+										<form class="form-horizontal form-bordered" action="#">
+											<div class="form-group">
+												<label class="col-md-2 control-label">Jenis Barang</label>
+												<div class="col-md-6">
+													<select data-plugin-selectTwo class="form-control populate">
+														<optgroup label="Pilih Barang">
+														@foreach ($jenis_barang as $item)
+															<option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
+														@endforeach
+														</optgroup>	
+													</select>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-2 control-label" for="inputDefault">Jumlah</label>
+												<div class="col-md-6">
+													<input type="number" min="1" class="form-control" id="inputDefault">
+												</div>
+											</div>
+										</form>
+
+										<br>
+
+										<div class="row">
+												<div class="col-md-2">
+													<div class="mb-md">
+														<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+													</div>
+												</div>
+										</div>
+										<br>
+
+											
+											<table class="table table-bordered table-striped mb-none">
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Barang</th>
+														<th>Jumlah</th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													
+													<tr class="gradeX">
+														<td>1</td>
+														<td>Laptop</td>
+														<td>Jumlah</td>
+														<td class="actions">
+
+															<a href="#" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
+														</td>
+													</tr>
+											
+												</tbody>
+											</table>
 										</div>
 
 										<br>
@@ -60,7 +116,7 @@
 													</div>
 												</div>
 											</div>
-											
+
                                             <div class="form-group">
 												<label class="col-md-2 control-label">Upload Surat Izin Permintaan </label>
 												<div class="col-md-6">
@@ -77,7 +133,6 @@
 															</span>
 															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
 														</div>
-														<small style="color:red">Upload surat hanya untuk karyawan</small>
 													</div>
 												</div>
 											</div>
@@ -113,7 +168,7 @@
 								</div>
                         </div>
                     </div>
-			</section>
+</section>
 
 
 </div>
