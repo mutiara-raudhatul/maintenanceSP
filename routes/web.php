@@ -185,6 +185,7 @@ Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->
 //------- PERMINTAAN USER----------
 Route::get('/permintaan-barang-user', [PermintaanBarangUserController::class, 'index'])->name('permintaan-barang-user');
 Route::get('/cancel-permintaan-barang/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'cancel']);
+// Route::get('/form-permintaan',[PermintaanBarangUserController::class, 'getTambah'])->name('form-permintaan');;
 
 //-------DETAIL PERMINTAAN----------
 //read

@@ -8,6 +8,7 @@ use App\Models\Permintaan_barang;
 use App\Models\Status_permintaan;
 use App\Models\User;
 use App\Models\Users;
+use App\Models\Jenis_barang;
 
 class PermintaanBarangUserController extends Controller
 {
@@ -29,5 +30,33 @@ class PermintaanBarangUserController extends Controller
         $permintaan_batal->delete();
         return back()->with('success', 'Data berhasil dihapus!');
     }
+
+    // public function simpan(Request $request)
+    // {
+    //     $this->validate($request, [
+            
+    //         'dokumen' => 'mimes:doc,docx,pdf,xls,xlsx,pdf,ppt,pptx',
+    //     ]
+    // );
+
+    //     $dokumen = $request->file('dokumen');
+    //     $nama_dokumen = 'FT'.date('Ymdhis').'.'.$request->file('dokumen')->getClientOriginalExtension();
+    //     $dokumen->move('dokumen/',$nama_dokumen);
+    //     $data = new Mahasiswa();
+    //     $data->dokumen = $nama_dokumen;
+    //     $data->save();
+    //     Session::flash('sukses','Data berhasil di simpan');
+    //     return Redirect('/mahasiswa');
+    // }
+
+
+
+    // public function getTambah()
+    // {
+    //     $jenis_barang = Jenis_barang::all();
+    //     // ddd($jenis_barang);
+
+    //      return view('permintaan-barang.form-permintaan', ['jenis_barang' => $jenis_barang]);
+    // }
 
 }
