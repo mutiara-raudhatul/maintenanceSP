@@ -14,6 +14,6 @@ class Maintenance_teknisi extends Model
     protected $primaryKey = "id_maintenance_teknisi"; //cek
 
     protected $fillable = [
-        'id_maintenance_teknisi', 'detail_kerusakan', 'lama_pengerjaan', 'note', 'lokasi', 'id_permintaan_maintenance', 'upload_form_maintenance','id_barang', 'id_jenis_maintenance'    
+        'id_maintenance_teknisi', 'lama_pengerjaan', 'note', 'lokasi', 'id_permintaan_maintenance', 'upload_form_maintenance','id_barang'    
     ];
 }

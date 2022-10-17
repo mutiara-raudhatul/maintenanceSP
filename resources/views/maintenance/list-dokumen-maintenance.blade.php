@@ -52,15 +52,21 @@
                                         <tr class="gradeX">
                                             <td>{{$item->id_jenis_barang}}</td>
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->template_form_maintenance}}</td>
+                                            <td>
+                                                @if($item->template_form_maintenance)
+                                                <a href="{{asset('template-doc/'. $item->template_form_maintenance)}}">{{$item->template_form_maintenance}}</a>
+                                                    <iframe src="{{asset('template-doc/'. $item->template_form_maintenance)}}" frameborder="0" width="600" height="300"></iframe></td>
+                                                @else
+                                                    Dokumen belum ada
+                                                @endif
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                 <a href="/update-dokumen-maintenance/{{ $item->id_jenis_barang}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="{{url('delete-dokumen-maintenance',$item->id_jenis_barang)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                
                                             </td>
                                         </tr>
-                                        @endforeach 
+                                        @endforeach
                                     </tbody>
                                 </table>
                     </div>

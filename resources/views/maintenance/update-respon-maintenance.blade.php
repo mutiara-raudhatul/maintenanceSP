@@ -34,18 +34,18 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Respon Maintenance</h2>
+                        <h2 class="panel-title">Update Respon Maintenance</h2>
                     </header>
-                    <form class="form-horizontal form-bordered" method="post" action="/form-respon-maintenance/{{$data->id_permintaan_maintenance}}">
+                    <form class="form-horizontal form-bordered" method="post" action="/update-respon-maintenance/{{$edit->id_respon_maintenance}}">
                           {{ csrf_field()}}
                     <div class="panel-body">
                             <!-- Input select-->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Teknisi</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate"  name="id_user">
-                                      
-                                        @foreach ($respon as $item)
+                                    <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }' name="id_user">
+                                      <option value="{{$edit->id}}">{{$edit->name}}</option>
+                                        @foreach ($user as $item)
                                           @if ($item->role=="teknisi")
                                         <option value="{{ $item->id }}">{{$item->name}}</option>
                                             @endif
@@ -61,7 +61,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="date" class="form-control" name="jadwal_perbaikan">
+                                            <input type="date" class="form-control" name="jadwal_perbaikan" value="{{$edit->jadwal_perbaikan}}">
                                         </div>
                                     </div>
                             </div>

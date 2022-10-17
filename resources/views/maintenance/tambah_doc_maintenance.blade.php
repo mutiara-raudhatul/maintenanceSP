@@ -44,8 +44,10 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="template_form_maintenance">Dokumen</label>
                                 <div class="col-md-6">
-                                    <input class="form-control @error('dokumen') is-invalid @enderror" type="file"  name="template_form_maintenance">
-                            @error('dokumen')
+                                    {{-- <embed type="application/pdf" src="{{asset('template-doc/'. $data->template_form_ma  intenance)}}" width="600" height="400"> --}}
+                                    <input class="form-control @error('template_form_maintenance') is-invalid @enderror" type="file"  name="template_form_maintenance" required>
+                                    
+                            @error('template_form_maintenance')
                             <div class="invalid-feedback">
                                  {{ $message }}
                             </div>
@@ -60,7 +62,7 @@
                     </footer>
                     </form>
                 </section>
-        
+                
                
         
             </div>

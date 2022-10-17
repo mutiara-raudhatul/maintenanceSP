@@ -16,7 +16,7 @@ use App\Http\Controllers\HistoriController;
 use App\Http\Controllers\PermintaanMaintenanceController;
 use App\Http\Controllers\ResponMaintenanceController;
 use App\Http\Controllers\DokumenMaintenanceController;
-
+use App\Http\Controllers\MaintenanceTeknisiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,22 +75,31 @@ Route::get('/status-admingudang', function () {
 
 //----PERMINTAAN MAINTENANCE ADMIN
 Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
+
+
 Route::get('/permintaan-maintenance',[PermintaanMaintenanceController::class, 'getTambah']);
 Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpan');
-Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate'])->name('updateStatus');
-Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate']);
+Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate']);
+Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate'])->name('updatePermintaan');
+//----PERMINTAAN MAINTENANCE USER
+Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');
+Route::get('/cancel-permintaan-maintenance/{id_permintaan_maintenance}', [PermintaanMaintenanceController::class, 'cancel']);
 //----RESPON MAINTENANCE
 Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
 Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
 Route::post('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'setTambah'])->name('responS');
+Route::get('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'getUpdate'])->name('update');
+Route::post('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'setUpdate'])->name('update');
 //----MAINTENANCE TEKNISI
-Route::get('/maintenance-teknisi', function () {
-    return view('maintenance/form-maintenance-teknisi');
-});
+Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
+Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
 
-//----PERMINTAAN MAINTENANCE USER
-Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');
-Route::get('/cancel-permintaan-maintenance/{id_permintaan_maintenance}', [PermintaanMaintenanceController::class, 'cancel']);
+Route::get('/list-maintenance-teknisi',[MaintenanceTeknisiController::class, 'getMaintenance']);
+//Route::get('/list-maintenance-teknisi-t')
+Route::get('/form-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'getTambah']);
+Route::post('/simpan-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'setTambah'])->name('simpanM');
+Route::get('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'getUpdate']);
+Route::post('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'setUpdate'])->name('updatePermintaan');
 
 //------------------------------------DOKUMEN MAINTENANCE
 Route::get('/list-dokumen-maintenance',[DokumenMaintenanceController::class, 'index'])->name('dokumen');

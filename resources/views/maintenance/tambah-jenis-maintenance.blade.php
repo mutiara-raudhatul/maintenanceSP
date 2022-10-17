@@ -42,17 +42,17 @@
                     <div class="panel-body">
                         
                             <!-- Input Biasa -->
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="jenis_maintenance">ID Jenis Maintenance</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="jenis_maintenance" name="id_jenis_maintenance">
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Input Biasa -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="jenis_maintenance">Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="jenis_maintenance" name="jenis_maintenance">
+                                    <input type="text" class="form-control" id="jenis_maintenance" name="jenis_maintenance" required>
                                 </div>
                             </div>
                         

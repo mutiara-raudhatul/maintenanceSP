@@ -23,7 +23,6 @@ class StatusController extends Controller
     public function createStatus(Request $request)
     {        
         Status_maintenance::create([
-            'id_status_maintenance' => $request->id_status_maintenance,
             'status_maintenance' =>$request->status_maintenance,
         ]);
 

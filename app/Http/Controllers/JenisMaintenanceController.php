@@ -22,7 +22,6 @@ class JenisMaintenanceController extends Controller
     public function setTambah(Request $request)
     {        
         Jenis_maintenance::create([
-            'id_jenis_maintenance' => $request->id_jenis_maintenance,
             'jenis_maintenance' =>$request->jenis_maintenance,
         ]);
 

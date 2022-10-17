@@ -23,6 +23,9 @@ class DokumenMaintenanceController extends Controller
 
     public function setUpdate(Request $request,$id_jenis_barang)
     {        
+        $request->validate([
+            'template_form_maintenance' => 'required|mimes:pdf,doc,docx,xlsx,xls',
+        ]);
         
         $template_name = $request->template_form_maintenance->getClientOriginalName() . '-' . time() . '-' . $request->template_form_maintenance->extension();
         $request->template_form_maintenance->move(public_path('template-doc'), $template_name);
