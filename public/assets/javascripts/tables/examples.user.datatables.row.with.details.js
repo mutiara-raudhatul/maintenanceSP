@@ -11,14 +11,15 @@
 			var data = datatable.fnGetData( tr );
 
 			return [
+				'<php? foreach ($dtUsers as $item) ?>',
 				'<table class="table mb-none">',
 					'<tr class="b-top-none">',
 						'<td><label class="mb-none">Nama(NIP)</label></td>',
-						'<td>' + '  : ' + data[1]+ '  (' + data[2] +  ')' + '</td>',
+						'<td>' + '  : ' + data[2]+ '  (' + data[2] +  ')' + '</td>',
 					'</tr>',
 					'<tr>',
 						'<td><label class="mb-none">Email</label></td>',
-						'<td>: HERMAWAN.ARDIYANTO@SIG.ID</td>',
+						'<td>: {!!json_encode($arrUse)!!} </td>',
 					'</tr>',
 					'<tr>',
 						'<td><label class="mb-none">Password</label></td>',
@@ -33,7 +34,8 @@
 						'<td><label class="mb-none">Phone</label></td>',
 						'<td>: 0811-6616-969</td>',
 					'</tr>',
-				'</div>'
+				'</table>',
+				'<?php @endforeach ?>'
 
 			].join('');
 		};

@@ -90,7 +90,7 @@
 															</div>
 															<div class="tm-box appear-animation" data-appear-animation="fadeInRight"data-appear-animation-delay="100">
 																<p>
-																	{{ $dh->name }} mengajukan permintaan maintenance {{ $dh->jenis_barang }} untuk  {{ $dh->unit_kerja }}. 
+																	{{ $dh->name }} mengajukan permintaan maintenance {{ $dh->jenis_barang }} di {{ $dh->unit_kerja }} karena {{$dh->keterangan}}. 
 																	<br>Status maintenance<span class="text-primary"> #{{ $dh->status_maintenance}}</span>
 																</p>
 																<div class="tm-meta">

@@ -15,65 +15,7 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-									<li class="nav-active">
-										<a href="index.html">
-											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>Dashboard</span>
-										</a>
-									</li>
-									<li>
-										<a href="mailbox-folder.html">
-											<span class="pull-right label label-primary">182</span>
-											<i class="fa fa-envelope" aria-hidden="true"></i>
-											<span>Mailbox</span>
-										</a>
-									</li>
-									<li class="nav-parent">
-										<a>
-											<!-- <span class="pull-right label label-primary">182</span> -->
-											<i class="fa fa-user" aria-hidden="true"></i>
-											<span>User</span>		
-										</a>	
-											<!-- <li class="nav-parent">
-												<a>
-													<i class="fa fa-align-left" aria-hidden="true"></i>
-													<span>Menu Levels</span>
-												</a>
-												
-											</li> -->
-										
-										<ul class="nav nav-children">
-											<li>
-												<a href="/registrasi">Registrasi</a>
-											</li>
-											<li >
-												<a href="/data-user">Data User</a>
-											</li>
-										</ul>
-									</li>
-									
-
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-cubes" aria-hidden="true"></i>
-											<span>Barang</span>		
-										</a>	
-										<ul class="nav nav-children">
-											<li>
-												<a href="/barang-masuk">Barang Masuk</a>
-											</li>
-											<li >
-												<a href="/data-barang">Data Barang</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a href="http://themeforest.net/item/JSOFT-responsive-html5-template/4106987?ref=JSOFT" target="_blank">
-											<i class="fa fa-external-link" aria-hidden="true"></i>
-											<span>Front-End <em class="not-included">(Not Included)</em></span>
-										</a>
-									</li>
-									<li class="nav-parent">
+								<li class="nav-parent">
 										<a>
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
@@ -98,6 +40,36 @@
 												<a href="/dashboard-karyawan">
 												Dashboard Karyawan
 												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-user" aria-hidden="true"></i>
+											<span>User</span>		
+										</a>											
+										<ul class="nav nav-children">
+											<li>
+												<a href="/registrasi">Registrasi</a>
+											</li>
+											<li >
+												<a href="/data-user">Data User</a>
+											</li>
+										</ul>
+									</li>
+									
+
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-cubes" aria-hidden="true"></i>
+											<span>Barang</span>		
+										</a>	
+										<ul class="nav nav-children">
+											<li>
+												<a href="/barang-masuk">Barang Masuk</a>
+											</li>
+											<li >
+												<a href="/data-barang">Data Barang</a>
 											</li>
 										</ul>
 									</li>
@@ -131,7 +103,7 @@
 									</li>
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-home" aria-hidden="true"></i>
+											<i class="fa fa-envelope" aria-hidden="true"></i>
 											<span>Permintaan Barang</span>
 										</a>
 										<ul class="nav nav-children">
@@ -159,7 +131,7 @@
 									</li>									
 									<li class="nav-parent">
 										<a>
-											<i class="fa fa-home" aria-hidden="true"></i>
+											<i class="fa fa-wrench" aria-hidden="true"></i>
 											<span>Maintenance</span>
 										</a>
 										<ul class="nav nav-children">
