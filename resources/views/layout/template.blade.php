@@ -19,15 +19,15 @@
 		<!-- Vendor CSS -->
 
 		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.css')}}" />
-		<!-- <link rel="stylesheet" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css')}}"> -->
+		<link rel="stylesheet" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/magnific-popup/magnific-popup.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css')}}" />
 
 		<!-- Specific Page Vendor CSS -->
-		<link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
-		<link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
-		<link rel="stylesheet" href="assets/vendor/morris/morris.css" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')}}" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')}}" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/morris/morris.css')}}" />
 		<!--css maintenance-->
 		<link rel="stylesheet" href="{{asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/select2/select2.css')}}" />
@@ -423,8 +423,7 @@
 
 
 		@yield('footer')
-=======
-=======
+
 		<script src="{{asset('assets/javascripts/dashboard/examples.dashboard.js')}}"></script>
 
 		
@@ -478,7 +477,6 @@
 		<!-- Barang Masuk -->
 		<!-- Specific Page Vendor -->
 		<script src="{{asset('assets/vendor/fuelux/js/spinner.js')}}"></script>
->>>>>>> Stashed changes
->>>>>>> a111b63ac87803db1dd37d61f8c4b731c9d9a216
+
 	</body>
 </html>

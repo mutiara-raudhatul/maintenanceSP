@@ -39,7 +39,7 @@
                     <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-md">
-                                    <a href="/tambah-status-permintaan">
+                                    <a href="/form-permintaan-maintenance">
                                     <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                                     </a>
                                 </div>

@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">ID Jenis Maintenance</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" value="{{$edit->id_jenis_maintenance}}" name="id_jenis_maintenance">
+                                    <input type="text" class="form-control" id="inputDefault" value="{{$edit->id_jenis_maintenance}}" name="id_jenis_maintenance" readonly>
                                 </div>
                             </div>
                             <!-- Input Biasa -->
