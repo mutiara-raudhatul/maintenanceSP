@@ -18,19 +18,20 @@ class ResponMaintenanceController extends Controller
          ->join('users', 'users.id', '=', 'respon_maintenance.id_user')
          ->join('jenis_barang','jenis_barang.id_jenis_barang', '=','permintaan_maintenance.id_jenis_barang')
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
-         ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.id_status_maintenance','users.name','respon_maintenance.jadwal_perbaikan','jenis_barang.jenis_barang', 'status_maintenance.status_maintenance')
+         ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan','permintaan_maintenance.id_status_maintenance',
+                'users.name','respon_maintenance.jadwal_perbaikan','jenis_barang.jenis_barang', 'status_maintenance.status_maintenance','respon_maintenance.id_respon_maintenance')
          ->paginate(15);
         return view('maintenance.list-respon-maintenance', ['data' => $data]);
     }
 
     public function getTambah($id_permintaan_maintenance)
     {
-        $id_permintaan_maintenance = Permintaan_maintenance::select('id_permintaan_maintenance')
+        $data = Permintaan_maintenance::select('id_permintaan_maintenance')
         ->where('id_permintaan_maintenance', '=', $id_permintaan_maintenance)
         ->first();
         $respon = Users::all();
         //$role = Auth::user()->;
-        return view('maintenance.form-respon-maintenance', ['respon' => $respon, 'id_permintaan_maintenance'=>$id_permintaan_maintenance]);
+        return view('maintenance.form-respon-maintenance', ['respon' => $respon, 'data'=>$data]);
        // return view('maintenance.form-respon-maintenance');
     }
 
@@ -49,4 +50,32 @@ class ResponMaintenanceController extends Controller
         ]);
         return redirect('list-respon-maintenance')->with('toast_success', 'Data Berhasil Tersimpan');
     }
+
+    public function getUpdate($id_respon_maintenance)
+    {
+        $edit = Respon_maintenance::join('users','users.id','=','respon_maintenance.id_user')
+        ->select('respon_maintenance.id_respon_maintenance', 'respon_maintenance.jadwal_perbaikan', 'users.name', 'users.id')
+        ->where('id_respon_maintenance', '=', $id_respon_maintenance)
+        ->first();
+        //dd($editSt);
+        $user= Users::all();
+        return view('maintenance.update-respon-maintenance', ['edit' => $edit, 'user'=>$user]);
+        
+    }
+
+    public function setUpdate(Request $request,$id_respon_maintenance)
+    {
+        $update = Respon_maintenance::where('id_respon_maintenance', $id_respon_maintenance)
+        ->update([
+            'jadwal_perbaikan' => $request->jadwal_perbaikan,
+            'id_user' => $request->id_user,
+        ]);
+        if($update == true){
+            return redirect('/list-respon-maintenance')->with('toast_success', 'Update Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/list-respon-maintenance')->with('error', 'Update Gagal Dilakukan!');
+        }
+    }
+
 }

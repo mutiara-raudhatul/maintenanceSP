@@ -21,89 +21,70 @@
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
-
+	
                     <section class="panel">
 							<header class="panel-heading">
 								
 								<div class="panel-actions">
 									<div class="form-group">
-										<label class="col-md-6 control-label">
-											<h2 class="panel-title">Jumlah :</h2>
-										</label>
+										<label class="col-md-12 control-label"><h5>Jumlah : {{ $countUser }}</h5></label>
 										
 										<div class="col-md-4">
 											<div data-plugin-spinner data-plugin-options='{ "disabled": true }'>
 												<div>
-													<input type="text" class="spinner-input form-control" maxlength="3" readonly>
 													<div class="spinner-buttons input-group-btn btn-group-vertical">
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!-- <a href="#" class="fa fa-caret-down"></a> -->
-									<!-- <th class="center">Jumlah</th> -->
 								</div>
-								
-								<h2 class="panel-title">Karyawan</h2>
+							
+								<div class="panel-actions">
+										<a href="#" class="fa fa-caret-down"></a>
+								</div>
+							<h2 class="panel-title">Data User</h2>
 							</header>
-							<div class="panel-body">
-								<table class="table table-bordered table-striped mb-none" id="datatable-details-user">
+							<div style="background-color:white;">
+							<br>
+								<div class="col-md-6">
+										<a href="/registrasi">
+										<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+										</a>
+                                </div>		
+							</div>
+							<div class="panel-body">	
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools">
 									<thead>
 										<tr>
 											<th>Nama</th>
+											<th class="center">Username</th>
 											<th class="center">NIP</th>
                                             <th class="center">Work Unit</th>
+											<th class="center">Email</th>
 											<th class="center">Action</th>
 										</tr>
 									</thead>
 									<tbody>
+										@foreach($dtUsers as $item)
 										<tr class="gradeX">
-											<td>Hermawan Ardiyanto</td>
-											<td class="center">3467</td>
-                                            <td class="center">Kabau Sirah</td>
+											<td>{{ $item -> name}}</td>
+											<td class="center">{{ $item -> username}}</td>
+											<td class="center">{{ $item -> nip}}</td>
+											<td class="center">{{ $item -> unit_kerja}}</td>
+											<td class="center">{{ $item -> email}}</td>
 											<td class="center">
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> | 
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>
+                                                <a href="{{url('edit-user',$item->id)}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{url('delete-user',$item->id)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
 											</td>
 										</tr>
-										<tr class="gradeC">
-                                            <td>Agus Rianto</td>
-											<td class="center">3345</td>
-                                            <td class="center">SP Procurement</td>
-											<td class="center">
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> | 
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>
-											</td>
-										</tr>
-										<tr class="gradeA">
-                                            <td>Andhika Rio</td>
-											<td class="center">6646</td>
-                                            <td class="center">Crusher Mech Maint</td>
-											<td class="center">
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> | 
-												<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>
-											</td>
-										</tr>
-										
+										@endforeach
 									</tbody>
 								</table>
 							</div>
-
-							<!-- <div>
-								<div class="col-md">
-									<h2 class="pb-lg">Toggle</h2>
-									<div class="toggle" data-plugin-toggle>
-										<section class="toggle active">
-											<label>Curabitur eget leo at velit imperdiet vague iaculis vitaes?</label>
-											<div class="toggle-content">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet.</p></p>
-											</div>
-										</section>
-									</div>
-								</div>
-
-							</div> -->
+							<div>
+								<p><br></p>
+							</div>
 						</section>
                     
 				</section>

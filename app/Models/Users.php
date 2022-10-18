@@ -20,4 +20,7 @@ class Users extends Authenticatable
     protected $fillable = [
         'id', 'role', 'username', 'name', 'nip',  'email', 'email_verified_at', 'password', 'unit_kerja', 'eselon', 'nohp'     
     ];
+
+    // protected $guarded=[];
+    
 }

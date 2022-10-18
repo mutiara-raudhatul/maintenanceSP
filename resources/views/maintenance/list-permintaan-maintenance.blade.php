@@ -37,8 +37,6 @@
                         <h2 class="panel-title">Permintaan Maintenance</h2>
                     </header>
                     <div class="panel-body">
-
-
                                 <table class="table table-bordered table-striped mb-none" id="">
                                     <thead>
                                         <tr>
@@ -56,7 +54,7 @@
                                             <td>{{$item->jenis_barang}}</td>
                                             <td>{{$item->name}}</td>
                                             <td>{{$item->tanggal_permintaan}}</td>
-                                            <td>{{$item->status_maintenance}}</td>
+                                            <td>{{$item->keterangan}}</td>
                                             <td class="status">
                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
@@ -68,9 +66,12 @@
                                             </td>
                                             <td class="actions">
                                             @if ($item->status_maintenance=='Dilaporkan')
-                                                        <!-- button detail -->
-                                                            <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Respon </button></a>
-                                                @endif
+                                                <!-- button detail -->
+                                                <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Respon </button></a>
+                                            @endif
+                                            @if($item->id_maintenance_teknisi)
+                                            <a href="{{url('list-maintenance-teknisi', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Detail </button></a>
+                                            @endif
                                                 
                                             </td>
                                         </tr>

@@ -16,7 +16,7 @@ class CreateModelBarangTable extends Migration
         Schema::create('model_barang', function (Blueprint $table) {
             $table->unsignedBigInteger('id_model_barang')->autoIncrement();
             $table->string('model_barang', 50)->nullable($value=false); 
-            $table->integer('jumlah')->nullable($value=false);
+            
         });
 
         Schema::table('model_barang', function (Blueprint $table) {

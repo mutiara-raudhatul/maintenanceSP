@@ -10,6 +10,10 @@
 		<meta name="description" content="JSOFT Admin - Responsive HTML5 Template">
 		<meta name="author" content="JSOFT.net">
 
+		<!-- JS -->
+		<script src="/backend/js/chart.js"></script>
+
+
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -19,15 +23,15 @@
 		<!-- Vendor CSS -->
 
 		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap/css/bootstrap.css')}}" />
-		<!-- <link rel="stylesheet" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css')}}"> -->
+		<link rel="stylesheet" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('assets/vendor/font-awesome/css/font-awesome.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/magnific-popup/magnific-popup.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-datepicker/css/datepicker3.css')}}" />
 
 		<!-- Specific Page Vendor CSS -->
-		<link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
-		<link rel="stylesheet" href="assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
-		<link rel="stylesheet" href="assets/vendor/morris/morris.css" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')}}" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css')}}" />
+		<link rel="stylesheet" href="{{asset('assets/vendor/morris/morris.css')}}" />
 		<!--css maintenance-->
 		<link rel="stylesheet" href="{{asset('assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css')}}" />
 		<link rel="stylesheet" href="{{asset('assets/vendor/select2/select2.css')}}" />
@@ -97,7 +101,7 @@
 			<header class="header">
 				<div class="logo-container">
 					<a href="../" class="logo">
-						<img src="assets/images/logo.png" height="35" alt="JSOFT Admin" />
+						<img src="assets/images/logo_semenpadang.png" height="45"alt="JSOFT Admin" />
 					</a>
 					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -288,9 +292,13 @@
 							</figure>
 							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
 								<span class="name">
+									{{\Auth::user()->name}}	
 								</span>
+								
 								<span class="role">
+									{{\Auth::user()->role}}
 								</span>
+								
 							</div>
 			
 							<i class="fa custom-caret"></i>
@@ -423,8 +431,7 @@
 
 
 		@yield('footer')
-=======
-=======
+
 		<script src="{{asset('assets/javascripts/dashboard/examples.dashboard.js')}}"></script>
 
 		

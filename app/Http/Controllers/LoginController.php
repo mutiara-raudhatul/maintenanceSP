@@ -12,7 +12,7 @@ class LoginController extends Controller
 
     public function index ()
     {
-        return view('login');
+        return view('/login');
     }
 
     public function authenticate (Request $request)
@@ -24,7 +24,20 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('dashboard-admingudang'); 
+            $yg_login = Users::where('email','=',$request->email)->first();
+
+            $rolenya = $yg_login->role;
+            if($rolenya == 'admin_gudang'){
+                return redirect()->intended('dashboard-admingudang'); 
+            } if($rolenya == 'admin_teknisi'){
+                return redirect()->intended('dashboard-adminteknisi'); 
+            } if($rolenya == 'karyawan'){
+                return redirect()->intended('dashboard-karyawan'); 
+            } if($rolenya == 'teknisi'){
+                return redirect()->intended('dashboard-teknisi'); 
+            } else {
+                return redirect()->intended('login'); 
+            }
         }
 
         // dd('berhasil login');
@@ -39,6 +52,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }

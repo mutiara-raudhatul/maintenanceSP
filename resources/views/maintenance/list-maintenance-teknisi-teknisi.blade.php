@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'List Permintaan Maintenance')
+@section('title', 'List Maintenance Teknisi')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Permintaan Maintenance</h2>
+        <h2>Maintenance Teknisi</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,53 +34,53 @@
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
         
-                        <h2 class="panel-title">Permintaan Maintenance</h2>
+                        <h2 class="panel-title">Maintenance Teknisi</h2>
                     </header>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-md">
-                                    <a href="/permintaan-maintenance">
-                                    <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
 
                                 <table class="table table-bordered table-striped mb-none" id="">
                                     <thead>
                                         <tr>
                                             <th>Jenis Barang</th>
-                                            <th>Tanggal</th>
-                                            <th>Keterangan</th>
+                                            <th>Jadwal Perbaikan</th>
+                                            <th>Dokumen</th>
+                                            <th>Note</th>
+                                            <th>Lokasi</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($dataU as $item)
+                                        @foreach ($data as $item)
                                         <tr class="gradeX">
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->tanggal_permintaan}}</td>
-                                            <td>{{$item->keterangan}}</td>
+                                            <td>{{$item->jadwal_perbaikan}}</td>
+                                            <td><a href="{{asset('dokumen-hasil/'. $item->upload_form_maintenance)}}">{{$item->upload_form_maintenance}}</a></td>
+                                            <td>{{$item->note}}</td>
+                                            <td>{{$item->lokasi}}</td>
                                             <td class="status">
-                                                @if ($item->status_maintenance=='Dilaporkan')
+                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Dilaporkan</button>
-                                                @else 
-                                                        <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
+                                                            <button class="btn btn-warning btn-xs">Belum Direspon </button>
+                                                            <button class="btn btn-success btn-xs">Selesai </button>
+                                                @elseif ($item->status_maintenance=='Diterima')
+                                                        <button class="btn btn-success btn-xs">Diterima </button>
+                                                @else
+                                                        <button class="btn btn-success btn-xs">Selesai </button>
+
                                                 @endif
                                             </td>
                                             <td class="actions">
-                                                @if ($item->status_maintenance=='Dilaporkan')
-                                                        <a href="{{url('update-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Edit</button>
+                                                @if ($item->status_maintenance=='Diterima')
+                                                        <a href="{{url('form-maintenance-teknisi',$item->id_permintaan_maintenance)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning btn-xs">Respon</button>
                                                         </a>
+                                                @elseif($item->status_maintenance=='Selesai')
                                                         <!-- button cancel -->
-                                                        <a href="{{url('cancel-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Maintenance Dibatalkan?')">Cancel</button>
-                                                        </a>
+                                                            <a href="{{url('update-maintenance-teknisi',$item->id_permintaan_maintenance)}}">
+                                                                <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning btn-xs">Update</button>
+                                                            </a>
                                                 @endif
                                             </td>
                                         </tr>

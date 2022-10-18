@@ -34,83 +34,88 @@
 										<form class="form-horizontal form-bordered" action="/registrasi" method="post">
 											@csrf
 											<div class="form-group">
+												<label class="col-md-3 control-label" for="username">Username</label>
+												<div class="col-md-6">
+													<input  type="text" id="username" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Username" required>
+												</div>
+											</div>
+											<div class="form-group">
 												<label class="col-md-3 control-label" for="name">Name</label>
 												<div class="col-md-6">
 													<input  type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" required>
 												</div>
-											</div>
-						
+</div>
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="fc_inputmask_1">NIP</label>
+												<label class="col-md-3 control-label" for="nip">NIP</label>
 												<div class="col-md-6">
 													<div class="input-group">
 														<span class="input-group-addon">
 																<!-- <i class="fa fa-plus"></i> -->
 														</span>
-														<input required type="number" id="fc_inputmask_1" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control @error('email') is-invalid @enderror">
+														<input required type="number" id="nip" name="nip" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control @error('nip') is-invalid @enderror">
 													</div>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputSuccess">Role</label>
+												<label class="col-md-3 control-label" for="role">Role</label>
 												<div class="col-md-6">
-													<select required class="form-control mb-md">
-														<option >Karyawan</option>
-														<option>Teknisi</option>
-														<option>Admin Teknisi</option>
+													<select required name="role" id="role" class="form-control mb-md">
+														<option disabled selected>-role-</option>
+														<option value="karyawan">Karyawan</option>
+														<option value="teknisi">Teknisi</option>
+														<option value="admin_teknisi">Admin Teknisi</option>
+														<option value="admin_gudang">Admin Gudang</option>
 													</select>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputSuccess">Work Unit</label>
+												<label class="col-md-3 control-label" for="unit_kerja">Work Unit</label>
 												<div class="col-md-6">
-													<select required class="form-control mb-md">
-														<option>Unit 1</option>
-														<option>Unit 2</option>
+													<input  type="text" id="unit_kerja" name="unit_kerja" class="form-control @error('unit_kerja') is-invalid @enderror" placeholder="Unit Kerja" required>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="col-md-3 control-label" for="eselon">Eselon</label>
+												<div class="col-md-6">
+													<select required name="eselon" id="eselon" class="form-control mb-md">
+														<option hidden disabled selected><i>Eselon</i></option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
 													</select>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-3 control-label" for="inputSuccess">Eselon</label>
-												<div class="col-md-6">
-													<select  required class="form-control mb-md">
-														<option>1</option>
-														<option>2</option>
-														<option>3</option>
-														<option>4</option>
-													</select>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-3 control-label">Phone</label>
+												<label class="col-md-3 control-label" for="nohp">Phone</label>
 													<div class="col-md-6 control-label">
 														<div class="input-group">
 															<span class="input-group-addon">
 																<i class="fa fa-phone"></i>
 															</span>
-															<input required id="phone" data-plugin-masked-input data-input-mask="(+99) 999-9999-9999" placeholder="(+62) 123-1234-1234" class="form-control">
+															<input required type="number" id="nohp" name="nohp" placeholder="08xxxxxxxxxx" class="form-control">
 														</div>
 													</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-3 control-label">E-Mail</label>
+												<label class="col-md-3 control-label" for="email">E-Mail</label>
 												<div class="col-md-6">
 													<section class="form-group-vertical">
-														<input required class="form-control" type="text" placeholder="Email">
+														<input required class="form-control" type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
 													</section>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-3 control-label">Password</label>
+												<label class="col-md-3 control-label" for="password">Password</label>
 												<div class="col-md-6">
 													<section class="form-group-vertical">
-														<input required class="form-control last" type="password" placeholder="Password">
+														<input required class="form-control last" type="password" name="password" id="password" placeholder="Password">
 													</section>
 												</div>
 											</div>

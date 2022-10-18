@@ -52,12 +52,11 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select data-plugin-selectTwo class="form-control populate" name="id_jenis_barang">
-                                        <optgroup label="Jenis Barang">
+                                    <select class="form-control populate" name="id_jenis_barang" required>
+                                        <option label="Jenis Barang" selected>Jenis Barang</option>
                                         @foreach ($jenis_barang as $item)
                                             <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
-                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -69,7 +68,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="date" class="form-control" name="tanggal_permintaan">
+                                            <input type="text" class="form-control" name="tanggal_permintaan" value="{{date('d-m-Y')}}" readonly>
                                         </div>
                                     </div>
                             </div>
@@ -77,7 +76,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="textareaDefault">Masalah yang terjadi</label>
                                     <div class="col-md-6">
-                                    <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="200" name="keterangan"></textarea>
+                                    <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="200" name="keterangan" required></textarea>
                                         <p>
                                             <code>max-length</code> set to 200.
                                         </p>            

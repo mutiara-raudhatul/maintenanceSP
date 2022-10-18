@@ -36,8 +36,7 @@
         
                         <h2 class="panel-title">Update Permintaan Maintenance</h2>
                     </header>
-                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan')}}">
-
+                    <form class="form-horizontal form-bordered" method="post" action="/update-permintaan-maintenance/{{$editSt->id_permintaan_maintenance}}">
                         {{ csrf_field()}}
                     <div class="panel-body">
                         
@@ -52,8 +51,9 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select data-plugin-selectTwo class="form-control populate" name="id_jenis_barang">
+                                    <select class="form-control populate" name="id_jenis_barang">
                                         <optgroup label="Jenis Barang">
+                                        <option value="{{$editSt->id_jenis_barang}}" selected>{{$editSt->jenis_barang}}</option>
                                         @foreach ($jenis_barang as $item)
                                         <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
@@ -69,7 +69,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="date" class="form-control" name="tanggal_permintaan">
+                                            <input type="date" class="form-control" name="tanggal_permintaan" value="{{$editSt->tanggal_permintaan}}" min="date('Today')">
                                         </div>
                                     </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="textareaDefault">Masalah yang terjadi</label>
                                     <div class="col-md-6">
-                                    <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="200" name="keterangan"></textarea>
+                                    <textarea class="form-control" rows="3" data-plugin-maxlength maxlength="200" name="keterangan">{{$editSt->keterangan}}</textarea>
                                         <p>
                                             <code>max-length</code> set to 200.
                                         </p>            
