@@ -40,8 +40,8 @@ class PermintaanMaintenanceController extends Controller
 
     public function userIndex()
     {
-         //$id_user = Auth::user()->id;
-         $id_user=2;
+         $id_user = Auth::user()->id;
+         //$id_user=2;
          $dataU = Permintaan_maintenance::join('users', 'users.id', '=', 'permintaan_maintenance.id_user')
          ->join('jenis_barang', 'jenis_barang.id_jenis_barang', '=', 'permintaan_maintenance.id_jenis_barang')
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
@@ -61,31 +61,34 @@ class PermintaanMaintenanceController extends Controller
     public function getTambah()
     {
         $jenis_barang = Jenis_barang::all();
+        
+        $id_user = Auth::user()->id;
 
-        return view('maintenance.form-permintaan-maintenance', ['jenis_barang' => $jenis_barang]);
+
+        return view('maintenance.form-permintaan-maintenance', ['jenis_barang' => $jenis_barang, 'id_user'=>$id_user]);
     }
 
      public function setTambah(Request $request)
     {   
+        $id_status_maintenance = 1;
+       
         $request->validate([
             'tanggal_permintaan' => 'required',
             'keterangan' => 'required',
             'id_jenis_barang' => 'required',
-            'id_status_maintenance' => 'required',
+            'id_user' => 'required',
         ]);      
-        $id_status_maintenance = 1;
-        //$id_user = Auth::user()->id;
-        $id_user=2;
+        
         $date = strtotime($request->tanggal_permintaan);
         $time = date('Y-m-d', $date);
         Permintaan_maintenance::create([
             'tanggal_permintaan' => $time,
             'keterangan' => $request->keterangan,
             'id_jenis_barang' =>$request->id_jenis_barang,
-            'id_user' =>$id_user,
+            'id_user' => $request->id_user,
             'id_status_maintenance' =>$id_status_maintenance,
         ]);
-
+        //dd($request);
         return redirect('list-permintaan-maintenance-user')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 

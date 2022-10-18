@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'checkrole:admin_teknisi']], function(){
 
     //----PERMINTAAN MAINTENANCE ADMIN
     Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
+    Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
     //----RESPON MAINTENANCE
     Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
     Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
@@ -98,7 +99,6 @@ Route::group(['middleware' => ['auth', 'checkrole:teknisi']], function(){
     Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
     //----MAINTENANCE TEKNISI
     Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
-    Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
     Route::get('/list-maintenance-teknisi',[MaintenanceTeknisiController::class, 'getMaintenance']);
     Route::get('/form-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'getTambah']);
     Route::post('/simpan-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'setTambah'])->name('simpanM');
@@ -119,7 +119,8 @@ Route::group(['middleware' => ['auth', 'checkrole:karyawan,teknisi']], function(
 
     //----PERMINTAAN MAINTENANCE USER
     Route::get('/permintaan-maintenance',[PermintaanMaintenanceController::class, 'getTambah']);
-    Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpan');
+    Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpanPermintaan');
+
     Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate']);
     Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate'])->name('updatePermintaan');
     Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');

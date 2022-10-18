@@ -32,7 +32,7 @@ class MaintenanceTeknisiController extends Controller
     public function getMaintenance()
     {
         //$id_user = Auth::user()->id;
-        $id_user=2;
+        $id_user=3;
         $data = Maintenance_teknisi::join('permintaan_maintenance', 'permintaan_maintenance.id_permintaan_maintenance', '=','maintenance_teknisi.id_permintaan_maintenance')
          ->join('respon_maintenance', 'permintaan_maintenance.id_permintaan_maintenance', '=', 'respon_maintenance.id_permintaan_maintenance')
          ->join('users', 'users.id', '=', 'respon_maintenance.id_user')
@@ -46,8 +46,8 @@ class MaintenanceTeknisiController extends Controller
 
     public function listRespon()
     {
-        //$id_user = Auth::user()->id;
-        $id_user=2;
+        $id_user = Auth::user()->id;
+        //$id_user=2;
         $data = Respon_maintenance::join('permintaan_maintenance', 'permintaan_maintenance.id_permintaan_maintenance', '=', 'respon_maintenance.id_permintaan_maintenance')
          ->join('users', 'users.id', '=', 'respon_maintenance.id_user')
          ->join('jenis_barang','jenis_barang.id_jenis_barang', '=','permintaan_maintenance.id_jenis_barang')
