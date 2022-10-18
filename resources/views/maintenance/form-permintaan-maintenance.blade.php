@@ -55,7 +55,7 @@
                                     <select data-plugin-selectTwo class="form-control populate" name="id_jenis_barang">
                                         <optgroup label="Jenis Barang">
                                         @foreach ($jenis_barang as $item)
-                                        <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
+                                            <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
                                         </optgroup>
                                     </select>
@@ -83,10 +83,7 @@
                                         </p>            
                                     </div>
                             </div>
-                           
-        
-                            
-                       
+
                     </div>
                     <footer class="panel-footer" >
                         <button class="btn btn-primary" type="submit">Submit </button>

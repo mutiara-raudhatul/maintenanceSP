@@ -40,7 +40,7 @@
                     <div class="panel-body">
                     @foreach($data_user as $d)
                         <p class="mb-lg"> Nama Pemohon         :  {{ $d->name }} </p>
-                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $d->unit_kerja }}</p>    
+                        <p class="mb-lg"> Tanggal permintaan   :  {{ $d->tanggal_permintaan }}</p>    
                     @endforeach     
                     </div>
                 </section>	
@@ -55,7 +55,7 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-										<h2 class="panel-title">Data Barang Diminta</h2>
+										<h2 class="panel-title">Tabel Permintaan Barang</h2>
 									</header>
 									<div class="panel-body">
 										<div class="table-responsive">
@@ -82,18 +82,13 @@
 									</div>
 
                                     <footer class="panel-footer" >
-                                    @if ($detail->status_permintaan=='Diajukan')
-                                        <a href="{{url('form-respon-permintaan', $detail->id_permintaan_barang)}}">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Respon</button>
-                                        </a> 
-                                        <a href="{{url('tolak-permintaan-barang', $detail->id_permintaan_barang)}}" >
-                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Yakin Menolak Permintaan?')">Tolak</button>
-                                        </a>
-                                    @endif
-
-
-                                    </footer>
                                    
+                                        <a href="/permintaan-barang-user">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Kembali</button>
+                                        </a>
+                                     
+                                    </footer>
+                                    </footer>
 								</section>
 							</div>
 

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = "barang"; //cek
     protected $primaryKey = "id_barang"; //cek
 

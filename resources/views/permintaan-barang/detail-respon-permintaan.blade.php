@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'Detail Permintaan Barang')
+@section('title', 'Detail Respon Permintaan Barang')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>Detail Permintaan Barang</h2>
+        <h2>Detail Respon Permintaan Barang</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -34,13 +34,14 @@
                            
                         </div>
         
-                        <h2 class="panel-title">Data Permintaan</h2>
+                        <h2 class="panel-title">Data Respon Permintaan</h2>
                     </header>
 
                     <div class="panel-body">
-                    @foreach($data_user as $d)
+                    @foreach($data as $d)
                         <p class="mb-lg"> Nama Pemohon         :  {{ $d->name }} </p>
-                        <p class="mb-lg"> Bidang Kerja Pemohon :  {{ $d->unit_kerja }}</p>    
+                        <p class="mb-lg"> Tanggal permintaan   :  {{ $d->tanggal_permintaan }}</p>   
+                        <p class="mb-lg"> Tanggal Pengadaan   :  {{ $d->waktu_pengadaan }}</p> 
                     @endforeach     
                     </div>
                 </section>	
@@ -55,7 +56,7 @@
 											<a href="#" class="fa fa-times"></a>
 										</div>
 						
-										<h2 class="panel-title">Data Barang Diminta</h2>
+										<h2 class="panel-title">Tabel Barang Dipenuhi</h2>
 									</header>
 									<div class="panel-body">
 										<div class="table-responsive">
@@ -64,36 +65,37 @@
 													<tr>
 														<th>No</th>
 														<th>Barang</th>
-														<th>Jumlah</th>														
+                                                        <th>Model Barang</th>
+														<th>Jumlah</th>
+                                                        <th>Hostname</th>														
 													</tr>
 												</thead>
-												<?php $no = 1; ?>
+                                                <?php $no = 1; ?>
                                     			@foreach($data_detail as $detail)
 												<tbody>
 													<tr>
 														<td>{{$no++}}</td>
 														<td>{{ $detail->jenis_barang }}</td>
-														<td>{{ $detail->jumlah_permintaan }}</td>														
+                                                        <td>{{ $detail->model_barang }}</td>
+														<td>{{ $detail->jumlah_dipenuhi }}</td>
+                                                        <td>{{ $detail->hostname }}</td>														
 													</tr>
 												</tbody>
                                                 @endforeach
+												
 											</table>
 										</div>
 									</div>
 
                                     <footer class="panel-footer" >
-                                    @if ($detail->status_permintaan=='Diajukan')
-                                        <a href="{{url('form-respon-permintaan', $detail->id_permintaan_barang)}}">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Respon</button>
-                                        </a> 
-                                        <a href="{{url('tolak-permintaan-barang', $detail->id_permintaan_barang)}}" >
-                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Yakin Menolak Permintaan?')">Tolak</button>
+                                        
+                                        <a href="/list-respon-permintaan">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Kembali</button>
                                         </a>
-                                    @endif
-
-
+                                                                              
+                                     
                                     </footer>
-                                   
+                                    </footer>
 								</section>
 							</div>
 

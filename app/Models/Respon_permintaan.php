@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Respon_permintaan extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = "respon_permintaan"; //cek
     protected $primaryKey = "id_respon_permintaan"; //cek
 

@@ -478,7 +478,6 @@
 		<!-- Barang Masuk -->
 		<!-- Specific Page Vendor -->
 		<script src="{{asset('assets/vendor/fuelux/js/spinner.js')}}"></script>
->>>>>>> Stashed changes
->>>>>>> a111b63ac87803db1dd37d61f8c4b731c9d9a216
+
 	</body>
 </html>

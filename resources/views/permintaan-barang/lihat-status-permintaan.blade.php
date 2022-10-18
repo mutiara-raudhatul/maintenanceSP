@@ -61,7 +61,18 @@
                                         @foreach($status_minta as $status)
                                         <tr class="gradeX">
                                             <td>{{$status->id_status_permintaan}}</td>
-                                            <td>{{$status->status_permintaan }}</td>
+                                            <td class="status">
+                                            @if ($status->status_permintaan=='Diajukan')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-warning btn-sm">Diajukan</button>
+                                                @elseif($status->status_permintaan=='Diterima')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-success btn-sm">Diterima</button>
+                                                @elseif($status->status_permintaan=='Ditolak')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
+                                                @endif
+                                            </td>
                                             <td class="actions">
                                                 <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                                 <!-- <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a> -->
