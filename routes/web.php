@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth', 'checkrole:teknisi']], function(){
 
     Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi');
     Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
+    Route::get('/history-barang-teknisi', 'App\Http\Controllers\HistoriController@indexTB')->name('history-barang-teknisi');
     //----MAINTENANCE TEKNISI
     Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
     Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
@@ -111,6 +112,7 @@ Route::group(['middleware' => ['auth', 'checkrole:karyawan']], function(){
 
     Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK');
     Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')->name('history-karyawan');
+    Route::get('/history-barang-karyawan', 'App\Http\Controllers\HistoriController@indexKB')->name('history-barang-karyawan');
 
     
 });

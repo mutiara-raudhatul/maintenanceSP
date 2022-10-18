@@ -74,8 +74,8 @@ class PermintaanMaintenanceController extends Controller
             'id_status_maintenance' => 'required',
         ]);      
         $id_status_maintenance = 1;
-        //$id_user = Auth::user()->id;
-        $id_user=2;
+        $id_user = Auth::user()->id;
+        //$id_user=2;
         $date = strtotime($request->tanggal_permintaan);
         $time = date('Y-m-d', $date);
         Permintaan_maintenance::create([

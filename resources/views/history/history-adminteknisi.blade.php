@@ -76,7 +76,7 @@
 													<td>{{ $dth->name }}</td>
 													<td>{{ $dth->jenis_barang }}</td>
 													<td>{{ $dth->unit_kerja }}</td>
-													<td>{{ $dth->tanggal_permintaan }}</td>
+													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
 													<td>
 														<span class="label label-success">{{ $dth->status_maintenance }}</span>
 													</td>

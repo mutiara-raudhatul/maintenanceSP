@@ -359,7 +359,7 @@ class DashboardController extends Controller
         $jumjenisbarang = Jenis_barang::count();
         $jumbarang = Barang::count();
         $jumperminbarang = Permintaan_barang::count();
-        $belumdiproses = Permintaan_maintenance::where('id_status_maintenance','=','1')->count();
+        $belumdiproses = Permintaan_barang::where('id_status_permintaan','=','1')->count();
         $jumperminmaintenance = Permintaan_maintenance::count();
         $jumuser = Users::count();
 

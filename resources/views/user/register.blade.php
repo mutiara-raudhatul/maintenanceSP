@@ -62,9 +62,10 @@
 												<div class="col-md-6">
 													<select required name="role" id="role" class="form-control mb-md">
 														<option disabled selected>-role-</option>
-														<option value="Karyawan">Karyawan</option>
-														<option value="Teknisi">Teknisi</option>
-														<option value="Admin Teknisi">Admin Teknisi</option>
+														<option value="karyawan">Karyawan</option>
+														<option value="teknisi">Teknisi</option>
+														<option value="admin_teknisi">Admin Teknisi</option>
+														<option value="admin_gudang">Admin Gudang</option>
 													</select>
 												</div>
 											</div>
