@@ -32,94 +32,120 @@ Route::get('/', function () {
     return view('login');
 });
 
+
+
 // ----------------------------------------authenticate------------------------------------
 Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')-> middleware('guest');
 Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
 Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
-Route::get('/registrasi', 'App\Http\Controllers\RegistrasiController@index')->name('registrasi')-> middleware('auth');
-Route::post('/registrasi', 'App\Http\Controllers\RegistrasiController@store')->name('regis');
+Route::group(['middleware' => ['auth', 'checkrole:admin_gudang']], function(){
+    //Registrasi
+    Route::get('/registrasi', 'App\Http\Controllers\RegistrasiController@index')->name('registrasi')-> middleware('auth');
+    Route::post('/registrasi', 'App\Http\Controllers\RegistrasiController@store')->name('regis');
 
-Route::group(['middleware' => ['auth', 'checkRole:admin gudang']], function(){
+    //dashboard
+    Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
+    Route::get('/history-admingudang', 'App\Http\Controllers\HistoriController@indexAG')->name('history-admingudang');
+    Route::post('/history-admingudang', 'App\Http\Controllers\HistoriController@search')->name('search');
+    
+    //data user
+    Route::get('/data-user', 'App\Http\Controllers\RegistrasiController@readData');
+    Route::get('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@getUpdate');
+    Route::post('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@setUpdate');
+    Route::get('/delete-user/{id}', 'App\Http\Controllers\RegistrasiController@destroy')->name('delete-user');
 
-    Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:admin_teknisi']], function(){
+
+    Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi');
+    Route::get('/history-adminteknisi', 'App\Http\Controllers\HistoriController@indexAT')->name('history-adminteknisi');
+    Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@search')->name('search');
+
+    //----PERMINTAAN MAINTENANCE ADMIN
+    Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
+    //----RESPON MAINTENANCE
+    Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
+    Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
+    Route::post('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'setTambah'])->name('responS');
+    Route::get('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'getUpdate'])->name('update');
+    Route::post('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'setUpdate'])->name('update');
+    //------------------------------------DOKUMEN MAINTENANCE
+    Route::get('/list-dokumen-maintenance',[DokumenMaintenanceController::class, 'index'])->name('dokumen');
+    Route::get('/update-dokumen-maintenance/{id_jenis_barang}',[DokumenMaintenanceController::class, 'getUpdate'])->name('dokumen');
+    Route::post('/update-dokumen-maintenance/{id_jenis_barang}',[DokumenMaintenanceController::class, 'setUpdate']);
+    //------------------------------------STATUS
+    Route::get('/status',[StatusController::class, 'index'])->name('status');
+    Route::get('/tambah-status',[StatusController::class, 'getTambahStatus'])->name('tambah-status');
+    Route::post('/simpan-statusM',[StatusController::class, 'createStatus'])->name('simpan-statusM');
+    Route::get('/update-status/{id_status_maintenance}',[StatusController::class, 'getUpdate'])->name('updateStatus');
+    Route::post('/update-status/{id_status_maintenance}',[StatusController::class, 'setUpdate']);
+    Route::get('/delete-status-maintenance/{id_status_maintenance}', [StatusController::class, 'destroy']);
+    //-----------------------------------JENIS MAINTENANCE
+    Route::get('/jenis-maintenance',[JenisMaintenanceController::class, 'index'])->name('jenis-maintenance');
+    Route::get('/tambah-jenis-maintenance',[JenisMaintenanceController::class, 'getTambah']);
+    Route::post('/simpan-jenis-maintenance',[JenisMaintenanceController::class, 'setTambah'])->name('simpan-jenis');
+    Route::get('/delete-jenis-maintenance/{id_jenis_maintenance}', [JenisMaintenanceController::class, 'destroy']);
+    Route::get('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'getUpdate'])->name('updateJenisM');
+    Route::post('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'setUpdate']);
+
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:teknisi']], function(){
+
+    Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi');
+    Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
+    //----MAINTENANCE TEKNISI
+    Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
+    Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
+    Route::get('/list-maintenance-teknisi',[MaintenanceTeknisiController::class, 'getMaintenance']);
+    Route::get('/form-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'getTambah']);
+    Route::post('/simpan-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'setTambah'])->name('simpanM');
+    Route::get('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'getUpdate']);
+    Route::post('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'setUpdate'])->name('updatePermintaan');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkrole:karyawan']], function(){
+
+    Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK');
+    Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')->name('history-karyawan');
 
     
 });
 
+Route::group(['middleware' => ['auth', 'checkrole:karyawan,teknisi']], function(){
+
+    //----PERMINTAAN MAINTENANCE USER
+    Route::get('/permintaan-maintenance',[PermintaanMaintenanceController::class, 'getTambah']);
+    Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpan');
+    Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate']);
+    Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate'])->name('updatePermintaan');
+    Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');
+    Route::get('/cancel-permintaan-maintenance/{id_permintaan_maintenance}', [PermintaanMaintenanceController::class, 'cancel']);
+
+});
 // --------------------------------------------DASHBOARD------------------------------------------
 
-Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
-Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi')-> middleware('auth');
-Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi')-> middleware('auth');
-Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK')->name('dashboard-karyawan')-> middleware('auth');
+// Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang')-> middleware('auth');
+// Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi')-> middleware('auth');
+// Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi')-> middleware('auth');
+// Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK')->name('dashboard-karyawan')-> middleware('auth');
 
 
 // --------------------------------------------HISTORY------------------------------------------
 
-Route::get('/history-admingudang', 'App\Http\Controllers\HistoriController@indexAG')->name('history-admingudang')-> middleware('auth');
-Route::post('/history-admingudang', 'App\Http\Controllers\HistoriController@search')->name('search');
-Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')->name('history-karyawan');
-Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
-Route::get('/history-adminteknisi', [PermintaanMaintenanceController::class, 'index'])->name('history-adminteknisi');
-Route::get('/history-adminteknisi', 'App\Http\Controllers\HistoriController@indexAT')->name('history-adminteknisi');
-Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@search')->name('search');
 
 
-
-Route::get('/status-admingudang', function () {
-    return view('history/status-admingudang');
-});
 
 // ------------------------------------------MAINTENANCE------------------------------------------
 
-//----PERMINTAAN MAINTENANCE ADMIN
-Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
 
 
-Route::get('/permintaan-maintenance',[PermintaanMaintenanceController::class, 'getTambah']);
-Route::post('/simpan-permintaan-maintenance',[PermintaanMaintenanceController::class, 'setTambah'])->name('simpan');
-Route::get('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'getUpdate']);
-Route::post('/update-permintaan-maintenance/{id_permintaan_maintenance}',[PermintaanMaintenanceController::class, 'setUpdate'])->name('updatePermintaan');
-//----PERMINTAAN MAINTENANCE USER
-Route::get('/list-permintaan-maintenance-user',[PermintaanMaintenanceController::class, 'userIndex'])->name('list-permintaan-maintenance');
-Route::get('/cancel-permintaan-maintenance/{id_permintaan_maintenance}', [PermintaanMaintenanceController::class, 'cancel']);
-//----RESPON MAINTENANCE
-Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
-Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
-Route::post('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'setTambah'])->name('responS');
-Route::get('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'getUpdate'])->name('update');
-Route::post('/update-respon-maintenance/{id_respon_maintenance}',[ResponMaintenanceController::class, 'setUpdate'])->name('update');
-//----MAINTENANCE TEKNISI
-Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
-Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
 
-Route::get('/list-maintenance-teknisi',[MaintenanceTeknisiController::class, 'getMaintenance']);
-//Route::get('/list-maintenance-teknisi-t')
-Route::get('/form-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'getTambah']);
-Route::post('/simpan-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'setTambah'])->name('simpanM');
-Route::get('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'getUpdate']);
-Route::post('/update-maintenance-teknisi/{id_maintenance_teknisi}',[MaintenanceTeknisiController::class, 'setUpdate'])->name('updatePermintaan');
 
-//------------------------------------DOKUMEN MAINTENANCE
-Route::get('/list-dokumen-maintenance',[DokumenMaintenanceController::class, 'index'])->name('dokumen');
-Route::get('/update-dokumen-maintenance/{id_jenis_barang}',[DokumenMaintenanceController::class, 'getUpdate'])->name('dokumen');
-Route::post('/update-dokumen-maintenance/{id_jenis_barang}',[DokumenMaintenanceController::class, 'setUpdate']);
-//------------------------------------STATUS
-Route::get('/status',[StatusController::class, 'index'])->name('status');
-Route::get('/tambah-status',[StatusController::class, 'getTambahStatus'])->name('tambah-status');
-Route::post('/simpan-statusM',[StatusController::class, 'createStatus'])->name('simpan-statusM');
-Route::get('/update-status/{id_status_maintenance}',[StatusController::class, 'getUpdate'])->name('updateStatus');
-Route::post('/update-status/{id_status_maintenance}',[StatusController::class, 'setUpdate']);
-Route::get('/delete-status-maintenance/{id_status_maintenance}', [StatusController::class, 'destroy']);
 
-//-----------------------------------JENIS MAINTENANCE
-Route::get('/jenis-maintenance',[JenisMaintenanceController::class, 'index'])->name('jenis-maintenance');
-Route::get('/tambah-jenis-maintenance',[JenisMaintenanceController::class, 'getTambah']);
-Route::post('/simpan-jenis-maintenance',[JenisMaintenanceController::class, 'setTambah'])->name('simpan-jenis');
-Route::get('/delete-jenis-maintenance/{id_jenis_maintenance}', [JenisMaintenanceController::class, 'destroy']);
-Route::get('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'getUpdate'])->name('updateJenisM');
-Route::post('/update-jenis-maintenance/{id_jenis_maintenance}',[JenisMaintenanceController::class, 'setUpdate']);
 
 
 // ------------------------------------------Permintaan Barang------------------------------------------
@@ -213,10 +239,6 @@ Route::get('/halaman-utama', function () {
 });
 
 
-Route::get('/data-user', 'App\Http\Controllers\RegistrasiController@readData');
-Route::get('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@getUpdate');
-Route::post('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@setUpdate');
-Route::get('/delete-user/{id}', 'App\Http\Controllers\RegistrasiController@destroy')->name('delete-user');
 
 Route::get('/coba', function () {
     return view('user/coba');

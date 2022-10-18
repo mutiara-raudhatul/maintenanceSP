@@ -27,13 +27,13 @@ class LoginController extends Controller
             $yg_login = Users::where('email','=',$request->email)->first();
 
             $rolenya = $yg_login->role;
-            if($rolenya == 'Admin Gudang'){
+            if($rolenya == 'admin_gudang'){
                 return redirect()->intended('dashboard-admingudang'); 
-            } if($rolenya == 'Admin Teknisi'){
+            } if($rolenya == 'admin_teknisi'){
                 return redirect()->intended('dashboard-adminteknisi'); 
-            } if($rolenya == 'Karyawan'){
+            } if($rolenya == 'karyawan'){
                 return redirect()->intended('dashboard-karyawan'); 
-            } if($rolenya == 'Teknisi'){
+            } if($rolenya == 'teknisi'){
                 return redirect()->intended('dashboard-teknisi'); 
             } else {
                 return redirect()->intended('login'); 

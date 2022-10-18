@@ -97,7 +97,7 @@
 					</div>
 				</div>
 
-				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2022. All rights reserved. Template by <a href="https://colorlib.com">KP UNAND 2022</a>.</p>
+				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2022. All rights reserved.</p>
 			</div>
 		</section>
 		<!-- end: page -->

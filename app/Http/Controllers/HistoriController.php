@@ -74,7 +74,7 @@ class HistoriController extends Controller
 //         -> get();
     
 // dd($pilih);
-  
+
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
         -> join('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
@@ -91,7 +91,7 @@ class HistoriController extends Controller
         $dtWaktu = DB::table('permintaan_barang')
         // ->where('id_user', '=', '1')
         // ->where('id', '=', Auth::guard('anggota')->user()->id)
-        ->get('tanggal_permintaan');
+        -> get('tanggal_permintaan');
 
         $waktu = Permintaan_barang :: select ('tanggal_permintaan')
         -> first();
@@ -151,13 +151,14 @@ class HistoriController extends Controller
 
     public function indexK()
     {
+        $dtLogin= \Auth::user()->id;
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
         -> join('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> orderBy('tanggal_permintaan', 'desc')
-        -> where ('id_user', '=', '2')
+        -> where ('id_user', '=', $dtLogin)
         -> get();
 
         $dtHistoryKM = DB::table('permintaan_maintenance')
@@ -165,7 +166,7 @@ class HistoriController extends Controller
         -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
         -> orderBy('tanggal_permintaan', 'desc')
-        -> where ('id_user', '=', '2')
+        -> where ('id_user', '=', $dtLogin)
         -> get();
 
         // $uniontabel= DB::table('permintaan_barang')
@@ -182,6 +183,7 @@ class HistoriController extends Controller
 
         $by = Permintaan_maintenance :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
         -> orderBy('month_year', 'desc')
+        -> where ('id_user', '=', '2')
         -> distinct()
         -> get();
         
@@ -216,7 +218,7 @@ class HistoriController extends Controller
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> orderBy('tanggal_permintaan', 'desc')
-        -> where ('id_user', '=', '2')
+        -> where ('id_user', '=', '3')
         -> get();
 
         $dtHistoryKM = DB::table('permintaan_maintenance')
@@ -224,7 +226,7 @@ class HistoriController extends Controller
         -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
         -> orderBy('tanggal_permintaan', 'desc')
-        -> where ('id_user', '=', '2')
+        -> where ('id_user', '=', '3')
         -> get();
 
         // $uniontabel= DB::table('permintaan_barang')
@@ -241,6 +243,7 @@ class HistoriController extends Controller
 
         $by = Permintaan_maintenance :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
         -> orderBy('month_year', 'desc')
+        -> where ('id_user', '=', '3')
         -> distinct()
         -> get();
         

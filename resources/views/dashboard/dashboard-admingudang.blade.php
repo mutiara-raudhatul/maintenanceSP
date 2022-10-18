@@ -43,7 +43,7 @@
 															<h4 class="title">Permintaan Barang</h4>
 															<div class="info">
 																<strong class="amount">{{$jumperminbarang}}</strong>
-																<span class="text-primary">(14 unread)</span>
+																<span class="text-primary">({{$belumdiproses}} belum diproses)</span>
 															</div>
 														</div>
 														<div class="summary-footer">
@@ -71,7 +71,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(withdraw)</a>
+															<a class="text-muted text-uppercase">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -91,11 +91,11 @@
 														<div class="summary">
 															<h4 class="title">Barang</h4>
 															<div class="info">
-																<strong class="amount">3</strong>
+																<strong class="amount">{{$jumbarang}}</strong>
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(statement)</a>
+															<a class="text-muted text-uppercase">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -113,13 +113,13 @@
 													</div>
 													<div class="widget-summary-col">
 														<div class="summary">
-															<h4 class="title">User</h4>
+															<h4 class="title">Pengguna</h4>
 															<div class="info">
-																<strong class="amount">3765</strong>
+																<strong class="amount">{{$jumuser}}</strong>
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(report)</a>
+															<a class="text-muted text-uppercase">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -161,11 +161,6 @@
 			},
 			title: {
 				text: 'Permintaan Pertahun'
-			},
-			subtitle: {
-				text: 'Source: ' +
-					'<a href="https://www.ssb.no/en/statbank/table/08940/" ' +
-					'target="_blank">SSB</a>'
 			},
 			xAxis: {
 				categories: {!!json_encode($categories)!!},
@@ -258,11 +253,6 @@
 			title: {
 				text: 'Permintaan Pertahun'
 			},
-			subtitle: {
-				text: 'Source: ' +
-					'<a href="https://www.ssb.no/en/statbank/table/08940/" ' +
-					'target="_blank">SSB</a>'
-			},
 			xAxis: {
 				categories: {!!json_encode($categories)!!},
 				crosshair: true
@@ -300,11 +290,6 @@
 			},
 			title: {
 				text: 'Permintaan Barang Berdasarkan Jenis Barang'
-			},
-			subtitle: {
-				text: 'Source: ' +
-					'<a href="https://www.ssb.no/en/statbank/table/08940/" ' +
-					'target="_blank">SSB</a>'
 			},
 			xAxis: {
 				categories: {!!json_encode($categories_jenis)!!},
