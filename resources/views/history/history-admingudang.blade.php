@@ -50,7 +50,7 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
+									
 									</div>
 									<h2 class="panel-title">Status Permintaan Barang</h2>
 								</header>
@@ -76,9 +76,16 @@
 													<td>{{ $dth->name }}</td>
 													<td>{{ $dth->jenis_barang }}</td>
 													<td>{{ $dth->unit_kerja }}</td>
-													<td>{{ $dth->tanggal_permintaan }}</td>
+													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
 													<td>
-														<span class="label label-success">{{ $dth->status_permintaan }}</span>
+														@if ($dth->status_permintaan=='Diajukan')
+															<span class="label label-info">{{ $dth->status_permintaan }}</span>
+														@elseif ($dth->status_permintaan=='Diterima')
+															<span class="label label-success">{{ $dth->status_permintaan }}</span>
+														@elseif ($dth->status_permintaan=='Ditolak')
+															<span class="label label-danger">{{ $dth->status_permintaan }}</span>
+														@endif
+															
 													</td>
 												</tr>
 											@endforeach

@@ -29,7 +29,7 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
+										
 									</div>
 
 									<h2 class="panel-title">Status Maintenance</h2>
@@ -48,14 +48,14 @@
 												</tr>
 											</thead>
 											<tbody>
-											@foreach ($dtHistory as $dth)
+											@foreach ($dtHistoryKM as $dth)
 												<tr>
 													<td>{{ $loop->iteration }}</td>
 													<td>{{ $dth->name }}</td>
 													<td>{{ $dth->jenis_barang }}</td>
 													<td>{{ $dth->unit_kerja }}</td>
-													<td>{{ $dth->tanggal_permintaan }}</td>
-													<td><span class="label label-success">Success</span></td>
+													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
+													<td>{{ $dth->status_maintenance }}</td>
 												</tr>
 											@endforeach
 											</tbody>
@@ -67,7 +67,7 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
+										
 									</div>
 									<h2 class="panel-title">Aktivitas Harian</h2>
 								</header>

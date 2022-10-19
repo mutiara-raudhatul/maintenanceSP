@@ -1,4 +1,4 @@
-@extends('layout/template')
+ @extends('layout/template')
 
 @section('title', 'List Respon Maintenance Teknisi')
 
@@ -56,10 +56,10 @@
                                     <tbody>
                                         @foreach ($data as $item)
                                         <tr class="gradeX">
-                                            <td>{{$item->tanggal_permintaan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->tanggal_permintaan))}}</td>
                                             <td>{{$item->jenis_barang}}</td>
                                             <td>{{$item->keterangan}}</td>
-                                            <td>{{$item->jadwal_perbaikan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->jadwal_perbaikan))}}</td>
                                             <td>@if($item->id_maintenance_teknisi)
                                                 <a href="{{asset('dokumen-hasil/'. $item->upload_form_maintenance)}}">{{$item->upload_form_maintenance}}</a></td>
                                                 @else
@@ -78,9 +78,9 @@
                                             <td class="status">
                                                  @if ($item->status_maintenance=='Diterima')
                                                         <!-- button detail -->
-                                                        <button class="btn btn-success">Diterima </button>
+                                                        <span class="label label-warning">Diterima </span>
                                                 @else
-                                                        <button class="btn btn-success">Selesai </button>
+                                                        <span class="label label-success">Selesai </span>
 
                                                 @endif
                                             </td>
@@ -88,11 +88,11 @@
                                             @if ($item->status_maintenance=='Diterima')
                                                         <!-- button detail -->
                                                         <a href="/form-maintenance-teknisi/{{ $item->id_permintaan_maintenance}}">
-                                                            <button class="btn btn-warning">Respon </button>
+                                                            <button class="btn-xs btn-warning"><i class="fa fa-mail-forward"></i>Respon </button>
                                                         </a>
                                                 @else
                                                     <a href="/update-maintenance-teknisi/{{ $item->id_maintenance_teknisi}}">
-                                                        <button class="btn btn-warning">Edit </button>
+                                                        <button class="btn-xs btn-warning"><i class="fa fa-pencil-square-o"></i>Edit </button>
                                                     </a>
                                                 @endif
                                                 

@@ -60,7 +60,7 @@ class ResponMaintenanceController extends Controller
         ->where('id_respon_maintenance', '=', $id_respon_maintenance)
         ->first();
         //dd($editSt);
-        $user= Users::all();
+        $user= Users::whereNotIn('id',[$edit->id]);
         return view('maintenance.update-respon-maintenance', ['edit' => $edit, 'user'=>$user]);
         
     }

@@ -43,8 +43,9 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Teknisi</label>
                                 <div class="col-md-6">
-                                    <select data-plugin-selectTwo class="form-control populate" data-plugin-options='{ "minimumInputLength": 2 }' name="id_user">
-                                      <option value="{{$edit->id}}">{{$edit->name}}</option>
+                                    <select  class="form-control populate"  name="id_user">
+                                      <option disabled selected>Teknisi</option>
+                                      <option value="{{$edit->id}}" selected>{{$edit->name}}</option>
                                         @foreach ($user as $item)
                                           @if ($item->role=="teknisi")
                                         <option value="{{ $item->id }}">{{$item->name}}</option>

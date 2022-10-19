@@ -35,9 +35,9 @@ Route::get('/', function () {
 
 
 // ----------------------------------------authenticate------------------------------------
-Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')-> middleware('guest');
-Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
-Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
+    Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login')-> middleware('guest');
+    Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('auth');
+    Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth', 'checkrole:admin_gudang']], function(){
     //Registrasi
@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'checkrole:admin_gudang']], function(){
     Route::get('/dashboard-admingudang', 'App\Http\Controllers\DashboardController@index')->name('dashboard-admingudang');
     Route::get('/history-admingudang', 'App\Http\Controllers\HistoriController@indexAG')->name('history-admingudang');
     Route::post('/history-admingudang', 'App\Http\Controllers\HistoriController@search')->name('search');
-    
+     
     //data user
     Route::get('/data-user', 'App\Http\Controllers\RegistrasiController@readData');
     Route::get('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@getUpdate');
@@ -61,11 +61,12 @@ Route::group(['middleware' => ['auth', 'checkrole:admin_teknisi']], function(){
 
     Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi');
     Route::get('/history-adminteknisi', 'App\Http\Controllers\HistoriController@indexAT')->name('history-adminteknisi');
-    Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@search')->name('search');
+    Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@searchAT')->name('search');
 
     //----PERMINTAAN MAINTENANCE ADMIN
     Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
     Route::get('/list-maintenance-teknisi/{id_permintaan_maintenance}',[MaintenanceTeknisiController::class, 'index']);
+
     //----RESPON MAINTENANCE
     Route::get('/list-respon-maintenance',[ResponMaintenanceController::class, 'index']);
     Route::get('/form-respon-maintenance/{id_permintaan_maintenance}',[ResponMaintenanceController::class, 'getTambah'])->name('respon');
@@ -97,6 +98,7 @@ Route::group(['middleware' => ['auth', 'checkrole:teknisi']], function(){
 
     Route::get('/dashboard-teknisi', 'App\Http\Controllers\DashboardController@dashT')->name('dashboard-teknisi');
     Route::get('/history-teknisi', 'App\Http\Controllers\HistoriController@indexT')->name('history-teknisi');
+    Route::get('/history-barang-teknisi', 'App\Http\Controllers\HistoriController@indexTB')->name('history-barang-teknisi');
     //----MAINTENANCE TEKNISI
     Route::get('/list-maintenance-teknisi-respon',[MaintenanceTeknisiController::class, 'listRespon']);
     Route::get('/list-maintenance-teknisi',[MaintenanceTeknisiController::class, 'getMaintenance']);
@@ -111,6 +113,7 @@ Route::group(['middleware' => ['auth', 'checkrole:karyawan']], function(){
 
     Route::get('/dashboard-karyawan', 'App\Http\Controllers\DashboardController@dashK');
     Route::get('/history-karyawan', 'App\Http\Controllers\HistoriController@indexK')->name('history-karyawan');
+    Route::get('/history-barang-karyawan', 'App\Http\Controllers\HistoriController@indexKB')->name('history-barang-karyawan');
 
     
 });

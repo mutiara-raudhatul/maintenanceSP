@@ -55,7 +55,7 @@
                                     <select class="form-control populate @error('jenis_barang') is-invalid @enderror" name="id_jenis_barang"  required>
                                         <option label="Jenis Barang" disabled selected></option>
                                         @foreach ($jenis_barang as $item)
-                                        <option value="{{ $item->id_jenis_maintenance }}">{{$item->jenis_barang}}</option>
+                                        <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
                                     </select>
                                         @error('jenis_barang')
