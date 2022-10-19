@@ -56,7 +56,20 @@
                                             <td>{{$minta->name}}</td>
                                             <td>{{$minta->tanggal_permintaan }}</td>
                                             <td>{{$minta->surat_izin }}</td>
-                                            <td>{{$minta->status_permintaan }}</td>
+                                            <!-- <td>{{$minta->status_permintaan }}</td> -->
+                                            <td class="status">
+                                            @if ($minta->status_permintaan=='Diajukan')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-warning btn-sm">Diajukan</button>
+                                                @elseif($minta->status_permintaan=='Diterima')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-success btn-sm">Diterima</button>
+                                                @elseif($minta->status_permintaan=='Ditolak')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
+                                                @endif
+                                            </td>
+
                                             <td class="actions">
                                                 <a href="{{url('detail-permintaan-barang',$minta->id_permintaan_barang)}}">
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>

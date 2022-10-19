@@ -1,6 +1,29 @@
 @extends('layout/template')
 
 @section('title', 'Form Respon Permintaan Barang')
+
+<style>
+
+.center {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, 30%);
+  transform: translate(40%, -110%);
+  border : none;
+  padding: 7px;
+
+
+  background-color:  #3498DB ;
+  border-radius: 4px;
+  color: white;
+}
+
+.center: hover {
+  box-shadow: inset 0 0 0 20rem var(--darken-1);
+}
+</style>
 	
 <div class="inner-wrapper">
 
@@ -28,239 +51,66 @@
 						</div>
 					</header>
 
-                        <section class="panel">
-                                    <header class="panel-heading">
-                                        <div class="panel-actions">
-                                            <a href="#" class="fa fa-caret-down"></a>
-                                            <a href="#" class="fa fa-times"></a>
+                        <div class="row">
+							<div class="col-lg-12">
+								<section class="panel">
+									<header class="panel-heading">
+										<div class="panel-actions">
+											<a href="#" class="fa fa-caret-down"></a>
+											<a href="#" class="fa fa-times"></a>
+										</div>
+						
+									    <h2 class="panel-title">Respon Permintaan Barang Dipenuhi</h2>
+									</header>
+									
+                                    <div class="panel-body">                             
+                                      
+								<form class="form-horizontal form-bordered" method="post" action="/tambah-respon-permintaan" >
+                                        {{ csrf_field()}}
+                                        <div class="form-group">
+                                                    <label class="col-md-2 control-label" for="inputSuccess">Teknisi Yang ditugaskan</label>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control mb-md" name="id_user_teknisi" required>   
+                                                            <option selected disabled value="">Pilih Teknisi</option>                                                    
+                                                            @foreach ($respon as $item)
+                                                                @if ($item->role=="teknisi")
+                                                                    <option value="{{ $item->id}}">{{$item->name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                         </div>
-                                
-                                        <h2 class="panel-title">Cari Barang</h2>
-                                    </header>
-                                    <div class="panel-body">
-                                        <table class="table table-bordered table-striped mb-none" id="datatable-default">
-                                            <thead>
-                                                <tr>
-                                                    <th>Rendering engine</th>
-                                                    <th>Browser</th>
-                                                    <th>Platform(s)</th>
-                                                    <th class="hidden-phone">Engine version</th>
-                                                    <th class="hidden-phone">CSS grade</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="gradeX">
-                                                    <td>Trident</td>
-                                                    <td>Internet
-                                                        Explorer 4.0
-                                                    </td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center hidden-phone">4</td>
-                                                    <td class="center hidden-phone">X</td>
-                                                </tr>
-                                                <tr class="gradeC">
-                                                    <td>Trident</td>
-                                                    <td>Internet
-                                                        Explorer 5.0
-                                                    </td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center hidden-phone">5</td>
-                                                    <td class="center hidden-phone">C</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet
-                                                        Explorer 5.5
-                                                    </td>
-                                                    <td>Win 95+</td>
-                                                    <td class="center hidden-phone">5.5</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet
-                                                        Explorer 6
-                                                    </td>
-                                                    <td>Win 98+</td>
-                                                    <td class="center hidden-phone">6</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Trident</td>
-                                                    <td>Internet Explorer 7</td>
-                                                    <td>Win XP SP2+</td>
-                                                    <td class="center hidden-phone">7</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Trident</td>
-                                                    <td>AOL browser (AOL desktop)</td>
-                                                    <td>Win XP</td>
-                                                    <td class="center hidden-phone">6</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.0</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center hidden-phone">1.7</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                <tr class="gradeA">
-                                                    <td>Gecko</td>
-                                                    <td>Firefox 1.5</td>
-                                                    <td>Win 98+ / OSX.2+</td>
-                                                    <td class="center hidden-phone">1.8</td>
-                                                    <td class="center hidden-phone">A</td>
-                                                </tr>
-                                                
-                                                
-                                            </tbody>
-                                        </table>							
-                                    </div>
-                        </section>
 
-                        <div class="row">
-							<div class="col-lg-12">
-								<section class="panel">
-									<header class="panel-heading">
-										<div class="panel-actions">
-											<a href="#" class="fa fa-caret-down"></a>
-											<a href="#" class="fa fa-times"></a>
-										</div>
-						
-									    <h2 class="panel-title">Form Respon Permintaan Barang</h2>
-									</header>
-									
-                                    <div class="panel-body">
-										<form class="form-horizontal form-bordered" method="get">
-
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Teknisi Yang ditugaskan</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Ahmad</option>
-                                                            <option>Budi</option>
-                                                            <option>Andi</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-
-                                            <div class="form-group">
-												<label class="col-md-3 control-label">Tanggal Pengadaan</label>
-												<div class="col-md-6">
-													<div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" data-plugin-datepicker class="form-control">
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
-								</section>
-                            </div>
-                        </div>
-
-                        <div class="row">
-							<div class="col-lg-12">
-								<section class="panel">
-									<header class="panel-heading">
-										<div class="panel-actions">
-											<a href="#" class="fa fa-caret-down"></a>
-											<a href="#" class="fa fa-times"></a>
-										</div>
-						
-									    <h2 class="panel-title">Pilih Barang Yang Dipenuhi</h2>
-									</header>
-									
-                                    <div class="panel-body">
-										<form class="form-horizontal form-bordered" method="get">
-
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Pilih Barang</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Laptop</option>
-                                                            <option>Mouse</option>
-                                                            <option>Kabel</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-                                            <div class="form-group">
-                                                    <label class="col-md-3 control-label" for="inputSuccess">Model Barang</label>
-                                                    <div class="col-md-6">
-                                                        <select class="form-control mb-md">
-                                                            <option>Toshiba</option>
-                                                            <option>Acer</option>
-                                                            <option>HP</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
-                                            <div class="form-group">
-												<label class="col-md-3 control-label" for="inputDefault">Jumlah Barang</label>
-												<div class="col-md-6">
-													<input type="number" min = '1' class="form-control" id="inputDefault">
-												</div>
-											</div>   
-                                            <button class="btn btn-primary btn-md pull-center" center>Tambah Barang </button>
-										</form>
+                                        <?php
+                                        $min_tanggal = date('Y-m-d');
                                         
+                                        ?>
+                                            <div class="form-group">
+                                            <label class="col-md-2 control-label">Tanggal Pengadaan</label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                    <input name="waktu_pengadaan" type="date" class="form-control" min= "{{$min_tanggal}}"required>
+                                                </div>
+                                            </div>		
+													<input name="id_simpan" type="hidden" id="inputReadOnly" class="form-control" readonly="readonly" value="{{$id_simpan}}" >											
+                                            <br>
+                                        </div>
                                         <br>
-                                        <div class="panel-body">
-										<div class="table-responsive">
-											<table class="table table-bordered mb-none">
-												<thead>
-													<tr>
-														<th>No</th>
-														<th>Barang</th>
-														<th>Jumlah</th>
-                                                        <th>Aksi</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>1</td>
-														<td>Laptop</td>
-														<td>3</td>
-                                                        <td>Buttton</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>Kabel</td>
-														<td>4</td>
-                                                        <td>Buttton</td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td>Mouse</td>
-														<td>1</td>
-                                                        <td>Buttton</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-
-
-
-									</div>
-
-                                    <footer class="panel-footer" >
-                                        <button class="btn btn-primary">Submit </button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </footer>
+                                        <footer class="panel-footer" >
+                                            <button type="submit" class="btn btn-primary">Submit </button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </footer>
+								</form>
+									</div>                                  
 								</section>
                             </div>
-                        </div>
-
-                   
-									
-							
+                        </div>						
 </section>
-
 
 </div>
 <!-- end: page -->
+
 

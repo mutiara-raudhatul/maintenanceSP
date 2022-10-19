@@ -1,13 +1,13 @@
 @extends('layout/template')
 
-@section('title', 'List Permintaan Barang')
+@section('title', 'List Respon Permintaan')
 
 
 <!-- start: page -->
 @section('content')
 <section role="main" class="content-body">
     <header class="page-header">
-        <h2>List Permintaan Barang</h2>
+        <h2>Respon Permintaan</h2>
     
         <div class="right-wrapper pull-right">
             <ol class="breadcrumbs">
@@ -33,74 +33,73 @@
                             <a href="#" class="fa fa-caret-down"></a>
                             <!-- <a href="#" class="fa fa-times"></a> -->
                         </div>
-                        <h2 class="panel-title">List Permintaan Barang</h2>
+        
+                        <h2 class="panel-title">Respon Permintaan</h2>
                     </header>
                     <div class="panel-body">
-                    <div class="row">
-                            <div class="col-sm-6">
-                                <div class="mb-md">
-                                    <a href="/form-permintaan">
-                                    <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                                <table class="table table-bordered table-striped mb-none">
+
+
+                                <table class="table table-bordered table-striped mb-none" id="">
                                     <thead>
-                                    <tbody>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Tanggal</th>
+                                            <th>Pemohon</th>
+                                            <th>Tanggal Permintaan</th>
+                                            <th>Tanggal Pengadaan</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <?php $no = 1; ?>
-                                    @foreach($data_permintaan as $minta)
                                     <tbody>
+                                        @foreach ($data as $item)
                                         <tr class="gradeX">
-                                            <td>{{$no++}}</td>
-                                            <td>{{$minta->tanggal_permintaan }}</td>
-                                            <!-- <td>{{$minta->status_permintaan }}</td> -->
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->tanggal_permintaan}}</td>
+                                            <td>{{$item->waktu_pengadaan}}</td>
+                                            <!-- <td>{{$item->status_permintaan}}</td> -->
                                             <td class="status">
-                                            @if ($minta->status_permintaan=='Diajukan')
+                                                @if ($item->status_permintaan=='Diajukan')
                                                         <!-- button detail -->
                                                             <button type="button" class="btn btn-warning btn-sm">Diajukan</button>
-                                                @elseif($minta->status_permintaan=='Diterima')
+                                                @elseif($item->status_permintaan=='Diterima')
                                                         <!-- button detail -->
                                                             <button type="button" class="btn btn-success btn-sm">Diterima</button>
-                                                @elseif($minta->status_permintaan=='Ditolak')
+                                                @elseif($item->status_permintaan=='Ditolak')
                                                         <!-- button detail -->
                                                             <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
                                                 @endif
                                             </td>
-
                                             <td class="actions">
-
-                                                @if ($minta->status_permintaan=='Diajukan')
+                                                @if ($item->status_permintaan=='Diajukan')
                                                         <!-- button detail -->
-                                                        <a href="{{url('detail-permintaan-barang-user',$minta->id_permintaan_barang)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
+                                                        <a href="{{url('detail-respon-permintaan',$item->id_respon_permintaan)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Respon</button>
                                                         </a>
-                                                        <!-- button cancel -->
-                                                        <a href="{{url('cancel-permintaan-barang',$minta->id_permintaan_barang)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Dibatalkan?')">Cancel</button>
+                                                @elseif ($item->status_permintaan=='Diterima')
+                                                        <a href="{{url('detail-respon-permintaan',$item->id_respon_permintaan)}}">
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Respon</button>
                                                         </a>
                                                 @else 
-                                                        <!-- button detail -->
-                                                        <a href="{{url('detail-permintaan-barang-user',$minta->id_permintaan_barang)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>
-                                                        </a>
+                                                <!-- <a href="{{url('detail-respon-permintaan',$item->id_respon_permintaan)}}">
+                                                    <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Respon</button>
+                                                </a> -->
                                                 @endif
+
+
+                                               
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        @endforeach 
                                     </tbody>
                                 </table>
                     </div>
-                </section>	
+                </section>
+        
+               
+        
             </div>
         </div>
+    <!-- end: page -->
 </section>
+				
 @endsection
 <!-- end: page -->

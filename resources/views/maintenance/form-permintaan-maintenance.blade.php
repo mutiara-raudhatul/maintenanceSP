@@ -87,8 +87,7 @@
                                         </p>            
                                     </div>
                             </div>
-                                        <input type="hidden" class="form-control" name="id_user" value="{{$id_user}}">
-                                    
+                           
         
                             
                        

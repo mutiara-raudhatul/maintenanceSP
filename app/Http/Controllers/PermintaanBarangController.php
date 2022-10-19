@@ -25,6 +25,20 @@ class PermintaanBarangController extends Controller
         return view('permintaan-barang.list-permintaan-barang', compact('data_permintaan'));
     }
 
+    // public function setTambah(Request $request)
+    // {        
+    //     $id_status_maintenance = 1;
+    //     $id_user = Auth::user()->id;
+    //     Permintaan_maintenance::create([
+    //         'tanggal_permintaan' => $request->tanggal_permintaan,
+    //         'id_jenis_barang' =>$request->id_jenis_barang,
+    //         'id_user' =>$id_user,
+    //         'id_status_maintenance' =>$id_status_maintenance,
+    //     ]);
+
+    //     return redirect('list-permintaan-maintenance-user')->with('toast_success', 'Data Berhasil Tersimpan');
+    // }
+
     // public function index()
     // {
     //     $data_permintaan = Permintaan_barang::join('users', 'permintaan_barang.id_user', '=', 'users.id')

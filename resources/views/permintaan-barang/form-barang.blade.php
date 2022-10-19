@@ -1,6 +1,28 @@
 @extends('layout/template')
 
 @section('title', 'Form Permintaan Barang')
+<style>
+
+.center {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(40%,0%);
+  border : none;
+  padding: 7px;
+
+
+  background-color:  #3498DB ;
+  border-radius: 4px;
+  color: white;
+}
+
+.center: hover {
+  box-shadow: inset 0 0 0 20rem var(--darken-1);
+}
+</style>
 	
 <div class="inner-wrapper">
 
@@ -44,11 +66,12 @@
 							
 									<div class="panel-body">
 							
-										<form class="form-horizontal form-bordered" action="#">
-											<div class="form-group">
+										<form class="form-horizontal form-bordered" action="/tambah-kebutuhan-barang" method="POST" >
+										{{ csrf_field()}}	
+										<div class="form-group">
 												<label class="col-md-2 control-label">Jenis Barang</label>
 												<div class="col-md-6">
-													<select data-plugin-selectTwo class="form-control populate">
+													<select data-plugin-selectTwo class="form-control populate" name="id_jenis_barang">
 														<optgroup label="Pilih Barang">
 														@foreach ($jenis_barang as $item)
 															<option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
@@ -56,115 +79,67 @@
 														</optgroup>	
 													</select>
 												</div>
-											</div>
+										</div>
 
 											<div class="form-group">
 												<label class="col-md-2 control-label" for="inputDefault">Jumlah</label>
 												<div class="col-md-6">
-													<input type="number" min="1" class="form-control" id="inputDefault">
-												</div>
-											</div>
-										</form>
-
-										<br>
-
-										<div class="row">
-												<div class="col-md-2">
-													<div class="mb-md">
-														<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
-													</div>
-												</div>
-										</div>
-										<br>
-
-											
-											<table class="table table-bordered table-striped mb-none">
-												<thead>
-													<tr>
-														<th>No</th>
-														<th>Barang</th>
-														<th>Jumlah</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
+													<input type="number" min="1" class="form-control" id="inputDefault" name="jumlah_permintaan">
 													
-													<tr class="gradeX">
-														<td>1</td>
-														<td>Laptop</td>
-														<td>Jumlah</td>
-														<td class="actions">
-
-															<a href="#" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
-														</td>
-													</tr>
+												</div>
+											</div>
+											<div class="form-group">
 											
-												</tbody>
-											</table>
-										</div>
-
-										<br>
-										<form class="form-horizontal form-bordered" method="get">
-                                            <div class="form-group">
-												<label class="col-md-2 control-label">Tanggal Permintaan</label>
+												<label class="col-md-2 control-label" for="inputDefault">id terakhir</label>
+												
 												<div class="col-md-6">
-													<div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" id="inputReadOnly" class="form-control" readonly="readonly" value="{{ date('d-m-Y') }}">
+												@foreach ($id_terakhir as $item)
+													<input name="id_terakhir" type="number" id="inputReadOnly" class="form-control" readonly="readonly" value="{{ $item->id_permintaan_barang}}">
+												@endforeach
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-md-6">
+													<div class="col-md-6">
+														<a href="/tambah-kebutuhan-barang">
+															<button type= "submit" class="center">Tambah Barang</button>
+															<!-- <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> -->
+                                                        </a>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-md-6">
+													<div class="col-md-6">
+														<a href="/detail-permintaan-barang-user/{{$item->id_permintaan_barang}}">
+														@foreach ($id_terakhir as $item)
+															<button class="center btn btn-warning">Detail </button>
+															<!-- <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> -->
+															@endforeach
+                                                        </a>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-md-6">
+													<div class="col-md-6">
+													@foreach ($id_terakhir as $item)
+													<a href="/cancel-permintaan/{{$item->id_permintaan_barang}}">
+													@endforeach
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Dibatalkan?')">Cancel</button>
+                                                        </a>
+
 													</div>
 												</div>
 											</div>
 
-                                            <div class="form-group">
-												<label class="col-md-2 control-label">Upload Surat Izin Permintaan </label>
-												<div class="col-md-6">
-													<div class="fileupload fileupload-new" data-provides="fileupload">
-														<div class="input-append">
-															<div class="uneditable-input">
-																<i class="fa fa-file fileupload-exists"></i>
-																<span class="fileupload-preview"></span>
-															</div>
-															<span class="btn btn-default btn-file">
-																<span class="fileupload-exists">Change</span>
-																<span class="fileupload-new">Select file</span>
-																<input type="file" />
-															</span>
-															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-														</div>
-													</div>
-												</div>
-											</div>
 
-										</form>
+										
+										</div>									
 									</div>
-                                    <footer class="panel-footer" >
-                                        <button class="btn btn-primary">Submit </button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </footer>
-								</section>
-								<div id="dialog" class="modal-block mfp-hide">
-									<section class="panel">
-										<header class="panel-heading">
-											<h2 class="panel-title">Are you sure?</h2>
-										</header>
-										<div class="panel-body">
-											<div class="modal-wrapper">
-												<div class="modal-text">
-													<p>Are you sure that you want to delete this row?</p>
-												</div>
-											</div>
-										</div>
-										<footer class="panel-footer">
-											<div class="row">
-												<div class="col-md-12 text-right">
-													<button id="dialogConfirm" class="btn btn-primary">Confirm</button>
-													<button id="dialogCancel" class="btn btn-default">Cancel</button>
-												</div>
-											</div>
-										</footer>
-									</section>
+                                   
+						</section>
 								</div>
                         </div>
                     </div>

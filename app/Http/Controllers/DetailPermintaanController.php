@@ -19,7 +19,7 @@ class DetailPermintaanController extends Controller
         $data_user   = DB::table('permintaan_barang')
         ->join('users', 'permintaan_barang.id_user', '=', 'users.id')
         ->where('permintaan_barang.id_permintaan_barang', '=', $id_permintaan_barang)
-                        ->get();
+        ->get();
         // $data_detail = Detail_kebutuhan::select('detail_kebutuhan.id_detail_kebutuhan','detail_kebutuhan.jumlah_permintaan')
         //     ->join('permintaan_barang', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         //     ->join('users', 'permintaan_barang.id_user', '=', 'users.id')
@@ -47,31 +47,46 @@ class DetailPermintaanController extends Controller
     //     return redirect('permintaan-barang.permintaan-barang')->with('success', 'Rapat berhasil diedit!');
     // }
 
+    // public function reject(Request $request, $id_permintaan_barang)
+    // {
+    //     // dd($request->all());
+    //     // $id_permintaan_barang = $request->id_permintaan_barang;
+    //     // $status = $request->status_permintaan;
+    //     // $update = DB::table('permintaan_barang')
+    //     // ->where('id_permintaan_barang','=', $id_permintaan_barang)
+    //     // ->update([
+    //     //     'id_status_permintaan'=> $nilai
+    //     // ]);
+
+    //     //$status = "Ditolak";
+        
+    //     // $id_status_permintaan = DB::table('status_permintaan')
+    //     // ->where('status_permintaan','=', $status)
+    //     // ->get ('id_status_permintaan');
+    //    //dd($id_status_permintaan);
+    //    // dpt id 3
+    //     $status = 3;
+    //     $update = DB::table('permintaan_barang')
+    //     ->where('id_permintaan_barang','=', $id_permintaan_barang)
+    //     ->update([
+    //         'id_status_permintaan'=> $status
+    //     ]);
+    //     return back()->with('success', 'Permintaan Berhasil Ditolak!');
+
+    // }
+
     public function reject(Request $request, $id_permintaan_barang)
     {
-        // dd($request->all());
-        // $id_permintaan_barang = $request->id_permintaan_barang;
-        // $status = $request->status_permintaan;
-        // $update = DB::table('permintaan_barang')
-        // ->where('id_permintaan_barang','=', $id_permintaan_barang)
-        // ->update([
-        //     'id_status_permintaan'=> $nilai
-        // ]);
-
-        //$status = "Ditolak";
         $status = 3;
-        // $id_status_permintaan = DB::table('status_permintaan')
-        // ->where('status_permintaan','=', $status)
-        // ->get ('id_status_permintaan');
-       //dd($id_status_permintaan);
-       // dpt id 3
-      
         $update = DB::table('permintaan_barang')
         ->where('id_permintaan_barang','=', $id_permintaan_barang)
         ->update([
             'id_status_permintaan'=> $status
         ]);
-        return back()->with('success', 'Peserta berhasil DITOLAK!');
+        // return view('permintaan-barang.list_permintaan_barang', compact('update'));
+        return back()->with('success', 'Permintaan Berhasil Ditolak!');
 
     }
+
+    
 }

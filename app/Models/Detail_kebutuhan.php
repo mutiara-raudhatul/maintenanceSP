@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Detail_kebutuhan extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = "detail_kebutuhan"; //cek
     protected $primaryKey = "id_detail_kebutuhan"; //cek
 
