@@ -180,7 +180,5 @@ class DetailResponPermintaanController extends Controller
 
         return redirect('/list-respon-permintaan');
     }
-
-
 }
 
