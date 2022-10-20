@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Lama Pengerjaan</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" name="lama_pengerjaan">
+                                    <input type="text" class="form-control" id="inputDefault" name="lama_pengerjaan" required>
                                 </div>
                             </div>
                             {{-- <div class="form-group">
@@ -76,15 +76,15 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Serial Number</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" name="id_barang">
+                                    <input type="text" class="form-control" id="inputDefault" name="id_barang" required>
                                 </div>
                             </div>
                             <!-- Input Select -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate" name="id_jenis_barang">
-                                        <option selected>Jenis Barang</option>
+                                    <select class="form-control populate" name="id_jenis_barang" required>
+                                        <option disabled selected>Jenis Barang</option>
                                             @foreach ($jenis_barang as $item)
                                             <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Lokasi</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" name="lokasi">
+                                    <input type="text" class="form-control" id="inputDefault" name="lokasi" required>
                                 </div>
                             </div>
                             <div class="form-group">

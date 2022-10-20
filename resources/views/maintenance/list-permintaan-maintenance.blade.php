@@ -53,24 +53,27 @@
                                         <tr class="gradeX">
                                             <td>{{$item->jenis_barang}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td>{{$item->tanggal_permintaan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->tanggal_permintaan))}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td class="status">
                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Dilaporkan</button>
-                                                @else 
+                                                            <span class="label label-info">Dilaporkan</span>
+                                                @elseif($item->status_maintenance=='Diterima')
                                                         <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
+                                                            <span class="label label-warning">Diterima</span>
+                                                @elseif($item->status_maintenance=='Selesai')
+                                                            <!-- button detail -->
+                                                            <span class="label label-success">Selesai</span>
                                                 @endif
                                             </td>
                                             <td class="actions">
                                             @if ($item->status_maintenance=='Dilaporkan')
                                                 <!-- button detail -->
-                                                <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Respon </button></a>
+                                                <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn-xs btn-warning"><i class="fa fa-mail-forward"></i> Respon </button></a>
                                             @endif
-                                            @if($item->id_maintenance_teknisi)
-                                            <a href="{{url('list-maintenance-teknisi', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn btn-warning">Detail </button></a>
+                                            @if($item->status_maintenance=='Selesai')
+                                            <a href="{{url('list-maintenance-teknisi', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn-xs btn-warning"><i class="fa fa-info-circle"></i> Detail </button></a>
                                             @endif
                                                 
                                             </td>

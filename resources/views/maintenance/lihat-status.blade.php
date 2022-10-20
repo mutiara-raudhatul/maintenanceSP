@@ -67,10 +67,10 @@
                                             <td>{{$item->id_status_maintenance}}</td>
                                             <td>{{$item->status_maintenance}}</td>
                                             <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="/update-status/{{ $item->id_status_maintenance}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="{{url('delete-status-maintenance',$item->id_status_maintenance)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <a href="/update-status/{{ $item->id_status_maintenance}}" class="on-default edit-row">
+                                                    <button class="btn-xs btn-warning"><i class="fa fa-pencil"></i> Edit</button></a>
+                                                <a href="{{url('delete-status-maintenance',$item->id_status_maintenance)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')" class="on-default remove-row">
+                                                    <button class="btn-xs btn-danger"><i class="fa fa-trash-o"></i> Delete</button></a>
                                             </td>
                                         </tr>
                                         @endforeach 

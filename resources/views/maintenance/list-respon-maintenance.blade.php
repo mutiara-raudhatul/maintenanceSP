@@ -54,30 +54,30 @@
                                     <tbody>
                                         @foreach ($data as $item)
                                         <tr class="gradeX">
-                                            <td>{{$item->tanggal_permintaan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->tanggal_permintaan))}}</td>
                                             <td>{{$item->jenis_barang}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td>{{$item->jadwal_perbaikan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->jadwal_perbaikan))}}</td>
                                             <td class="status">
                                                  @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
-                                                            <button class="btn btn-warning">Belum Direspon </button>
-                                                            <button class="btn btn-success">Selesai </button>
+                                                            <span class="label label-info">Belum Direspon </span>
+                                                            <span class="label label-success">Selesai </span>
                                                 @elseif ($item->status_maintenance=='Diterima')
-                                                        <button class="btn btn-success">Diterima </button>
+                                                        <span class="label label-warning">Diterima </span>
                                                 @else
-                                                        <button class="btn btn-success">Selesai </button>
+                                                        <span class="label label-success">Selesai </span>
 
                                                 @endif
                                             </td>
                                             <td class="actions">
                                             @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
-                                                            <button class="btn btn-warning">Belum Direspon </button>
+                                                            <button class="btn-xs btn-warning">Belum Direspon </button>
                                                 @else
                                                     <a href="/update-respon-maintenance/{{ $item->id_respon_maintenance}}">
-                                                        <button class="btn btn-warning">Edit </button>
+                                                        <button class="btn-xs btn-warning"><i class="fa fa-pencil-square-o"></i>Edit </button>
                                                     </a>
                                                 @endif
                                                 

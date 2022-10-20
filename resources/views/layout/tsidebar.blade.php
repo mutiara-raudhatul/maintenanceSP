@@ -15,34 +15,30 @@
 						<div class="nano-content">
 							<nav id="menu" class="nav-main" role="navigation">
 								<ul class="nav nav-main">
-								<li class="nav-parent">
-										<a>
+								<li class="nav">
+									@if(auth()->user()->role == "admin_gudang")
+										<a href="/dashboard-admingudang">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="/dashboard-admingudang">
-												Dashboard Admin Gudang
-												</a>
-											</li>
-											<li>
-												<a href="/dashboard-adminteknisi">
-												Dashboard Admin Teknisi
-												</a>
-											</li>
-											<li>
-												<a href="/dashboard-teknisi">
-												Dashboard Teknisi
-												</a>
-											</li>
-											<li>
-												<a href="/dashboard-karyawan">
-												Dashboard Karyawan
-												</a>
-											</li>
-										</ul>
-									</li>
+									@elseif(auth()->user()->role == "admin_teknisi")
+										<a href="/dashboard-adminteknisi">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									@elseif(auth()->user()->role == "teknisi")
+										<a href="/dashboard-adminteknisi">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									@elseif(auth()->user()->role == "karyawan")
+										<a href="/dashboard-adminteknisi">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									@endif
+								</li>
+								@if(auth()->user()->role == "admin_gudang")
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-user" aria-hidden="true"></i>
@@ -57,7 +53,7 @@
 											</li>
 										</ul>
 									</li>
-									
+								
 
 									<li class="nav-parent">
 										<a>
@@ -66,13 +62,24 @@
 										</a>	
 										<ul class="nav nav-children">
 											<li>
-												<a href="/barang-masuk">Barang Masuk</a>
+												<a href="/tambah-barang">Barang Masuk</a>
+											</li>
+											<li>
+												<a href="/jenis-barang">Jenis Barang</a>
+											</li>
+											<li>
+												<a href="/model-barang">Model Barang</a>
+											</li>
+											<li>
+												<a href="/status-barang">Status Barang</a>
 											</li>
 											<li >
-												<a href="/data-barang">Data Barang</a>
+												<a href="/data-jenis-barang">Data Barang</a>
 											</li>
 										</ul>
 									</li>
+									@endif
+
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-home" aria-hidden="true"></i>
@@ -101,6 +108,8 @@
 											</li>
 										</ul>
 									</li>
+									@if(auth()->user()->role == "admin_teknisi")
+									@else
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -128,31 +137,31 @@
 												</a>
 											</li>
 										</ul>
-									</li>									
+									</li>	
+									@endif				
+
+									@if(auth()->user()->role == "admin_gudang")
+									@else
 									<li class="nav-parent">
 										<a>
 											<i class="fa fa-wrench" aria-hidden="true"></i>
 											<span>Maintenance</span>
 										</a>
 										<ul class="nav nav-children">
+											@if(auth()->user()->role == "admin_teknisi")
 											<li>
-												<a href="/permintaan-maintenance">
+												<a href="/list-permintaan-maintenance">
 												Permintaan Maintenance
 												</a>
 											</li>
 											<li>
-												<a href="/form-respon-maintenance">
-												Respon Permintaan Maintenance
+												<a href="/list-respon-maintenance">
+												Respon Maintenance
 												</a>
 											</li>
 											<li>
-												<a href="/list-permintaan-maintenance">
-												List Permintaan Maintenance
-												</a>
-											</li>
-											<li>
-												<a href="/maintenance-teknisi">
-												Form Maintenance Teknisi
+												<a href="/list-dokumen-maintenance">
+												Dokumen Maintenance
 												</a>
 											</li>
 											<li>
@@ -166,12 +175,66 @@
 												</a>
 											</li>
 											<li>
-												<a href="#">
-												Dokumen Maintenance
+												<a href="/history-adminteknisi">
+												History
 												</a>
 											</li>
+											@elseif(auth()->user()->role == "teknisi")
+											<li>
+												<a href="#">
+												Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/list-permintaan-maintenance-user">
+												Permintaan Maintenance
+												</a>
+											</li>
+											{{-- <li>
+												<a href="/list-maintenance-teknisi">
+												Respon Maintenance
+												</a>
+											</li> --}}
+											<li>
+												<a href="/list-maintenance-teknisi-respon">
+												Hasil Maintenance Teknisi
+												</a>
+											</li>
+											<li>
+												<a href="/history-barang-teknisi">
+												History Permintaan barang
+												</a>
+											</li>
+											<li>
+												<a href="/history-teknisi">
+												History Permintaan Maintenance
+												</a>
+											</li>
+											@elseif(auth()->user()->role == "karyawan")
+											<li>
+												<a href="#">
+												Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/list-permintaan-maintenance-user">
+												Permintaan Maintenance
+												</a>
+											</li>
+											<li>
+												<a href="/history-barang-karyawan">
+												History Permintaan barang
+												</a>
+											</li>
+											<li>
+												<a href="/history-karyawan">
+												History Permintaan Maintenance
+												</a>
+											</li>
+											@endif
 										</ul>
 									</li>
+									@endif
 								</ul>
 							</nav>
 				
