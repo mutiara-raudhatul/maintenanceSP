@@ -27,12 +27,12 @@
 											<span>Dashboard</span>
 										</a>
 									@elseif(auth()->user()->role == "teknisi")
-										<a href="/dashboard-adminteknisi">
+										<a href="/dashboard-teknisi">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
 									@elseif(auth()->user()->role == "karyawan")
-										<a href="/dashboard-adminteknisi">
+										<a href="/dashboard-karyawan">
 											<i class="fa fa-home" aria-hidden="true"></i>
 											<span>Dashboard</span>
 										</a>
@@ -71,34 +71,6 @@
 									</li>
 									@endif
 
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-home" aria-hidden="true"></i>
-											<span>History</span>
-										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="/history-admingudang">
-												History Admin Gudang
-												</a>
-											</li>
-											<li>
-												<a href="/history-adminteknisi">
-												History Admin Teknisi
-												</a>
-											</li>
-											<li>
-												<a href="/history-teknisi">
-												History Teknisi
-												</a>
-											</li>
-											<li>
-												<a href="/history-karyawan">
-												History Karyawan
-												</a>
-											</li>
-										</ul>
-									</li>
 									@if(auth()->user()->role == "admin_teknisi")
 									@else
 									<li class="nav-parent">
@@ -107,26 +79,57 @@
 											<span>Permintaan Barang</span>
 										</a>
 										<ul class="nav nav-children">
+											@if(auth()->user()->role == "admin_gudang")
 											<li>
 												<a href="/permintaan-barang">
-												Form Permintaan Barang
+												Permintaan Barang
 												</a>
 											</li>
 											<li>
-												<a href="/respon-permintaan-barang">
+												<a href="/list-respon-permintaan">
 												Respon Permintaan Barang
 												</a>
 											</li>
 											<li>
-												<a href="/permintaan-barang">
-												List Permintaan Barang
+												<a href="/status-permintaan">
+												Status Permintaan Barang
+												</a>
+											</li>
+											@elseif(auth()->user()->role == "karyawan")
+											<li>
+												<a href="/permintaan-barang-user">
+												Permintaan Barang
 												</a>
 											</li>
 											<li>
-												<a href="/tolak-permintaan-barang">
-												Tolak Permintaan Barang
+												<a href="/list-respon-permintaan-user">
+												Respon Permintaan Barang
 												</a>
 											</li>
+											
+											<li>
+												<a href="/history-barang-karyawan">
+												History Permintaan barang
+												</a>
+											</li>
+											@elseif(auth()->user()->role == "teknisi")
+											<li>
+												<a href="/permintaan-barang-user">
+												Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/list-respon-permintaan-user">
+												Respon Permintaan Barang
+												</a>
+											</li>
+											<li>
+												<a href="/history-barang-teknisi">
+												History Permintaan barang
+												</a>
+											</li>
+											@endif
+											
 										</ul>
 									</li>	
 									@endif				
@@ -172,11 +175,6 @@
 											</li>
 											@elseif(auth()->user()->role == "teknisi")
 											<li>
-												<a href="#">
-												Permintaan Barang
-												</a>
-											</li>
-											<li>
 												<a href="/list-permintaan-maintenance-user">
 												Permintaan Maintenance
 												</a>
@@ -192,29 +190,14 @@
 												</a>
 											</li>
 											<li>
-												<a href="/history-barang-teknisi">
-												History Permintaan barang
-												</a>
-											</li>
-											<li>
 												<a href="/history-teknisi">
 												History Permintaan Maintenance
 												</a>
 											</li>
 											@elseif(auth()->user()->role == "karyawan")
 											<li>
-												<a href="#">
-												Permintaan Barang
-												</a>
-											</li>
-											<li>
 												<a href="/list-permintaan-maintenance-user">
 												Permintaan Maintenance
-												</a>
-											</li>
-											<li>
-												<a href="/history-barang-karyawan">
-												History Permintaan barang
 												</a>
 											</li>
 											<li>
