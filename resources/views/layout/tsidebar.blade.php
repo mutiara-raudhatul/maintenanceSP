@@ -62,10 +62,19 @@
 										</a>	
 										<ul class="nav nav-children">
 											<li>
-												<a href="/barang-masuk">Barang Masuk</a>
+												<a href="/tambah-barang">Barang Masuk</a>
+											</li>
+											<li>
+												<a href="/jenis-barang">Jenis Barang</a>
+											</li>
+											<li>
+												<a href="/model-barang">Model Barang</a>
+											</li>
+											<li>
+												<a href="/status-barang">Status Barang</a>
 											</li>
 											<li >
-												<a href="/data-barang">Data Barang</a>
+												<a href="/data-jenis-barang">Data Barang</a>
 											</li>
 										</ul>
 									</li>

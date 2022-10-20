@@ -28,7 +28,7 @@
 								<div class="panel-actions">
 									<div class="form-group">
 										<label class="col-md-6 control-label">
-											<h2 class="panel-title">Jumlah :</h2>
+											<h2 class="panel-title">Jumlah : </h2>
 										</label>
 										
 										<div class="col-md-4">
@@ -46,9 +46,10 @@
 								</div>
 								
 								<h2 class="panel-title">Komputer/PC</h2>
+
 							</header>
 							<div class="panel-body">
-								<table class="table table-bordered table-striped mb-none" id="datatable-details">
+								<table class="table table-bordered table-striped mb-none" id="datatable-details-coba">
 									<thead>
 										<tr>
 											<th>Model</th>
@@ -59,36 +60,18 @@
 											<!-- <th class="center">Action</th> -->
 										</tr>
 									</thead>
+
 									<tbody>
+									@foreach($data_barang as $model)
 										<tr class="gradeX">
-											<td>HP Elitebook 830 G5 i7</td>
+											<td>{{$model->model_barang}}</td>
 											<!-- <td class="center">5CG912359N</td>
 											<td class="center">SIPDG201904-03-NB-00001</td>
 											<td class="center">SP3467NB</td> -->
-											<td class="center">10</td>
+											<td class="center">17</td>
 											<!-- <td class="center"></td> -->
 										</tr>
-										<tr class="gradeC">
-											<td>HP Notebook 830 G5 i5</td>
-											<td class="center">15</td>
-											<!-- <td>Printer</td>
-											<td class="center">5CG912359N</td>
-											<td class="center">SIPDG201904-03-NB-00001</td>
-											<td class="center">SP3467NB</td>
-											<td class="center">10</td>
-											<td class="center"></td> -->
-										</tr>
-										<tr class="gradeA">
-											<td>Asus Zenbook 830 G8 i7</td>
-											<td class="center">7</td>
-											<!-- <td>Router</td>
-											<td class="center">5CG912359N</td>
-											<td class="center">SIPDG201904-03-NB-00001</td>
-											<td class="center">SP3467NB</td>
-											<td class="center">10</td>
-											<td class="center"></td> -->
-										</tr>
-										
+									@endforeach
 									</tbody>
 								</table>
 							</div>

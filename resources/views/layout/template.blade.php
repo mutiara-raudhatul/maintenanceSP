@@ -427,6 +427,8 @@
 		<!-- Examples Permintaan Barang-->
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.default.js')}}"></script>
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.row.with.details.js')}}"></script>
+		<script src="{{asset('assets/javascripts/tables/examples.gudang.datatables.row.with.details.js')}}"></script>
+		<script src="{{asset('assets/javascripts/tables/examples.cobadata.datatables.row.with.details.js')}}"></script>
 		<script src="{{asset('assets/javascripts/tables/t.datatables.tabletools.js')}}"></script>
 		<script src="{{asset('assets/javascripts/tables/examples.datatables.editable.js')}}"></script>
 

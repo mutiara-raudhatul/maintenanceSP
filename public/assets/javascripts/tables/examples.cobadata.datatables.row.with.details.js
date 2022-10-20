@@ -4,7 +4,7 @@
 	'use strict';
 
 	var datatableInit = function() {
-		var $table = $('#datatable-details-gudang');
+		var $table = $('#datatable-details-coba');
 
 		// format function for row details
 		var fnFormatDetails = function( datatable, tr ) {
@@ -17,7 +17,6 @@
 				'<table class="table table-bordered">',
 					'<tr class="b-top-none">',
 						
-						
 						'<tr >',
 							'<th width="40px">No.</th>',
 							'<th>Serial Number</th>',
@@ -26,40 +25,30 @@
 							'<th>Status</th>',
 							'<th class="center">Action</th>',
 						'</tr>',
+
+						// '<tr>',
+						// 	'<td>' + $no++ + '</td>',
+						// 	'<td>' + $id_serial_number+ '</td>',
+						// 	'<td>' + $asset_tag+ '</td>',
+						// 	'<td>' + $hostname+ '</td>',
+						// 	'<td>' + $status_barang+ '</td>',
+						// '</tr>',
+
+					'@foreach($detail_barang as $detail)',
 						'<tr>',
-							'<td width="74px">1</td>',
-							'<td>5CG912359N</td>',
-							'<td>SIPDG201904-03-NB-00001</td>',
-							'<td>SP3467NB</td>',
-							'<td>TERSEDIA</td>',
+							'<td width="74px">{{$no++}}</td>',
+							'<td>{{ $detail->id_serial_number }}</td>',
+							'<td>{{ $detail->asset_tag }}</td>',
+							'<td>{{ $detail->hostname }}</td>',
+							'<td>{{ $detail->status_barang }}</td>',
 							'<td class="center">',
 								'<a href="/edit-barang"> <button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> </a>',
 								// '<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button>', 
 								// '<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>',
 							'</td>',
 						'</tr>',
-						'<tr>',
-							'<td width="74px">2</td>',
-							'<td>5CG912359N</td>',
-							'<td>SIPDG201904-03-NB-00001</td>',
-							'<td>SP3467NB</td>',
-							'<td>RUSAK</td>',
-							'<td class="center">',
-								'<a href="/edit-barang"> <button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> </a>', 
-								// '<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>',
-							'</td>',
-						'</tr>',
-						'<tr>',
-							'<td width="74px">3</td>',
-							'<td>5CG912359N</td>',
-							'<td>SIPDG201904-03-NB-00001</td>',
-							'<td>SP3467NB</td>',
-							'<td>DIPAKAI</td>',
-							'<td class="center">',
-								'<a href="/edit-barang"> <button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> </a>', 
-								// '<button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-danger">Delete</button>',
-							'</td>',
-						'</tr>',
+					'@endforeach',
+
 					'</tr>',
 					
 			'</div>'
