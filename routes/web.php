@@ -62,6 +62,58 @@ Route::group(['middleware' => ['auth', 'checkrole:admin_gudang']], function(){
     Route::post('/edit-user/{id}', 'App\Http\Controllers\RegistrasiController@setUpdate');
     Route::get('/delete-user/{id}', 'App\Http\Controllers\RegistrasiController@destroy')->name('delete-user');
 
+    //---------------------------------------------BARANG
+    Route::get('/data-jenis-barang',[BarangController::class, 'getDataJenis'])->name('data-jenis-barang'); //read
+    Route::get('/data-model-barang/{id_jenis_barang}',[BarangController::class, 'getDataModel'])->name('data-model-barang');
+    Route::get('/data-detail-barang/{id_model_barang}',[BarangController::class, 'getDataDetail'])->name('data-detail-barang');
+    Route::get('/tampil-simpan-update-barang',[BarangController::class, 'getDataDetailRequest'])->name('tampil-simpan-update-barang');
+
+    Route::get('/tambah-barang',[BarangController::class, 'getTambahBarang'])->name('tambah-barang'); //create
+    Route::post('/simpan-barang',[BarangController::class, 'createBarang'])->name('simpan-barang');
+
+    Route::get('/update-barang/{id_barang}',[BarangController::class, 'getUpdate'])->name('updateBarang'); //update
+    Route::post('/update-barang/{id_barang}',[BarangController::class, 'setUpdate'])->name('update-barang');
+
+    Route::get('/delete-barang/{id_barang}', [BarangController::class, 'destroy']);//delete
+
+    //---------------------------------------------STATUS BARANG
+    Route::get('/status-barang',[StatusBarangController::class, 'index'])->name('status-barang'); //read
+
+    Route::get('/tambah-status-barang',[StatusBarangController::class, 'getTambahStatus'])->name('tambah-status-barang'); //create
+    Route::post('/simpan-status-barang',[StatusBarangController::class, 'createStatus'])->name('simpan-status-barang');
+
+    Route::get('/update-status-barang/{id_status_barang}',[StatusBarangController::class, 'getUpdate'])->name('updateStatusBarang'); //update
+    Route::post('/update-status-barang/{id_status_barang}',[StatusBarangController::class, 'setUpdate']);
+
+    Route::get('/delete-status-barang/{id_status_barang}', [StatusBarangController::class, 'destroy']);//delete
+
+    //---------------------------------------------MODEL BARANG
+    Route::get('/model-barang',[ModelBarangController::class, 'index'])->name('model-barang'); //read
+
+    Route::get('/tambah-model-barang',[ModelBarangController::class, 'getTambahModel'])->name('tambah-model-barang'); //create
+    Route::post('/simpan-model-barang',[ModelBarangController::class, 'createModel'])->name('simpan-model-barang');
+
+    Route::get('/update-model-barang/{id_model_barang}',[ModelBarangController::class, 'getUpdate'])->name('updateModelBarang'); //update
+    Route::post('/update-model-barang/{id_model_barang}',[ModelBarangController::class, 'setUpdate']);
+
+    Route::get('/delete-model-barang/{id_model_barang}', [ModelBarangController::class, 'destroy']);//delete
+
+    //---------------------------------------------JENIS BARANG
+    Route::get('/jenis-barang',[JenisBarangController::class, 'index'])->name('jenis-barang'); //read
+
+    Route::get('/tambah-jenis-barang',[JenisBarangController::class, 'getTambahJenis'])->name('tambah-jenis-barang'); //create
+    Route::post('/simpan-jenis-barang',[JenisBarangController::class, 'createJenis'])->name('simpan-jenis-barang');
+
+    Route::get('/update-jenis-barang/{id_jenis_barang}',[JenisBarangController::class, 'getUpdate'])->name('updateJenisBarang'); //update
+    Route::post('/update-jenis-barang/{id_jenis_barang}',[JenisBarangController::class, 'setUpdate']);
+
+    Route::get('/delete-jenis-barang/{id_jenis_barang}', [JenisBarangController::class, 'destroy']);//delete
+
+    //---------------------------------------------HALAMAN UTAMA--------------------------------------------
+    Route::get('/halaman-utama', function () {
+        return view('gudang/halaman-utama');
+    });
+    
     //------- PERMINTAAN ADMIN----------
     //read permintaan
     // Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
@@ -213,54 +265,3 @@ Route::group(['middleware' => ['auth', 'checkrole:karyawan,teknisi']], function(
 
 //-----------------------------------------BARANG DI GUDANG-------------------------------------
 
-//---------------------------------------------BARANG
-Route::get('/data-jenis-barang',[BarangController::class, 'getDataJenis'])->name('data-jenis-barang'); //read
-Route::get('/data-model-barang/{id_jenis_barang}',[BarangController::class, 'getDataModel'])->name('data-model-barang');
-Route::get('/data-detail-barang/{id_model_barang}',[BarangController::class, 'getDataDetail'])->name('data-detail-barang');
-Route::get('/tampil-simpan-update-barang',[BarangController::class, 'getDataDetailRequest'])->name('tampil-simpan-update-barang');
-
-Route::get('/tambah-barang',[BarangController::class, 'getTambahBarang'])->name('tambah-barang'); //create
-Route::post('/simpan-barang',[BarangController::class, 'createBarang'])->name('simpan-barang');
-
-Route::get('/update-barang/{id_barang}',[BarangController::class, 'getUpdate'])->name('updateBarang'); //update
-Route::post('/update-barang/{id_barang}',[BarangController::class, 'setUpdate'])->name('update-barang');
-
-Route::get('/delete-barang/{id_barang}', [BarangController::class, 'destroy']);//delete
-
-//---------------------------------------------STATUS BARANG
-Route::get('/status-barang',[StatusBarangController::class, 'index'])->name('status-barang'); //read
-
-Route::get('/tambah-status-barang',[StatusBarangController::class, 'getTambahStatus'])->name('tambah-status-barang'); //create
-Route::post('/simpan-status-barang',[StatusBarangController::class, 'createStatus'])->name('simpan-status-barang');
-
-Route::get('/update-status-barang/{id_status_barang}',[StatusBarangController::class, 'getUpdate'])->name('updateStatusBarang'); //update
-Route::post('/update-status-barang/{id_status_barang}',[StatusBarangController::class, 'setUpdate']);
-
-Route::get('/delete-status-barang/{id_status_barang}', [StatusBarangController::class, 'destroy']);//delete
-
-//---------------------------------------------MODEL BARANG
-Route::get('/model-barang',[ModelBarangController::class, 'index'])->name('model-barang'); //read
-
-Route::get('/tambah-model-barang',[ModelBarangController::class, 'getTambahModel'])->name('tambah-model-barang'); //create
-Route::post('/simpan-model-barang',[ModelBarangController::class, 'createModel'])->name('simpan-model-barang');
-
-Route::get('/update-model-barang/{id_model_barang}',[ModelBarangController::class, 'getUpdate'])->name('updateModelBarang'); //update
-Route::post('/update-model-barang/{id_model_barang}',[ModelBarangController::class, 'setUpdate']);
-
-Route::get('/delete-model-barang/{id_model_barang}', [ModelBarangController::class, 'destroy']);//delete
-
-//---------------------------------------------JENIS BARANG
-Route::get('/jenis-barang',[JenisBarangController::class, 'index'])->name('jenis-barang'); //read
-
-Route::get('/tambah-jenis-barang',[JenisBarangController::class, 'getTambahJenis'])->name('tambah-jenis-barang'); //create
-Route::post('/simpan-jenis-barang',[JenisBarangController::class, 'createJenis'])->name('simpan-jenis-barang');
-
-Route::get('/update-jenis-barang/{id_jenis_barang}',[JenisBarangController::class, 'getUpdate'])->name('updateJenisBarang'); //update
-Route::post('/update-jenis-barang/{id_jenis_barang}',[JenisBarangController::class, 'setUpdate']);
-
-Route::get('/delete-jenis-barang/{id_jenis_barang}', [JenisBarangController::class, 'destroy']);//delete
-
-//---------------------------------------------HALAMAN UTAMA--------------------------------------------
-Route::get('/halaman-utama', function () {
-    return view('gudang/halaman-utama');
-});
