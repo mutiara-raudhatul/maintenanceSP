@@ -71,20 +71,18 @@
 												<label class="col-md-2 control-label">Serial Number</label>
 												<div class="col-md-6">
 													<select data-plugin-selectTwo class="form-control populate" name="id_barang" required>
-														<optgroup label="Pilih Barang">
+													<option selected disabled value="">Pilih Serial Number</option>  
 														
 														@foreach ($respon as $item)
 															@if($item->status_barang=='Tersedia')
 																<option value="{{ $item->id_barang }}">{{$item->id_serial_number}}</option>
 															@endif
 														@endforeach
-														</optgroup>	
+													
 													</select>
 												</div>
 											</div>
 											<div class="form-group" hidden>
-											
-												<label class="col-md-2 control-label" for="inputDefault">id terakhir</label>
 												
 												<div class="col-md-6">
 												@foreach ($id_terakhir as $item)

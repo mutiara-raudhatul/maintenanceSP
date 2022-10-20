@@ -35,19 +35,6 @@ class DetailResponPermintaanController extends Controller
         ->where('respon_permintaan.id_respon_permintaan', '=', $id_respon_permintaan)
         ->get();
 
-        // SELECT users.name, permintaan_barang.tanggal_permintaan, respon_permintaan.waktu_pengadaan, permintaan_barang.id_status_permintaan, jenis_barang.jenis_barang, model_barang.model_barang, detail_barang_dipenuhi.jumlah_dipenuhi, barang.hostname
-        // FROM detail_barang_dipenuhi
-        // JOIN respon_permintaan ON detail_barang_dipenuhi.id_respon_permintaan = detail_barang_dipenuhi.id_respon_permintaan
-        // JOIN permintaan_barang ON respon_permintaan.id_permintaan_barang = permintaan_barang.id_permintaan_barang
-        // JOIN users ON permintaan_barang.id_user = users.id
-        // JOIN status_permintaan ON permintaan_barang.id_status_permintaan = status_permintaan.id_status_permintaan
-        // JOIN barang       ON detail_barang_dipenuhi.id_barang = barang.id_barang
-        // JOIN model_barang ON barang.id_model_barang = model_barang.id_model_barang
-        // JOIN jenis_barang ON model_barang.id_jenis_barang = jenis_barang.id_jenis_barang
-
-        // WHERE id_detail_barang_dipenuhi = '1' ;
-
-        // dd($data_detail);
         // return view('permintaan-barang.detail-permintaan-barang', ['data_user' => $data_user, 'data_detail' => $data_detail]);
         return view('permintaan-barang.detail-respon-permintaan', compact('data', 'data_detail'));
     }
@@ -76,22 +63,15 @@ class DetailResponPermintaanController extends Controller
     public function getTambah()
     { 
 
-        //
-        //dd($respon);
         $id_terakhir = Respon_permintaan::select('id_respon_permintaan')
         ->ORDERBY('id_respon_permintaan', 'DESC')
         ->limit(1)
-         //->first();
          ->get();
          
          $respon = Barang::join ('status_barang', 'barang.id_status_barang', '=', 'status_barang.id_status_barang')
          ->get();
 
          $id = Respon_permintaan::max('id_respon_permintaan');
-         //select(max['id_respon_permintaan'])
-         //->ORDERBY('id_respon_permintaan', 'DESC')
-         //->first();
-          //->get();
 
          $data_barang = DB::table('detail_barang_dipenuhi')
         ->join('respon_permintaan', 'detail_barang_dipenuhi.id_respon_permintaan', '=', 'respon_permintaan.id_respon_permintaan')
@@ -184,6 +164,19 @@ class DetailResponPermintaanController extends Controller
         $status_barang = Barang::where('id_barang','=', $brg ->id_barang)->update([
             'id_status_barang' => $id_status_barang
         ]); 
+
+        // $permintaan = Detail_barang_dipenuhi::join('respon_permintaan', 'detail_barang_dipenuhi.id_respon_permintaan', '=', 'respon_permintaan.id_respon_permintaan')
+        // ->join('permintaan_barang', 'respon_permintaan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+        // ->join('barang', 'detail_barang_dipenuhi.id_barang', '=', 'barang.id_barang')
+        // ->select('detail_barang_dipenuhi.id_barang')
+        // ->where('detail_barang_dipenuhi.id_respon_permintaan', '=', $id_respon_permintaan)
+        // ->first();
+
+        
+        // $id_status_permintaan = 1;
+        // Permintaan_barang::where('id_permintaan_barang','=', $permintaan->id_permintaan_barang)->update([
+        //     'id_status_permintaan' => $id_status_permintaan
+        // ]);
 
         return redirect('/list-respon-permintaan');
     }

@@ -89,6 +89,13 @@
                                         <a href="{{url('tolak-permintaan-barang', $detail->id_permintaan_barang)}}" >
                                             <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Yakin Menolak Permintaan?')">Tolak</button>
                                         </a>
+                                        <a href="/permintaan-barang">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Kembali</button>
+                                        </a>
+                                    @else
+                                        <a href="/permintaan-barang">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Kembali</button>
+                                        </a>
                                     @endif
 
 

@@ -60,11 +60,11 @@
 										<div class="table-responsive">
 											<table class="table table-bordered mb-none">
 												<thead>
-													<tr>
+                                                <tr>
 														<th>No</th>
+                                                        <th>Serial Number</th>
 														<th>Barang</th>
                                                         <th>Model Barang</th>
-														<th>Jumlah</th>
                                                         <th>Hostname</th>														
 													</tr>
 												</thead>
@@ -73,9 +73,9 @@
 												<tbody>
 													<tr>
 														<td>{{$no++}}</td>
+                                                        <td>{{ $detail->id_serial_number }}</td>
 														<td>{{ $detail->jenis_barang }}</td>
                                                         <td>{{ $detail->model_barang }}</td>
-														<td>{{ $detail->jumlah_dipenuhi }}</td>
                                                         <td>{{ $detail->hostname }}</td>														
 													</tr>
 												</tbody>

@@ -164,21 +164,16 @@ Route::post('/simpan-statusP',[StatusPermintaanController::class, 'createStatus'
 //delete status
 Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
 //update status
-// Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
 Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'getUpdate'])->name('edit-status-permintaan');
 Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'setUpdate'])->name('update-status-permintaan');
 
 //------- PERMINTAAN ADMIN----------
 //read permintaan
-// Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
 Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
 
 //------- PERMINTAAN USER----------
 Route::get('/permintaan-barang-user', [PermintaanBarangUserController::class, 'index'])->name('permintaan-barang-user');
 Route::get('/cancel-permintaan-barang/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'cancel']);
-// Route::get('/form-permintaan',[PermintaanBarangUserController::class, 'getTambah'])->name('form-permintaan');;
-// Route::post('/tambah-permintaan-barang/{id_pemintaan_barang}',[PermintaanBarangUserController::class, 'setTambah']);
-// Route::get('/form-permintaan-barang',[PermintaanBarangUserController::class, 'getTambah'])->name('form-permintaan-barang');
 Route::get('/form-permintaan', function () {
     return view('permintaan-barang/form-permintaan');
 });
@@ -187,15 +182,11 @@ Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [PermintaanBarang
 Route::get('/form-barang',[PermintaanBarangUserController::class, 'getTambahBarang']);
 Route::post('/tambah-permintaan-barang',[PermintaanBarangUserController::class, 'setTambah'])->name('tambah-permintaan-barang');
 
-// Route::get('/form-barang',[PermintaanBarangUserController::class, 'index']);
-// Route::get('/form-barang', function () {
-//     return view('permintaan-barang/form-barang');
-// });
 Route::post('/tambah-kebutuhan-barang',[PermintaanBarangUserController::class, 'setTambahBarang']);
 Route::get('/lihat-tambah-barang', [PermintaanBarangUserController::class, 'lihatTambahBarang']);
-// Route::get('/form-detail-barang', function () {
-//     return view('permintaan-barang/form-detail-barang');
-// });
+Route::get('/form-detail-barang', function () {
+    return view('permintaan-barang/form-detail-barang');
+});
 Route::get('/form-detail-barang', [PermintaanBarangUserController::class, 'getDetailBarang']);
 
 //-------DETAIL PERMINTAAN----------
@@ -204,10 +195,6 @@ Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [DetailPermintaan
 Route::get('/detail-permintaan-barang-user/{id_permintaan_barang}', [DetailPermintaanUserController::class, 'index'])->name('detail-permintaan-barang-user');
 // tolak permintaan barang
 Route::get('tolak-permintaan-barang/{id_permintaan_barang}', [DetailPermintaanController::class, 'reject']);
-// Route::get('/list-permintaan-barang',[PermintaanBarangController::class, 'listpermintaanbarang']);
-// Route::get('/list-permintaan-barang', function (listpermintaanbarang) {
-//     return view('permintaan-barang/list-permintaan-barang');
-// });
 
 
 //--------RESPON PERMINTAAN----------
