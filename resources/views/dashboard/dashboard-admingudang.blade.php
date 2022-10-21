@@ -141,7 +141,7 @@
 							</div>
 							<div class="col-md-6 col-lg-12 col-xl-6"> 
 								<div class="row">
-									<div class="col-md-12 col-lg-6 col-xl-6" id="rentang"></div>
+									<div class="col-md-12 col-lg-6 col-xl-6" id="cmaint"></div>
 									<div class="col-md-12 col-lg-6 col-xl-6" id="cdimensi"></div>
 								</div>
 							</div>
@@ -246,41 +246,57 @@
 			}]
 		});
 
-		Highcharts.chart('rentang', {
+		Highcharts.chart('cmaint', {
 			chart: {
-				type: 'pie'
+				type: 'bar'
 			},
 			title: {
-				text: 'Permintaan Pertahun'
+				text: 'Permintaan Maintenance berdasakan Jenis Maintenance'
 			},
 			xAxis: {
-				categories: {!!json_encode($categories)!!},
-				crosshair: true
+				categories: {!!json_encode($categories_maint)!!},
+				title: {
+					text: null
+				}
 			},
 			yAxis: {
+				min: 0,
 				title: {
-					useHTML: true,
-					text: 'Permintaan Pertahun'
+					text: 'Population (millions)',
+					align: 'high'
+				},
+				labels: {
+					overflow: 'justify'
 				}
 			},
 			tooltip: {
-				headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-				pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-					'<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-				footerFormat: '</table>',
-				shared: true,
-				useHTML: true
+				valueSuffix: ' millions'
 			},
 			plotOptions: {
-				column: {
-					pointPadding: 0.2,
-					borderWidth: 0
+				bar: {
+					dataLabels: {
+						enabled: true
+					}
 				}
 			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -40,
+				y: 80,
+				floating: true,
+				borderWidth: 1,
+				backgroundColor:
+					Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+				shadow: true
+			},
+			credits: {
+				enabled: false
+			},
 			series: [{
-				name: 'Permintaan Barang',
-				data: {!!json_encode($jumlah_user_pb)!!}
-
+				name: 'Jenis Barang',
+				data: {!!json_encode($jumlah_maint)!!}
 			}]
 		});
 
