@@ -34,6 +34,7 @@ class PermintaanMaintenanceController extends Controller
         ->join('jenis_barang', 'jenis_barang.id_jenis_barang', '=', 'permintaan_maintenance.id_jenis_barang')
         ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
         ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan','permintaan_maintenance.id_permintaan_maintenance', 'jenis_barang.jenis_barang', 'users.name', 'status_maintenance.status_maintenance', 'permintaan_maintenance.id_permintaan_maintenance')
+        ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
         ->paginate(15);
          return view('maintenance.list-permintaan-maintenance', ['data' => $data]);
     }
@@ -41,12 +42,12 @@ class PermintaanMaintenanceController extends Controller
     public function userIndex()
     {
          $id_user = Auth::user()->id;
-         //$id_user=2;
          $dataU = Permintaan_maintenance::join('users', 'users.id', '=', 'permintaan_maintenance.id_user')
          ->join('jenis_barang', 'jenis_barang.id_jenis_barang', '=', 'permintaan_maintenance.id_jenis_barang')
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
          ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan', 'jenis_barang.jenis_barang', 'users.name', 'status_maintenance.status_maintenance', 'permintaan_maintenance.id_permintaan_maintenance')
          ->where('users.id', '=', $id_user )
+         ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
          ->paginate(15);
         return view('maintenance.list-permintaan-maintenance-user', ['dataU' => $dataU]);
     }
@@ -68,7 +69,7 @@ class PermintaanMaintenanceController extends Controller
         return view('maintenance.form-permintaan-maintenance', ['jenis_barang' => $jenis_barang, 'id_user'=>$id_user]);
     }
 
-     public function setTambah(Request $request)
+    public function setTambah(Request $request)
     {   
         $id_status_maintenance = 1;
        
@@ -79,7 +80,7 @@ class PermintaanMaintenanceController extends Controller
             'id_user' => 'required',
         ]); 
         $id_user = Auth::user()->id;
-        //$id_user=2;
+        
         $date = strtotime($request->tanggal_permintaan);
         $time = date('Y-m-d', $date);
         Permintaan_maintenance::create([
@@ -89,7 +90,7 @@ class PermintaanMaintenanceController extends Controller
             'id_user' => $request->id_user,
             'id_status_maintenance' =>$id_status_maintenance,
         ]);
-        //dd($request);
+        
         return redirect('list-permintaan-maintenance-user')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 

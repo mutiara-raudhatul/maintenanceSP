@@ -170,16 +170,21 @@ Route::post('/simpan-statusP',[StatusPermintaanController::class, 'createStatus'
 //delete status
 Route::get('/delete-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'destroy']);
 //update status
+// Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'edit'])->name('edit-status-permintaan');
 Route::get('/edit-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'getUpdate'])->name('edit-status-permintaan');
 Route::post('/update-status-permintaan/{id_status_permintaan}', [StatusPermintaanController::class, 'setUpdate'])->name('update-status-permintaan');
 
 //------- PERMINTAAN ADMIN----------
 //read permintaan
+// Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index']);
 Route::get('/permintaan-barang', [PermintaanBarangController::class, 'index'])->name('permintaan-barang');
 
 //------- PERMINTAAN USER----------
 Route::get('/permintaan-barang-user', [PermintaanBarangUserController::class, 'index'])->name('permintaan-barang-user');
 Route::get('/cancel-permintaan-barang/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'cancel']);
+// Route::get('/form-permintaan',[PermintaanBarangUserController::class, 'getTambah'])->name('form-permintaan');;
+// Route::post('/tambah-permintaan-barang/{id_pemintaan_barang}',[PermintaanBarangUserController::class, 'setTambah']);
+// Route::get('/form-permintaan-barang',[PermintaanBarangUserController::class, 'getTambah'])->name('form-permintaan-barang');
 Route::get('/form-permintaan', function () {
     return view('permintaan-barang/form-permintaan');
 });
@@ -212,7 +217,7 @@ Route::post('/tambah-respon-permintaan',[ResponPermintaanController::class, 'set
  Route::post('/tambah-barang-dipenuhi',[DetailResponPermintaanController::class, 'setTambah']);
  Route::get('/cancel-respon/{id_respon_permintaan}', [DetailResponPermintaanController::class, 'cancelRespon']);
  Route::get('/hapus-detail-dipenuhi/{id_detail_barang_dipenuhi}', [DetailResponPermintaanController::class, 'hapusBarang']);
- 
+
  Route::get('/detail-respon-permintaan/{id_respon_permintaan}',[DetailResponPermintaanController::class, 'index']);
  Route::get('/detail-respon-permintaan-user/{id_respon_permintaan}',[DetailResponPermintaanController::class, 'indexUser']);
 //-----------------------------------------BARANG DI GUDANG-------------------------------------

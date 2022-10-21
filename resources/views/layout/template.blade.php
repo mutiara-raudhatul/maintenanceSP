@@ -111,17 +111,18 @@
 				<!-- start: search & user box -->
 				<div class="header-right">
 			
-					<form action="pages-search-results.html" class="search nav-form">
+					{{-- <form action="pages-search-results.html" class="search nav-form">
 						<div class="input-group input-search">
 							<input type="text" class="form-control" name="q" id="q" placeholder="Search...">
 							<span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 							</span>
 						</div>
-					</form>
+					</form> --}}
 			
-					<span class="separator"></span>
-			
+					{{-- <span class="separator"></span> --}}
+
+					{{-- notifikasi
 					<ul class="notifications">
 						<li>
 							<a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
@@ -281,7 +282,7 @@
 								</div>
 							</div>
 						</li>
-					</ul>
+					</ul> --}}
 			
 					<span class="separator"></span>
 			

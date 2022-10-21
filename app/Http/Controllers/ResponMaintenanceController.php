@@ -20,6 +20,7 @@ class ResponMaintenanceController extends Controller
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
          ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan','permintaan_maintenance.id_status_maintenance',
                 'users.name','respon_maintenance.jadwal_perbaikan','jenis_barang.jenis_barang', 'status_maintenance.status_maintenance','respon_maintenance.id_respon_maintenance')
+         ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
          ->paginate(15);
         return view('maintenance.list-respon-maintenance', ['data' => $data]);
     }
@@ -39,7 +40,6 @@ class ResponMaintenanceController extends Controller
 
     public function setTambah(Request $request, $id_permintaan_maintenance)
     {        
-        
         Respon_maintenance::create([
             'jadwal_perbaikan' =>$request->jadwal_perbaikan,
             'id_user' => $request->id_user,

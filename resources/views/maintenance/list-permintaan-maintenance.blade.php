@@ -73,7 +73,7 @@
                                                 <a href="{{url('form-respon-maintenance', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn-xs btn-warning"><i class="fa fa-mail-forward"></i> Respon </button></a>
                                             @endif
                                             @if($item->status_maintenance=='Selesai')
-                                            <a href="{{url('list-maintenance-teknisi', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn-xs btn-warning"><i class="fa fa-info-circle"></i> Detail </button></a>
+                                            <a href="{{url('list-maintenance-teknisi', $item->id_permintaan_maintenance)}}"  class="on-default remove-row"><button class="btn-xs btn-info"><i class="fa fa-info-circle"></i> Detail </button></a>
                                             @endif
                                                 
                                             </td>

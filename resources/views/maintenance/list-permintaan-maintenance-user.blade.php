@@ -67,9 +67,12 @@
                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
                                                             <span class="label label-info">Dilaporkan</span>
+                                                @elseif ($item->status_maintenance=='Diterima')
+                                                        <!-- button detail -->
+                                                            <span class="label label-warning">Diterima</span>
                                                 @else 
                                                         <!-- button detail -->
-                                                            <span class="label label-success">Diterima</span>
+                                                        <span class="label label-success">Selesai</span>
                                                 @endif
                                             </td>
                                             <td class="actions">
@@ -79,7 +82,7 @@
                                                         </a>
                                                         <!-- button cancel -->
                                                         <a href="{{url('cancel-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn-xs btn-danger" onclick="return confirm('Apakah Permintaan Maintenance Dibatalkan?')"><i class="fa fa-trash-o"></i>Cancel</button>
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn-xs btn-danger" onclick="return confirm('Yakin Membatalkan Permintaan Maintenance?')"><i class="fa fa-trash-o"></i>Cancel</button>
                                                         </a>
                                                 @endif
                                             </td>

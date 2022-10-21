@@ -25,14 +25,14 @@ class MaintenanceTeknisiController extends Controller
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
          ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan','users.name','respon_maintenance.jadwal_perbaikan','jenis_barang.jenis_barang', 'status_maintenance.status_maintenance','maintenance_teknisi.lama_pengerjaan','maintenance_teknisi.upload_form_maintenance','maintenance_teknisi.note','maintenance_teknisi.lokasi','barang.id_serial_number')
          ->where('permintaan_maintenance.id_permintaan_maintenance','=', $id_permintaan_maintenance)
+         ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
          ->first();
         return view('maintenance.list-maintenance-teknisi', ['data' => $data]);
     }
 
     public function getMaintenance()
     {
-        //$id_user = Auth::user()->id;
-        $id_user=3;
+        $id_user = Auth::user()->id;
         $data = Maintenance_teknisi::join('permintaan_maintenance', 'permintaan_maintenance.id_permintaan_maintenance', '=','maintenance_teknisi.id_permintaan_maintenance')
          ->join('respon_maintenance', 'permintaan_maintenance.id_permintaan_maintenance', '=', 'respon_maintenance.id_permintaan_maintenance')
          ->join('users', 'users.id', '=', 'respon_maintenance.id_user')
@@ -40,6 +40,7 @@ class MaintenanceTeknisiController extends Controller
          ->join('status_maintenance', 'status_maintenance.id_status_maintenance', '=', 'permintaan_maintenance.id_status_maintenance')
          ->select('permintaan_maintenance.tanggal_permintaan','permintaan_maintenance.keterangan','permintaan_maintenance.id_user','users.name','respon_maintenance.jadwal_perbaikan','jenis_barang.jenis_barang', 'status_maintenance.status_maintenance','maintenance_teknisi.lama_pengerjaan','maintenance_teknisi.upload_form_maintenance','maintenance_teknisi.note','maintenance_teknisi.lokasi')
          ->where('respon_maintenance.id_user', '=', $id_user)
+         ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
          ->paginate(15);
         return view('maintenance.list-maintenance-teknisi-teknisi', ['data' => $data]);
     }
@@ -58,6 +59,7 @@ class MaintenanceTeknisiController extends Controller
                 'jenis_barang.jenis_barang', 'status_maintenance.status_maintenance','respon_maintenance.id_respon_maintenance',
                 'maintenance_teknisi.lokasi','maintenance_teknisi.note','maintenance_teknisi.upload_form_maintenance', 'maintenance_teknisi.id_maintenance_teknisi')
          ->where('respon_maintenance.id_user', '=', $id_user)
+         ->orderBy('permintaan_maintenance.tanggal_permintaan', 'asc')
          ->paginate(15);
         return view('maintenance.list-maintenance-teknisi-respon', ['data' => $data]);
     }
@@ -79,8 +81,7 @@ class MaintenanceTeknisiController extends Controller
     {        
         
         $id_status_maintenance = 1;
-        //$id_user = Auth::user()->id;
-        $id_user=2;
+        $id_user = Auth::user()->id;
 
         $request->validate([
             'upload_form_maintenance' => 'required|mimes:pdf,doc,docx,xlsx,xls',
@@ -131,8 +132,7 @@ class MaintenanceTeknisiController extends Controller
     public function setUpdate(Request $request,$id_maintenance_teknisi)
     {
         $id_status_maintenance = 1;
-        //$id_user = Auth::user()->id;
-        $id_user=2;
+        $id_user = Auth::user()->id;
         $request->validate([
             'upload_form_maintenance' => 'required|mimes:pdf,doc,docx,xlsx,xls',
         ]);
@@ -142,7 +142,6 @@ class MaintenanceTeknisiController extends Controller
         $id_barang = Barang::where('id_serial_number','=', $request->id_barang)
         ->select('id_barang') 
         ->first();
-        //$id_barang=1;
         $update= Maintenance_teknisi::where('id_maintenance_teknisi', $id_maintenance_teknisi)
         ->update([
             'lama_pengerjaan' => $request->lama_pengerjaan,
@@ -152,7 +151,6 @@ class MaintenanceTeknisiController extends Controller
             'upload_form_maintenance' =>$template_name,
             'id_barang' => $id_barang->id_barang,
         ]);
-        //dd($id_barang);
         return redirect('list-maintenance-teknisi-respon')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 
