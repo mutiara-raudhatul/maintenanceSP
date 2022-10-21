@@ -30,6 +30,7 @@ class DetailPermintaanController extends Controller
         ->get();
 
         return view('permintaan-barang.detail-permintaan-barang', compact('data_detail', 'data_user'));
+        //return redirect('detail-permintaan-barang', compact('data_detail', 'data_user'));
     }
 
     public function reject(Request $request, $id_permintaan_barang)

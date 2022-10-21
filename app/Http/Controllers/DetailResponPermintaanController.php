@@ -148,12 +148,28 @@ class DetailResponPermintaanController extends Controller
 
         public function cancelRespon($id_respon_permintaan)
     {
+        $permintaan = Respon_permintaan::join('permintaan_barang', 'respon_permintaan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+        //->join('respon_permintaan', 'detail_barang_dipenuhi.id_respon_permintaan', '=', 'respon_permintaan.id_respon_permintaan')
+       // ->join('permintaan_barang', 'respon_permintaan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+       //->join('barang', 'detail_barang_dipenuhi.id_barang', '=', 'barang.id_barang')
+       ->select('respon_permintaan.id_permintaan_barang')
+       ->where('respon_permintaan.id_respon_permintaan', '=', $id_respon_permintaan)
+       ->first();
+ 
+       $id_status_permintaan = 1;
+       Permintaan_barang::where('id_permintaan_barang','=', $permintaan->id_permintaan_barang)->update([
+           'id_status_permintaan' => $id_status_permintaan
+       ]);
+
+
         // dd($id_permintaan_barang);
         $brg = Detail_barang_dipenuhi::join('respon_permintaan', 'detail_barang_dipenuhi.id_respon_permintaan', '=', 'respon_permintaan.id_respon_permintaan')
             ->join('barang', 'detail_barang_dipenuhi.id_barang', '=', 'barang.id_barang')
             ->select('detail_barang_dipenuhi.id_barang')
             ->where('detail_barang_dipenuhi.id_respon_permintaan', '=', $id_respon_permintaan)
             ->first();
+
+
 
         $permintaan_batal=Respon_permintaan::select('id_respon_permintaan')
         ->where('id_respon_permintaan','=', $id_respon_permintaan)
@@ -165,20 +181,9 @@ class DetailResponPermintaanController extends Controller
             'id_status_barang' => $id_status_barang
         ]); 
 
-        // $permintaan = Detail_barang_dipenuhi::join('respon_permintaan', 'detail_barang_dipenuhi.id_respon_permintaan', '=', 'respon_permintaan.id_respon_permintaan')
-        // ->join('permintaan_barang', 'respon_permintaan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
-        // ->join('barang', 'detail_barang_dipenuhi.id_barang', '=', 'barang.id_barang')
-        // ->select('detail_barang_dipenuhi.id_barang')
-        // ->where('detail_barang_dipenuhi.id_respon_permintaan', '=', $id_respon_permintaan)
-        // ->first();
-
         
-        // $id_status_permintaan = 1;
-        // Permintaan_barang::where('id_permintaan_barang','=', $permintaan->id_permintaan_barang)->update([
-        //     'id_status_permintaan' => $id_status_permintaan
-        // ]);
 
-        return redirect('/list-respon-permintaan');
+       return redirect('/permintaan-barang');
     }
 }
 
