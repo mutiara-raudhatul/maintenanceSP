@@ -88,7 +88,7 @@
                                         </a>
                                      
                                     </footer>
-                                    </footer>
+                                    
 								</section>
 							</div>
 

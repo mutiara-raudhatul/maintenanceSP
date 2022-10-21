@@ -41,7 +41,7 @@
 												</div>
 											</div>
 											<button id="search" type="submit" class=" btn btn-primary"><i class="fa fa-search"></i> Search</button>
-											<a href="{{route('history-admingudang')}}" class="btn btn-warning"><i class="fa fa-refresh"></i> reset</a>
+											<a href="{{route('history-adminteknisi')}}" class="btn btn-warning"><i class="fa fa-refresh"></i> reset</a>
 										</div>
 									</div>
 							</form>
@@ -50,7 +50,6 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 									<h2 class="panel-title">Status Maintenance</h2>
 								</header>
@@ -78,7 +77,13 @@
 													<td>{{ $dth->unit_kerja }}</td>
 													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
 													<td>
-														<span class="label label-success">{{ $dth->status_maintenance }}</span>
+														@if ($dth->status_maintenance=='Dilaporkan')
+															<span class="label label-info">{{ $dth->status_maintenance }}</span>
+														@elseif ($dth->status_maintenance=='Diterima')
+															<span class="label label-warning">{{ $dth->status_maintenance }}</span>
+														@else
+															<span class="label label-success">{{ $dth->status_maintenance }}</span>
+														@endif
 													</td>
 												</tr>
 											@endforeach
@@ -92,7 +97,6 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
 									</div>
 									<h2 class="panel-title">Aktivitas Harian</h2>
 								</header>

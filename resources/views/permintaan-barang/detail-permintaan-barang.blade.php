@@ -82,13 +82,23 @@
 									</div>
 
                                     <footer class="panel-footer" >
-                                   
-                                        <a href="/respon-permintaan-barang">
+                                    @if ($detail->status_permintaan=='Diajukan')
+                                        <a href="{{url('form-respon-permintaan', $detail->id_permintaan_barang)}}">
                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Respon</button>
                                         </a> 
-                                        <a href="{{url('tolak-permintaan-barang',$detail->id_permintaan_barang)}}">
-                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah yakin menolak permintaan barang?')">Tolak</button>
-                                        </a> 
+                                        <a href="{{url('tolak-permintaan-barang', $detail->id_permintaan_barang)}}" >
+                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Yakin Menolak Permintaan?')">Tolak</button>
+                                        </a>
+                                        <a href="/permintaan-barang">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Kembali</button>
+                                        </a>
+                                    @else
+                                        <a href="/permintaan-barang">
+                                           <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Kembali</button>
+                                        </a>
+                                    @endif
+
+
                                     </footer>
                                    
 								</section>

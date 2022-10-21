@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Permintaan_barang;
 use App\Models\Status_permintaan;
+use App\Models\Detail_kebutuhan;
 use App\Models\User;
 use App\Models\Users;
 use App\Models\Jenis_barang;
+use Illuminate\Support\Facades\Auth;
 
 class PermintaanBarangUserController extends Controller
 {
@@ -23,7 +25,7 @@ class PermintaanBarangUserController extends Controller
 
         return view('permintaan-barang.list-permintaan-barang-user', compact('data_permintaan'));
     }
-
+    //batal permintaan user
     public function cancel($id_status_permintaan)
     {
         $permintaan_batal = Permintaan_barang::findorfail($id_status_permintaan);
@@ -31,32 +33,111 @@ class PermintaanBarangUserController extends Controller
         return back()->with('success', 'Data berhasil dihapus!');
     }
 
-    // public function simpan(Request $request)
-    // {
-    //     $this->validate($request, [
+    //tampil form permintaan 
+    public function getTambah()
+    {
+        return view('permintaan-barang.form-permintaan');
+    }
+
+    //simpan data permintaan
+    public function setTambah(Request $request)
+    {   
+
+        $this->validate($request, [
             
-    //         'dokumen' => 'mimes:doc,docx,pdf,xls,xlsx,pdf,ppt,pptx',
-    //     ]
-    // );
+            'dokumen' => 'mimes:doc,docx,pdf,xls,xlsx,pdf,ppt,pptx',
+        ]);
 
-    //     $dokumen = $request->file('dokumen');
-    //     $nama_dokumen = 'FT'.date('Ymdhis').'.'.$request->file('dokumen')->getClientOriginalExtension();
-    //     $dokumen->move('dokumen/',$nama_dokumen);
-    //     $data = new Mahasiswa();
-    //     $data->dokumen = $nama_dokumen;
-    //     $data->save();
-    //     Session::flash('sukses','Data berhasil di simpan');
-    //     return Redirect('/mahasiswa');
-    // }
+        $id_status_permintaan = 1;
+        $id_user = Auth::user()->id;
+        $template_name = $request->surat_izin->getClientOriginalName() . '-' . time() . '-' . $request->surat_izin->extension();
+        $request->surat_izin->move(public_path('template-doc'), $template_name);
 
+        $tambah = Permintaan_barang::create([
+            'tanggal_permintaan'   => $request->tanggal_permintaan,
+            'surat_izin'           => $template_name,
+            'id_user'              => $id_user,
+            'id_status_permintaan' => $id_status_permintaan
+        ]);
 
+        if($tambah == true){
+            return redirect('/form-barang')->with('toast_success', 'Tambah Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/permintaan-barang-user')->with('error', 'Tambah Gagal Dilakukan!');
+        }
+    }
 
-    // public function getTambah()
-    // {
-    //     $jenis_barang = Jenis_barang::all();
-    //     // ddd($jenis_barang);
+    //tampil form barang 
+    public function getTambahBarang()
+    {
+        $jenis_barang = Jenis_barang::all();
+        
+        // $id_terakhir = collect(db::select("select max (id_permintaan_barang) AS id_max FROM permintaan_barang"))->first();
+        $id_terakhir = Permintaan_barang::select('id_permintaan_barang')
+        ->ORDERBY('id_permintaan_barang', 'DESC')
+        ->limit(1)
+        // ->first()
+        ->get();
 
-    //      return view('permintaan-barang.form-permintaan', ['jenis_barang' => $jenis_barang]);
-    // }
+         $id = Permintaan_barang::max('id_permintaan_barang');
+
+        $data_barang = DB::table('detail_kebutuhan')
+        ->join('permintaan_barang', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+        ->join('jenis_barang', 'detail_kebutuhan.id_jenis_barang','=','jenis_barang.id_jenis_barang')
+        ->WHERE('detail_kebutuhan.id_permintaan_barang', '=', $id)
+        ->get();
+        // dd($data_barang);
+
+         return view('permintaan-barang.form-barang' , compact('jenis_barang', 'id_terakhir','data_barang') );
+    }
+
+    //tambahkan kebutuhan barang
+    public function setTambahBarang(Request $request)
+    {
+        $tambah = Detail_kebutuhan::create([
+            'id_jenis_barang'      =>$request->id_jenis_barang,
+            'jumlah_permintaan'    =>$request->jumlah_permintaan,
+            'id_permintaan_barang' =>$request->id_terakhir
+        ]);
+        if($tambah == true){
+            return redirect('/form-barang')->with('toast_success', 'Tambah Berhasil Dilakukan');
+        }
+        else{
+            return redirect('/permintaan-barang-user')->with('error', 'Tambah Gagal Dilakukan!');
+        }
+    }
+
+    public function cancelPermintaan($id_permintaan_barang)
+    {
+        // dd($id_permintaan_barang);
+        $permintaan_batal=Permintaan_barang::select('id_permintaan_barang')
+        ->where('id_permintaan_barang','=', $id_permintaan_barang)
+        
+        ->delete();
+// dd($permintaan_batal);
+        // $permintaan_batal = Permintaan_barang::findorfail($id_terakhir);
+        // $permintaan_batal->delete();
+         return redirect('/form-permintaan')->with('success', 'Data berhasil dihapus!');
+    }
+
+    public function getDetailBarang($id_permintaan_barang)
+    {
+        $permintaan_cek=Permintaan_barang::select('id_permintaan_barang')
+        ->where('id_permintaan_barang','=', $id_permintaan_barang);
+
+        $data_barang = DB::table('detail_kebutuhan')
+        ->join('respon_permintaan', 'detail_kebutuhan.id_permintaan_barang', '=', 'respon_permintaan.id_permintaan_barang')
+        ->join('permintaan_barang', 'respon_permintaan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
+        ->join('jenis_barang', 'detail_kebutuhan.id_jenis_barang','=','jenis_barang.id_jenis_barang')
+        ->WHERE('detail_kebutuhan.id_permintaan_barang', '=',  $id_permintaan_barang)
+        ->get([
+            'permintaan_barang.id_permintaan_barang', 'detail_kebutuhan.jumlah_permintaan', 'jenis_barang.id_jenis_barang','jenis_barang.jenis_barang'
+        ]);
+
+        // dd($data_barang);
+          return view('permintaan-barang.form-detail-barang' , compact('permintaan_cek','data_barang') );
+    }
+
 
 }

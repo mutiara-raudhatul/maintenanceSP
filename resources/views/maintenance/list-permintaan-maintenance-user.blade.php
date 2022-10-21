@@ -61,25 +61,28 @@
                                         @foreach ($dataU as $item)
                                         <tr class="gradeX">
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->tanggal_permintaan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->tanggal_permintaan))}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td class="status">
                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Dilaporkan</button>
+                                                            <span class="label label-info">Dilaporkan</span>
+                                                @elseif ($item->status_maintenance=='Diterima')
+                                                        <!-- button detail -->
+                                                            <span class="label label-warning">Diterima</span>
                                                 @else 
                                                         <!-- button detail -->
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Diterima</button>
+                                                        <span class="label label-success">Selesai</span>
                                                 @endif
                                             </td>
                                             <td class="actions">
                                                 @if ($item->status_maintenance=='Dilaporkan')
                                                         <a href="{{url('update-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-warning">Edit</button>
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn-xs btn-warning"><i class="fa fa-pencil-square-o"></i>Edit</button>
                                                         </a>
                                                         <!-- button cancel -->
                                                         <a href="{{url('cancel-permintaan-maintenance',$item->id_permintaan_maintenance)}}">
-                                                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-danger" onclick="return confirm('Apakah Permintaan Maintenance Dibatalkan?')">Cancel</button>
+                                                            <button type="button" class="mb-xs mt-xs mr-xs btn-xs btn-danger" onclick="return confirm('Yakin Membatalkan Permintaan Maintenance?')"><i class="fa fa-trash-o"></i>Cancel</button>
                                                         </a>
                                                 @endif
                                             </td>

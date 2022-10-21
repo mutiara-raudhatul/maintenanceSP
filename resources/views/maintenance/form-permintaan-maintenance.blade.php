@@ -36,7 +36,7 @@
         
                         <h2 class="panel-title">Permintaan Maintenance</h2>
                     </header>
-                    <form class="form-horizontal form-bordered" method="post" action="{{route('simpan')}}">
+                    <form class="form-horizontal form-bordered" method="post" action="/simpan-permintaan-maintenance">
 
                         {{ csrf_field()}}
                     <div class="panel-body">
@@ -52,12 +52,17 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate" name="id_jenis_barang" required>
-                                        <option label="Jenis Barang" selected>Jenis Barang</option>
+                                    <select class="form-control populate @error('jenis_barang') is-invalid @enderror" name="id_jenis_barang"  required>
+                                        <option label="Jenis Barang" disabled selected></option>
                                         @foreach ($jenis_barang as $item)
-                                        <option value="{{ $item->id_jenis_maintenance }}">{{$item->jenis_barang}}</option>
+                                        <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
                                     </select>
+                                        @error('jenis_barang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                 </div>
                             </div>
                             <!-- Input Date -->

@@ -60,9 +60,8 @@
                                                     Dokumen belum ada
                                                 @endif
                                             <td class="actions">
-                                                <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
-                                                <a href="/update-dokumen-maintenance/{{ $item->id_jenis_barang}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                                
+                                                <a href="/update-dokumen-maintenance/{{ $item->id_jenis_barang}}" class="on-default edit-row"><button class="btn-xs btn-warning"><i class="fa fa-pencil-square-o"></i>Edit </i></button></a>
                                                 
                                             </td>
                                         </tr>

@@ -43,8 +43,8 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Teknisi</label>
                                 <div class="col-md-6">
-                                    <select class="form-control populate"  name="id_user">
-                                      
+                                    <select class="form-control populate"  name="id_user" required>
+                                        <option label="Teknisi" disabled selected></option>
                                         @foreach ($respon as $item)
                                           @if ($item->role=="teknisi")
                                         <option value="{{ $item->id }}">{{$item->name}}</option>
@@ -61,12 +61,13 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
-                                            <input type="date" class="form-control" name="jadwal_perbaikan">
+                                            <?php 
+                                            $dateNow = date('Y-m-d');
+                                            ?>
+                                            <input type="date" class="form-control" name="jadwal_perbaikan" min="{{$dateNow}}" required>
                                         </div>
                                     </div>
                             </div>
-                            
-                        
                     </div>
                     <footer class="panel-footer" >
                         <button class="btn btn-primary" type="submit">Submit </button>

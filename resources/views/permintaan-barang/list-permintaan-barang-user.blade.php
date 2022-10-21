@@ -39,7 +39,7 @@
                     <div class="row">
                             <div class="col-sm-6">
                                 <div class="mb-md">
-                                    <a href="/form-permintaan-maintenance">
+                                    <a href="/form-permintaan">
                                     <button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
                                     </a>
                                 </div>
@@ -61,7 +61,20 @@
                                         <tr class="gradeX">
                                             <td>{{$no++}}</td>
                                             <td>{{$minta->tanggal_permintaan }}</td>
-                                            <td>{{$minta->status_permintaan }}</td>
+                                            <!-- <td>{{$minta->status_permintaan }}</td> -->
+                                            <td class="status">
+                                            @if ($minta->status_permintaan=='Diajukan')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-warning btn-sm">Diajukan</button>
+                                                @elseif($minta->status_permintaan=='Diterima')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-success btn-sm">Diterima</button>
+                                                @elseif($minta->status_permintaan=='Ditolak')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
+                                                @endif
+                                            </td>
+
                                             <td class="actions">
 
                                                 @if ($minta->status_permintaan=='Diajukan')

@@ -42,6 +42,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Diminta Oleh</th>
+                                            <th>Role</th>
                                             <th>Tanggal</th>
                                             <th>Surat Izin Permintaan</th>
                                             <th>Status</th>
@@ -54,9 +55,31 @@
                                         <tr class="gradeX">
                                             <td>{{$no++}}</td>
                                             <td>{{$minta->name}}</td>
+                                            <td>{{$minta->role}}</td>
                                             <td>{{$minta->tanggal_permintaan }}</td>
-                                            <td>{{$minta->surat_izin }}</td>
-                                            <td>{{$minta->status_permintaan }}</td>
+                                            <!-- <td>{{$minta->surat_izin }}</td> -->
+                                            <td>
+                                                @if($minta->surat_izin)
+                                                <a href="{{asset('template-doc/'. $minta->surat_izin)}}">{{$minta->surat_izin}}</a>
+                                                    <!-- <iframe src="{{asset('template-doc/'. $minta->surat_izin)}}" frameborder="0" width="600" height="300"></iframe> -->
+                                                @else
+                                                    Dokumen belum ada
+                                                @endif
+                                            </td>
+                                            <!-- <td>{{$minta->status_permintaan }}</td> -->
+                                            <td class="status">
+                                            @if ($minta->status_permintaan=='Diajukan')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-warning btn-sm">Diajukan</button>
+                                                @elseif($minta->status_permintaan=='Diterima')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-success btn-sm">Diterima</button>
+                                                @elseif($minta->status_permintaan=='Ditolak')
+                                                        <!-- button detail -->
+                                                            <button type="button" class="btn btn-danger btn-sm">Ditolak</button>
+                                                @endif
+                                            </td>
+
                                             <td class="actions">
                                                 <a href="{{url('detail-permintaan-barang',$minta->id_permintaan_barang)}}">
                                                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-info">Detail Permintaan</button>

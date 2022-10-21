@@ -1,176 +1,136 @@
 @extends('layout/template')
 
-@section('title', 'Form Permintaan Barang')
-	
-<div class="inner-wrapper">
+@section('title', 'Tambah Permintaan Barang')
+
 
 <!-- start: page -->
 @section('content')
-				
 <section role="main" class="content-body">
-					<header class="page-header">
-						<h2>Form Permintaan Barang</h2>
-					
-						<div class="right-wrapper pull-right">
-							<ol class="breadcrumbs">
-								<li>
-									<a href="index.html">
-										<i class="fa fa-home"></i>
-									</a>
-								</li>
-								<li><span>Forms</span></li>
-								<li><span>Basic</span></li>
-							</ol>
-					
-							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
-						</div>
-					</header>
+    <header class="page-header">
+        <h2>Tambah Permintaan</h2>
+    
+        <div class="right-wrapper pull-right">
+            <ol class="breadcrumbs">
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home"></i>
+                    </a>
+                </li>
+                <li><span>Forms</span></li>
+                <li><span>Basic</span></li>
+            </ol>
+    
+            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+        </div>
+    </header>
 
-                        <div class="row">
-							<div class="col-lg-12">
-								<section class="panel">
-									<header class="panel-heading">
-										<div class="panel-actions">
-											<a href="#" class="fa fa-caret-down"></a>
-											<a href="#" class="fa fa-times"></a>
-										</div>
-						
-									<h2 class="panel-title">Form Permintaan Barang</h2>
-									</header>
-									<div class="panel-body">
+    <!-- start: page -->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <div class="panel-actions">
+                            <a href="#" class="fa fa-caret-down"></a>
+                            <!-- <a href="#" class="fa fa-times"></a> -->
+                        </div>
+        
+                        <h2 class="panel-title">Tambah Permintaan Barang</h2>
+                    </header>
 
-										<!-- start: page -->
-						<section class="panel">
-							
-									<div class="panel-body">
-							
-										<form class="form-horizontal form-bordered" action="#">
+					<form class="form-horizontal form-bordered" action="/tambah-kebutuhan-barang" method="POST" >
+										{{ csrf_field()}}
+										<div class="panel-body">
 											<div class="form-group">
-												<label class="col-md-2 control-label">Jenis Barang</label>
-												<div class="col-md-6">
-													<select data-plugin-selectTwo class="form-control populate">
-														<optgroup label="Pilih Barang">
-														@foreach ($jenis_barang as $item)
-															<option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
-														@endforeach
-														</optgroup>	
-													</select>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="inputDefault">Jumlah</label>
-												<div class="col-md-6">
-													<input type="number" min="1" class="form-control" id="inputDefault">
-												</div>
-											</div>
-										</form>
-
-										<br>
-
-										<div class="row">
-												<div class="col-md-2">
-													<div class="mb-md">
-														<button id="addToTable" class="btn btn-primary">Add <i class="fa fa-plus"></i></button>
+													<label class="col-md-2 control-label">Jenis Barang</label>
+													<div class="col-md-6">
+														<select data-plugin-selectTwo class="form-control populate" name="id_jenis_barang" required>
+														<option selected disabled value="">Pilih Barang</option>  
+															@foreach ($jenis_barang as $item)
+																<option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
+															@endforeach
+															
+														</select>
 													</div>
-												</div>
-										</div>
-										<br>
+											</div>
 
-											
-											<table class="table table-bordered table-striped mb-none">
+											<div class="form-group">
+													<label class="col-md-2 control-label" for="inputDefault">Jumlah</label>
+													<div class="col-md-6">
+														<input type="number" min="1" class="form-control" id="inputDefault" name="jumlah_permintaan" required>
+														
+													</div>
+											</div>
+											<div class="form-group">
+												<div class="col-md-6">
+													@foreach ($id_terakhir as $item)
+														<input name="id_terakhir" type="hidden" id="inputReadOnly" class="form-control" readonly="readonly" value="{{ $item->id_permintaan_barang}}" >
+													@endforeach
+												</div>
+											</div>
+
+											<div class="table-responsive">
+											<table class="table table-bordered mb-none">
 												<thead>
 													<tr>
 														<th>No</th>
-														<th>Barang</th>
-														<th>Jumlah</th>
-														<th>Action</th>
+														<th>Jenis Barang</th>
+                                                        <th>Aksi</th>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody>	
+												<?php $no = 1; ?>
+												@foreach($data_barang as $item)
+													<tr>
+														<td>{{$no++}}</td>
+														<td>{{ $item->jenis_barang }}</td>
+														<td>{{ $item->jumlah_permintaan }}</td>
 													
-													<tr class="gradeX">
-														<td>1</td>
-														<td>Laptop</td>
-														<td>Jumlah</td>
-														<td class="actions">
-
-															<a href="#" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
+                                                        <td>
+														<a href="#" class="on-editing cancel-row"><i class="fa fa-times"></i></a>
 														</td>
 													</tr>
-											
+												@endforeach  
+													
 												</tbody>
 											</table>
 										</div>
+											<br>
+											<div class="form-group">
+													<div class="col-md-7">
+														<div class="col-md-7">
+															<a href="/tambah-kebutuhan-barang">
+																<button type= "submit" class="btn btn-primary">Tambah Barang</button>
+																<!-- <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> -->
+															</a>
+															<!-- <a href="/detail-permintaan-barang-user/{{$item->id_permintaan_barang}}">
+															@foreach ($id_terakhir as $item)
+																<button class="btn btn-warning">Detail </button>
+																 <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> 
+																@endforeach
+															</a> -->
+															<!-- <a href="/form-detail-barang/{{$item->id_permintaan_barang}}">
+															@foreach ($id_terakhir as $item)
+																<button class="btn btn-warning">Detail </button>
+																 <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> 
+																@endforeach
+															</a> -->
+																<a href="/permintaan-barang-user">
+																	<button type="button" class="mb-xs mt-xs mr-xs btn btn-success">Simpan</button>
+																</a>
 
-										<br>
-										<form class="form-horizontal form-bordered" method="get">
-                                            <div class="form-group">
-												<label class="col-md-2 control-label">Tanggal Permintaan</label>
-												<div class="col-md-6">
-													<div class="input-group">
-														<span class="input-group-addon">
-															<i class="fa fa-calendar"></i>
-														</span>
-														<input type="text" id="inputReadOnly" class="form-control" readonly="readonly" value="{{ date('d-m-Y') }}">
-													</div>
-												</div>
+																	@foreach ($id_terakhir as $item)
+																<a href="/cancel-permintaan/{{$item->id_permintaan_barang}}">
+																@endforeach
+																		<button type="button" class="btn btn-danger" onclick="return confirm('Apakah Permintaan Dibatalkan?')">Cancel</button>
+																</a>
 											</div>
-
-                                            <div class="form-group">
-												<label class="col-md-2 control-label">Upload Surat Izin Permintaan </label>
-												<div class="col-md-6">
-													<div class="fileupload fileupload-new" data-provides="fileupload">
-														<div class="input-append">
-															<div class="uneditable-input">
-																<i class="fa fa-file fileupload-exists"></i>
-																<span class="fileupload-preview"></span>
-															</div>
-															<span class="btn btn-default btn-file">
-																<span class="fileupload-exists">Change</span>
-																<span class="fileupload-new">Select file</span>
-																<input type="file" />
-															</span>
-															<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Remove</a>
-														</div>
-													</div>
-												</div>
-											</div>
-
-										</form>
-									</div>
-                                    <footer class="panel-footer" >
-                                        <button class="btn btn-primary">Submit </button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
-                                    </footer>
-								</section>
-								<div id="dialog" class="modal-block mfp-hide">
-									<section class="panel">
-										<header class="panel-heading">
-											<h2 class="panel-title">Are you sure?</h2>
-										</header>
-										<div class="panel-body">
-											<div class="modal-wrapper">
-												<div class="modal-text">
-													<p>Are you sure that you want to delete this row?</p>
-												</div>
-											</div>
-										</div>
-										<footer class="panel-footer">
-											<div class="row">
-												<div class="col-md-12 text-right">
-													<button id="dialogConfirm" class="btn btn-primary">Confirm</button>
-													<button id="dialogCancel" class="btn btn-default">Cancel</button>
-												</div>
-											</div>
-										</footer>
-									</section>
-								</div>
-                        </div>
-                    </div>
+										</div>					
+                    </form>
+                </section>
+            </div>
+        </div>
+    <!-- end: page -->
 </section>
-
-
-</div>
+				
+@endsection
 <!-- end: page -->
-

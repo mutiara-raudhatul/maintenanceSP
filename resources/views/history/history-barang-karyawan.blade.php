@@ -29,7 +29,7 @@
 								<header class="panel-heading panel-heading-transparent">
 									<div class="panel-actions">
 										<a href="#" class="fa fa-caret-down"></a>
-										<a href="#" class="fa fa-times"></a>
+										
 									</div>
 
 									<h2 class="panel-title">Status Permintaan Barang</h2>
@@ -66,7 +66,7 @@
 									<header class="panel-heading panel-heading-transparent">
 										<div class="panel-actions">
 											<a href="#" class="fa fa-caret-down"></a>
-											<a href="#" class="fa fa-times"></a>
+											
 										</div>
 										<h2 class="panel-title">Aktivitas Harian</h2>
 									</header>

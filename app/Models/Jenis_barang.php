@@ -14,6 +14,11 @@ class Jenis_barang extends Model
     protected $primaryKey = "id_jenis_barang"; //cek
 
     protected $fillable = [
-        'id_jenis_barang', 'jenis_barang','template_form_maintenance', 'id_maintenance'
+        'id_jenis_barang', 'jenis_barang', 'kode_barang','template_form_maintenance', 'id_jenis_maintenance'
     ];
+    
+    // public function Model_barang()
+    // {
+    //     return $this->hasMany(Model_barang::class);
+    // }
 }

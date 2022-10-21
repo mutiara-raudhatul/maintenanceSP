@@ -55,7 +55,7 @@
                                         @foreach ($data as $item)
                                         <tr class="gradeX">
                                             <td>{{$item->jenis_barang}}</td>
-                                            <td>{{$item->jadwal_perbaikan}}</td>
+                                            <td>{{date('d M Y',strtotime($item->jadwal_perbaikan))}}</td>
                                             <td><a href="{{asset('dokumen-hasil/'. $item->upload_form_maintenance)}}">{{$item->upload_form_maintenance}}</a></td>
                                             <td>{{$item->note}}</td>
                                             <td>{{$item->lokasi}}</td>

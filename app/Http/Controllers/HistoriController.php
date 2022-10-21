@@ -23,12 +23,13 @@ class HistoriController extends Controller
         $toDate = $request->input('toDate');
 
         $dtHistory = DB::table('permintaan_barang')->join ('users', 'users.id', '=', 'permintaan_barang.id_user')
-        -> join ('detail_kebutuhan', 'detail_kebutuhan.id_detail_kebutuhan', '=', 'permintaan_barang.id_detail_kebutuhan')
+        -> join ('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')
         -> select()
-        -> whereBetween('tanggal_permintaan', [$fromDate, $toDate])
+        -> whereBetween('tanggal_permintaan', [$fromDate , $toDate ])
         -> get();
+
 
         $by = Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
         -> orderBy('month_year', 'desc')
@@ -59,21 +60,49 @@ class HistoriController extends Controller
         return view('History.history-admingudang', compact('dtHistory', 'fromDate', 'toDate', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
     }
 
-    public function indexAG()
-    {
-
-        // $pilih = Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%m-%Y')) as month_year"))
-        // -> distinct()
-        // -> get();
+    public function searchAT (Request $request){
         
-//         $pilih = DB::table('permintaan_barang')
-//         -> select ('tanggal_permintaan')
-//         -> orderBy('tanggal_permintaan')
-//         -> distinct()
-//         // ->groupBy ($pilih)
-//         -> get();
-    
-// dd($pilih);
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $dtHistoryAT = DB::table('permintaan_maintenance')
+        -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
+        -> join ('jenis_barang', 'permintaan_maintenance.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
+        -> join ('status_maintenance', 'permintaan_maintenance.id_status_maintenance', '=', 'status_maintenance.id_status_maintenance')
+        -> select()
+        -> whereBetween('tanggal_permintaan', [$fromDate , $toDate ])
+        -> orderBy('tanggal_permintaan', 'desc')
+        -> get();
+
+        $by = Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%M %Y')) as month_year"))
+        -> orderBy('month_year', 'desc')
+        -> whereBetween('tanggal_permintaan', [$fromDate, $toDate])
+        -> distinct()
+        -> get();
+
+        $dtWaktu = DB::table('permintaan_barang')
+        ->get('tanggal_permintaan');
+
+        $waktu = Permintaan_barang :: select ('tanggal_permintaan')
+        -> first();
+        
+        $wkt=$waktu['tanggal_permintaan'];
+        $tgl = date('d/F/Y', strtotime($wkt));
+        $tgl2 = date('d/M/Y', strtotime($wkt));
+
+        $array=explode('/',$tgl);
+        $tanggal=$array[0];
+        $bulan=$array[1];
+        $tahun=$array[2];
+
+        $array2=explode('/',$tgl2);
+        $bln=$array2[1];
+
+        return view('History.history-adminteknisi', compact('dtHistoryAT', 'fromDate', 'toDate', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
+    }
+
+    public function indexAG(){
+
 
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
@@ -111,8 +140,7 @@ class HistoriController extends Controller
         return view('History.history-admingudang', compact('dtHistory', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
     }
 
-    public function indexAT()
-    {
+    public function indexAT(){
 
         $dtHistoryAT = DB::table('permintaan_maintenance')
         -> join ('users', 'users.id', '=', 'permintaan_maintenance.id_user')
@@ -149,8 +177,7 @@ class HistoriController extends Controller
         return view('History.history-adminteknisi', compact('dtHistoryAT', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by'));
     }
 
-    public function indexK()
-    {
+    public function indexK(){
         $dtLogin= \Auth::user()->id;
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
@@ -202,8 +229,7 @@ class HistoriController extends Controller
         )); 
     }
 
-    public function indexKB()
-    {
+    public function indexKB(){
         $dtLogin= \Auth::user()->id;
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')
@@ -254,8 +280,7 @@ class HistoriController extends Controller
         )); 
     }
 
-    public function indexT()
-    {
+    public function indexT(){
         $dtLogin= \Auth::user()->id;
 
         $dtHistoryKM = DB::table('permintaan_maintenance')
@@ -297,8 +322,7 @@ class HistoriController extends Controller
         return view('History.history-teknisi', compact('dtHistoryKM', 'waktu', 'tanggal', 'bulan', 'tahun', 'bln', 'by')); 
     }
 
-    public function indexTB()
-    {
+    public function indexTB(){
         $dtLogin= \Auth::user()->id;
         $dtHistory = DB::table('permintaan_barang')
         -> join ('users', 'users.id', '=', 'permintaan_barang.id_user')

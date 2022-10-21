@@ -18,20 +18,8 @@ class PermintaanBarangController extends Controller
         $data_permintaan = DB::table('permintaan_barang')
         ->join('users', 'permintaan_barang.id_user', '=', 'users.id')
         ->join('status_permintaan', 'permintaan_barang.id_status_permintaan','=','status_permintaan.id_status_permintaan')
-        ->get([
-            'permintaan_barang.id_permintaan_barang', 'users.name', 'permintaan_barang.tanggal_permintaan', 'permintaan_barang.surat_izin', 'status_permintaan.status_permintaan'
-        ]);
+        ->get();
 
         return view('permintaan-barang.list-permintaan-barang', compact('data_permintaan'));
     }
-
-    // public function index()
-    // {
-    //     $data_permintaan = Permintaan_barang::join('users', 'permintaan_barang.id_user', '=', 'users.id')
-    //     ->join('status_permintaan', 'permintaan_barang.id_status_permintaan','=','status_permintaan.id_status_permintaan')
-    //     ->select('permintaan_barang.id_permintaan_barang',' users.name', 'permintaan_barang.tanggal_permintaan', 'permintaan_barang.surat_izin', 'status_permintaan.status_permintaan');
-
-    //     // dd($data_permintaan);
-    //     return view('permintaan-barang.list-permintaan-barang', compact('data_permintaan'));
-    // }
 }

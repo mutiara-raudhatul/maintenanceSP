@@ -41,7 +41,7 @@
                         <h5 style="font-size: 13pt;">Permintaan Maintenance</h5><hr style="margin-top:-8px" >
                         <div class="col-md-5">
                             <label for="kelebihan" > Tanggal Permintaan</label>
-                            <input class="form-control" placeholder="Ceritakan kelebihan Anda" id="kelebihan" name="kelebihan" value="{{$data->tanggal_permintaan}}" readonly>
+                            <input class="form-control" placeholder="Ceritakan kelebihan Anda" id="kelebihan" name="kelebihan" value="{{date('d M Y',strtotime($data->tanggal_permintaan))}}" readonly>
                         </div>
                         <div class="col-md-5">
                             <label for="email" class="form-label">Jenis Barang</label>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="email" class="form-label">Jadwal Perbaikan</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{$data->jadwal_perbaikan}}" readonly>
+                            <input type="email" class="form-control" id="email" name="email" value="{{date('d M Y',strtotime($data->jadwal_perbaikan))}}" readonly>
                         </div>
                     </div>
                     <div class="row g-3 panel-body">
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-md-8">
                             <label for="email" class="form-label">Dokumen Hasil Maintenance</label>
-                            <iframe width="600" height="400" name="upload_form_maintenance" src="{{asset('template-doc/'. $data->template_form_maintenance)}}"  readonly>{{$data->upload_form_maintenance}}</iframe>
+                            <iframe width="600" height="400" name="upload_form_maintenance" src="{{asset('dokumen-hasil/'. $data->upload_form_maintenance)}}"  readonly>{{$data->upload_form_maintenance}}</iframe>
                         </div>
                     </div>
                     <div class="row g-3 panel-body">
