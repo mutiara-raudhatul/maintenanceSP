@@ -242,8 +242,7 @@ class DashboardController extends Controller
             ]);
     }
 
-    public function dashK()
-    {
+    public function dashK(){
         //jumlahhh
         $jumjenisbarang = Jenis_barang::count();
  
@@ -368,6 +367,7 @@ class DashboardController extends Controller
         -> orderBy('id_jenis_barang', 'asc')
         -> distinct()
         -> get();
+
         $categories_jenis = [];
         foreach($jenis_barang as $jj){
             $categories_jenis[]=$jj->jenis_barang;
@@ -497,6 +497,21 @@ class DashboardController extends Controller
         // }
         // return view('Dashboard.dashboard-admingudang',['$tahun'=>$tahun])->with('year',json_encode($year,JSON_NUMERIC_CHECK))->with('user',json_encode($user,JSON_NUMERIC_CHECK));
 
+        //grafik 4
+        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_jenis_barang', 'jenis_barang.jenis_barang')
+        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','permintaan_maintenance.id_jenis_barang')
+        -> orderBy('id_jenis_barang', 'asc')
+        -> distinct()
+        -> get();
+
+        $categories_maint = [];
+        foreach($jenis_maintenance as $jm){
+            $categories_maint[]=$jm->jenis_barang;
+            $cate_maint=$jm->id_jenis_barang;
+            $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance where id_jenis_barang='$cate_maint'"))->first();
+            $jumlah_maint[] = $chartuser_maint->jumlah;
+        }
+
     	return view('Dashboard.dashboard-admingudang', 
             compact(
                 'jumjenisbarang', 
@@ -506,30 +521,20 @@ class DashboardController extends Controller
                 'jumuser', 
                 'belumdiproses', 
                 'tahun', 
+                'jenis_maintenance',
                 'jenis_barang'), [
                 'jenis_barang'=>$jenis_barang, 
                 'tahun'=>$tahun, 
                 'categories'=>$categories, 
                 'categories_jenis'=>$categories_jenis, 
                 'categories_bulan'=>$categories_bulan, 
+                'categories_maint' => $categories_maint,
                 'jumlah_user_pb'=>$jumlah_user_pb, 
                 'jumlah_user_pm'=>$jumlah_user_pm, 
                 'jumlah_jenis'=>$jumlah_jenis, 
+                'jumlah_maint'=>$jumlah_maint,
                 'jumlah_user_bulan_pb'=>$jumlah_user_bulan_pb, 
                 'jumlah_user_bulan_pm'=>$jumlah_user_bulan_pm
             ]);
-    }
-
-    public function echart(Request $request)
-    {
-    // 	$jenis_barang = Permintaan_barang:: join ('detail_kebutuhan', 'detail_kebutuhan.id_detail_kebutuhan', '=', 'permintaan_barang.id_detail_kebutuhan') 
-    //     -> join ('jenis_barang', 'jenis_barang.id_jenis_barang', '=', 'detail_kebutuhan.id_jenis_barang') 
-    //     -> where('product_type','fruit')->get();
-    // 	$veg = Product::where('product_type','vegitable')->get();
-    // 	$grains = Product::where('product_type','grains')->get();
-    // 	$fruit_count = count($fruit);    	
-    // 	$veg_count = count($veg);
-    // 	$grains_count = count($grains);
-    // 	return view('echart',compact('fruit_count','veg_count','grains_count'));
     }
 }

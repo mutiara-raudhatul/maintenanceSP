@@ -8,11 +8,13 @@ use App\Models\Users;
 
 class RegistrasiController extends Controller
 {
+    //menampilkan halaman registrasi
     public function index ()
     {
         return view('user.register');
     }
 
+    //menyimpan data yang diregistrasi
     public function store (Request $request)
     {
         $validateData=$request->validate([
@@ -34,6 +36,7 @@ class RegistrasiController extends Controller
         return redirect('/login');
     }
 
+    //menampilkan data user yang sudah terdaftar
     public function readData ()
     {
         $dtUsers = Users::all();
@@ -47,6 +50,7 @@ class RegistrasiController extends Controller
         return view('user.data-user', compact('dtUsers', 'countUser', 'role'));
     }
 
+    //menampilkan halaman edit user
     public function getUpdate($id)
     {
         $updt = Users:: where('id', '=', $id)
@@ -55,6 +59,7 @@ class RegistrasiController extends Controller
         return view('user.edit-user', compact('updt'));  
     }
 
+    //menyimpan data user yang diedit
     public function setUpdate(Request $request,$id)
     {
         $update = Users::where('id', $id)->update([
@@ -75,6 +80,7 @@ class RegistrasiController extends Controller
         }
     }
     
+    //menghapus data user yang dipilih
     public function destroy($id)
     {
         $user_hapus = Users::findorfail($id);
