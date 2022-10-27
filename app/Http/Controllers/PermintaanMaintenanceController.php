@@ -79,7 +79,7 @@ class PermintaanMaintenanceController extends Controller
             'id_jenis_barang' => 'required',
             'id_user' => 'required',
         ]); 
-        $id_user = Auth::user()->id;
+        //$id_user = Auth::user()->id;
         
         $date = strtotime($request->tanggal_permintaan);
         $time = date('Y-m-d', $date);

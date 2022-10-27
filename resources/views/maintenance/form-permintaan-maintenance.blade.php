@@ -49,6 +49,7 @@
                                 </div>
                             </div> -->
                             <!-- Input Select -->
+                            <input type="hidden" value="{{\Auth::user()->id}}	" name="id_user">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">

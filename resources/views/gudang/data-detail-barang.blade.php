@@ -72,7 +72,7 @@
 											<th class="center">
 								                <!-- <a href="/edit-barang"> <button type="button" class="mb-xs mt-xs mr-xs btn btn-sm btn-success">Edit</button> </a> -->
 							                	<a href="/update-barang/{{$details->id_barang}}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
-                                                <a href="{{url('delete-barang',$details->id_barang)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
+                                                <!-- <a href="{{url('delete-barang',$details->id_barang)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"" class="on-default remove-row"><i class="fa fa-trash-o"></i></a> -->
 											</th>
 										</tr>
                                     @endforeach
