@@ -52,20 +52,6 @@
                                     <input type="text" class="form-control" id="inputDefault" name="lama_pengerjaan" value="{{$edit->lama_pengerjaan}}">
                                 </div>
                             </div>
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label">Lama Pengerjaan</label>
-                                    <div class="col-md-6">
-                                        <div class="input-daterange input-group" data-plugin-datepicker>
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input type="text" class="form-control" name="start">
-                                            <span class="input-group-addon">to</span>
-                                            <input type="text" class="form-control" name="end">
-                                        </div>
-                                    </div>
-                            </div>       --}}
-                            <!-- Input Biasa -->
                             
                             <!-- Input select-->
                             {{-- <div class="form-group">
@@ -79,19 +65,19 @@
                                     </select>
                                 </div>
                             </div>  --}}
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Serial Number</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="inputDefault" name="id_barang" value="{{$edit->id_serial_number}}">
                                 </div>
                             </div>
-                            <!-- Input Select -->
+                            Input Select 
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
                                     <select class="form-control populate" name="id_jenis_barang">
                                         <option value="{{$edit->id_jenis_barang}}" selected>{{$edit->jenis_barang}}</option>
-                                            @foreach ($jenis_barang as $item)
+                                            @foreach ($barang as $item)
                                             <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         
                                             @endforeach 
@@ -99,13 +85,23 @@
                                         
                                     </select>
                                 </div>
-                            </div>
-                            {{-- <div class="form-group">
-                                <label class="col-md-3 control-label" for="inputDefault">Jenis Maintenance</label>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Barang</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" id="inputDefault" name="id_jenis_maintenance" readonly>
+                                    <select class="form-control populate @error('id_barang') is-invalid @enderror" name="id_barang"  required>
+                                        <option value="{{ $edit->id_barang }}" disabled selected>{{$edit->jenis_barang}} - {{$edit->model_barang}} - {{$edit->id_serial_number}}</option>
+                                        @foreach ($barang as $item)
+                                        <option value="{{ $item->id_barang }}">{{$item->jenis_barang}} - {{$item->model_barang}} - {{$item->id_serial_number}}</option>
+                                        @endforeach 
+                                    </select>
+                                        @error('id_barang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                 </div>
-                            </div> --}}
+                            </div>
                             <!-- Input Biasa --> 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Lokasi</label>

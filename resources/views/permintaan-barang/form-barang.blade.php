@@ -2,6 +2,29 @@
 
 @section('title', 'Tambah Permintaan Barang')
 
+<style>
+
+.center {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, 60%);
+  transform: translate(170%, -20%);
+  border : none;
+  padding: 7px;
+
+
+  background-color:  #3498DB ;
+  border-radius: 4px;
+  color: white;
+}
+
+.center: hover {
+  box-shadow: inset 0 0 0 20rem var(--darken-1);
+}
+</style>
+<!-- <div class="inner-wrapper"> -->
 
 <!-- start: page -->
 @section('content')
@@ -60,6 +83,18 @@
 														
 													</div>
 											</div>
+
+												<!-- <button type= "submit" class="center">Tambah Barang</button> -->
+												<div class="col-md-7">
+															<a href="/tambah-kebutuhan-barang">
+																<button type= "submit" class="center btn btn-primary">Tambah Barang</button>
+																<!-- <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> -->
+															</a>
+
+												</div>
+
+
+
 											<div class="form-group">
 												<div class="col-md-6">
 													@foreach ($id_terakhir as $item)
@@ -86,7 +121,7 @@
 														<td>{{ $item->jumlah_permintaan }}</td>
 													
                                                         <td>
-														<a href="#" class="on-editing cancel-row"><i class="fa fa-times"></i></a>
+														<a href="{{url('/hapus-detail-kebutuhan',$item->id_detail_kebutuhan)}}" class="on-editing cancel-row"><i class="fa fa-times"></i></a>
 														</td>
 													</tr>
 												@endforeach  
@@ -98,10 +133,10 @@
 											<div class="form-group">
 													<div class="col-md-7">
 														<div class="col-md-7">
-															<a href="/tambah-kebutuhan-barang">
+															<!-- <a href="/tambah-kebutuhan-barang">
 																<button type= "submit" class="btn btn-primary">Tambah Barang</button>
-																<!-- <button class="btn btn-primary">Add <i class="fa fa-plus"></i></button> -->
-															</a>
+														
+															</a> -->
 															<!-- <a href="/detail-permintaan-barang-user/{{$item->id_permintaan_barang}}">
 															@foreach ($id_terakhir as $item)
 																<button class="btn btn-warning">Detail </button>
@@ -131,6 +166,7 @@
         </div>
     <!-- end: page -->
 </section>
+<!-- </div> -->
 				
 @endsection
 <!-- end: page -->

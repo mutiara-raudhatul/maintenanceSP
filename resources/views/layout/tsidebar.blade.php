@@ -105,6 +105,11 @@
 												Status Permintaan Barang
 												</a>
 											</li>
+											<li>
+												<a href="/history-admingudang">
+												History Permintaan barang
+												</a>
+											</li>
 											@elseif(auth()->user()->role == "karyawan")
 											<li>
 												<a href="/permintaan-barang-user">

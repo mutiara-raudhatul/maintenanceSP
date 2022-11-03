@@ -46,7 +46,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(view all)</a>
+															<a class="text-muted text-uppercase" href="/permintaan-barang-user">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -70,7 +70,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(view all)</a>
+															<a class="text-muted text-uppercase" href="/list-permintaan-maintenance-user">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -197,7 +197,7 @@
 				type: 'bar'
 			},
 			title: {
-				text: 'Permintaan Maintenance berdasakan Jenis Maintenance'
+				text: 'Permintaan Maintenance berdasakan Jenis Barang'
 			},
 			xAxis: {
 				categories: {!!json_encode($categories_maint)!!},
@@ -208,7 +208,7 @@
 			yAxis: {
 				min: 0,
 				title: {
-					text: 'Population (millions)',
+					text: ' ',
 					align: 'high'
 				},
 				labels: {
@@ -216,7 +216,7 @@
 				}
 			},
 			tooltip: {
-				valueSuffix: ' millions'
+				valueSuffix: '  '
 			},
 			plotOptions: {
 				bar: {

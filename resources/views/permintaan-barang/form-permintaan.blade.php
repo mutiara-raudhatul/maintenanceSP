@@ -55,11 +55,12 @@
 								</div>
 							</div>
                             
+                            @if (Auth::user()->role=='karyawan')
 							<!-- Input Biasa --> 
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="surat_izin">Surat Izin Permintaan</label>
 								<div class="col-md-6">
-									<input class="form-control @error('dokumen') is-invalid @enderror" type="file"  name="surat_izin">
+									<input class="form-control @error('dokumen') is-invalid @enderror" type="file"  name="surat_izin" required>
 									<small style="color:red">Upload surat hanya untuk karyawan</small>
 										<!-- @error('dokumen') -->
 										<div class="invalid-feedback">
@@ -68,11 +69,14 @@
 										<!-- @enderror -->
 								</div>
 							</div>	
+                            @endif
                         
                     </div>
                     <footer class="panel-footer" >
                         <button class="btn btn-primary" type="submit">Submit </button>
-                        <button type="reset" class="btn btn-default">Reset</button>
+                        <a href="/permintaan-barang-user">
+                            <button type="button" class="mb-xs mt-xs mr-xs btn btn-default">Kembali</button>
+                        </a>
                     </footer>
                     </form>
                 </section>

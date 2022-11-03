@@ -9,8 +9,8 @@
   position: relative;
   top: 50%;
   left: 50%;
-  -ms-transform: translate(-50%, 30%);
-  transform: translate(40%, -110%);
+  -ms-transform: translate(-50%, 50%);
+  transform: translate(40%, -170%);
   border : none;
   padding: 7px;
 
@@ -68,14 +68,14 @@
 												{{ csrf_field()}}
 
 											<div class="form-group">
-												<label class="col-md-2 control-label">Serial Number</label>
+												<label class="col-md-2 control-label">Barang</label>
 												<div class="col-md-6">
 													<select data-plugin-selectTwo class="form-control populate" name="id_barang" required>
-													<option selected disabled value="">Pilih Serial Number</option>  
+													<option selected disabled value="">Pilih Barang</option>  
 														
 														@foreach ($respon as $item)
 															@if($item->status_barang=='Tersedia')
-																<option value="{{ $item->id_barang }}">{{$item->id_serial_number}}</option>
+																<option value="{{ $item->id_barang }}">{{$item->jenis_barang}} - {{$item->model_barang}} - {{$item->id_serial_number}}</option>
 															@endif
 														@endforeach
 													
@@ -92,9 +92,9 @@
 											</div>
                                 
                                             <div class="form-group">
-												<label class="col-md-2 control-label" for="inputDefault">Jumlah Barang</label>
+												<!-- <label class="col-md-2 control-label" for="inputDefault">Jumlah Barang</label> -->
 												<div class="col-md-6">
-													<input name="jumlah_dipenuhi" type="number" min = '1' class="form-control" id="inputDefault" required>
+													<input name="jumlah_dipenuhi" value='1' type="hidden" min = '1' class="form-control" id="inputDefault" required>
 												</div>
 											</div>
 											

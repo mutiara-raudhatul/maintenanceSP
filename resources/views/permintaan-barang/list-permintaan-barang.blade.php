@@ -63,7 +63,7 @@
                                                 <a href="{{asset('template-doc/'. $minta->surat_izin)}}">{{$minta->surat_izin}}</a>
                                                     <!-- <iframe src="{{asset('template-doc/'. $minta->surat_izin)}}" frameborder="0" width="600" height="300"></iframe> -->
                                                 @else
-                                                    Dokumen belum ada
+                                                    --
                                                 @endif
                                             </td>
                                             <!-- <td>{{$minta->status_permintaan }}</td> -->

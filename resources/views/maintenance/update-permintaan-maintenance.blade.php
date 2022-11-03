@@ -48,17 +48,34 @@
                                 </div>
                             </div> -->
                             <!-- Input Select -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
                                     <select class="form-control populate" name="id_jenis_barang">
                                         <optgroup label="Jenis Barang">
                                         <option value="{{$editSt->id_jenis_barang}}" selected>{{$editSt->jenis_barang}}</option>
-                                        @foreach ($jenis_barang as $item)
+                                        @foreach ($barang as $item)
                                         <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         @endforeach 
                                         </optgroup>
                                     </select>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Barang</label>
+                                <div class="col-md-6">
+                                    <select class="form-control populate @error('id_jenis_barang') is-invalid @enderror" name="id_jenis_barang"  required>
+                                    <option value="{{ $editSt->id_jenis_barang }}" disabled selected>{{$editSt->jenis_barang}}</option>
+                                        <!-- <option value="{{ $editSt->id_jenis_barang }}">{{$editSt->jenis_barang}}</option> -->
+                                        @foreach ($barang as $item)
+                                        <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}} - {{$item->model_barang}} - {{$item->id_serial_number}}</option>
+                                        @endforeach 
+                                    </select>
+                                        @error('id_jenis_barang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                 </div>
                             </div>
                             <!-- Input Date -->

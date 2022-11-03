@@ -73,19 +73,35 @@
                                     </select>
                                 </div>
                             </div>  --}}
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Serial Number</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="inputDefault" name="id_barang" required>
                                 </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Barang</label>
+                                <div class="col-md-6">
+                                    <select class="form-control populate @error('id_barang') is-invalid @enderror" name="id_barang"  required>
+                                        <option label="Jenis Barang - Model Barang - Serial Number" disabled selected></option>
+                                        @foreach ($barang as $item)
+                                        <option value="{{ $item->id_barang }}">{{$item->jenis_barang}} - {{$item->model_barang}} - {{$item->id_serial_number}}</option>
+                                        @endforeach 
+                                    </select>
+                                        @error('id_barang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                </div>
                             </div>
                             <!-- Input Select -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
                                     <select class="form-control populate" name="id_jenis_barang" required>
                                         <option disabled selected>Jenis Barang</option>
-                                            @foreach ($jenis_barang as $item)
+                                            @foreach ($barang as $item)
                                             <option value="{{ $item->id_jenis_barang }}">{{$item->jenis_barang}}</option>
                                         
                                             @endforeach 
@@ -93,13 +109,13 @@
                                         
                                     </select>
                                 </div>
-                            </div>
-                            {{-- <div class="form-group">
+                            </div> -->
+                             <!-- <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Jenis Maintenance</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" id="inputDefault" name="id_jenis_maintenance" readonly>
                                 </div>
-                            </div> --}}
+                            </div>  -->
                             <!-- Input Biasa --> 
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="inputDefault">Lokasi</label>
@@ -129,6 +145,16 @@
                                             <code>max-length</code> set to 140.
                                         </p> -->            
                                     </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Status</label>
+                                <div class="col-md-6">
+                                    <select class="form-control populate" name="status"  required>
+                                        <option label="Status" disabled selected></option>
+                                        <option value="2">Selesai Diperbaiki</option>
+                                        <option value="3">Tidak Bisa Diperbaiki</option>
+                                        
+                                    </select>
                             </div>
                     </div>
                     <footer class="panel-footer" >

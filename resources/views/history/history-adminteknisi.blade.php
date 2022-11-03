@@ -24,7 +24,7 @@
 					</header>	
 
 					<div class="row">
-							<form action="{{route('search')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+							<form action="{{route('searchAT')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
 								@csrf
 									<div class="col-xl-6 col-lg-12">
 									<div class="panel-body">

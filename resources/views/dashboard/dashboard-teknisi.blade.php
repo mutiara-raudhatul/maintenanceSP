@@ -46,7 +46,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(view all)</a>
+															<a class="text-muted text-uppercase" href="/permintaan-barang-user">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -70,7 +70,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(view all)</a>
+															<a class="text-muted text-uppercase" href="/list-permintaan-maintenance-user">(view all)</a>
 														</div>
 													</div>
 												</div>
@@ -94,7 +94,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(view all)</a>
+															<a class="text-muted text-uppercase"></a>
 														</div>
 													</div>
 												</div>
@@ -118,7 +118,7 @@
 															</div>
 														</div>
 														<div class="summary-footer">
-															<a class="text-muted text-uppercase">(report)</a>
+															<a class="text-muted text-uppercase"></a>
 														</div>
 													</div>
 												</div>

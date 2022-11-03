@@ -49,8 +49,24 @@
                                 </div>
                             </div> -->
                             <!-- Input Select -->
-                            <input type="hidden" value="{{\Auth::user()->id}}	" name="id_user">
+                            <input type="hidden" value="{{\Auth::user()->id}}" name="id_user">
                             <div class="form-group">
+                                <label class="col-md-3 control-label">Barang</label>
+                                <div class="col-md-6">
+                                    <select class="form-control populate @error('id_jenis_barang') is-invalid @enderror" name="id_barang"  required>
+                                        <option label="Jenis Barang - Model Barang - Serial Number" disabled selected></option>
+                                        @foreach ($barang as $item)
+                                        <option value="{{ $item->id_barang }}">{{$item->jenis_barang}} - {{$item->model_barang}} - {{$item->id_serial_number}}</option>
+                                        @endforeach 
+                                    </select>
+                                        @error('id_barang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                </div>
+                            </div>
+                            <!-- <div class="form-group">
                                 <label class="col-md-3 control-label">Jenis Barang</label>
                                 <div class="col-md-6">
                                     <select class="form-control populate @error('jenis_barang') is-invalid @enderror" name="id_jenis_barang"  required>
@@ -65,7 +81,7 @@
                                             </div>
                                         @enderror
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Input Date -->
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tanggal</label>

@@ -158,7 +158,7 @@ Route::group(['middleware' => ['auth', 'checkrole:admin_teknisi']], function(){
 
     Route::get('/dashboard-adminteknisi', 'App\Http\Controllers\DashboardController@dashAT')->name('dashboard-adminteknisi');
     Route::get('/history-adminteknisi', 'App\Http\Controllers\HistoriController@indexAT')->name('history-adminteknisi');
-    Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@searchAT')->name('search');
+    Route::post('/history-adminteknisi', 'App\Http\Controllers\HistoriController@searchAT')->name('searchAT');
 
     //----PERMINTAAN MAINTENANCE ADMIN
     Route::get('/list-permintaan-maintenance',[PermintaanMaintenanceController::class, 'index']);
@@ -227,6 +227,7 @@ Route::group(['middleware' => ['auth', 'checkrole:karyawan,teknisi']], function(
         return view('permintaan-barang/form-permintaan');
     });
     Route::get('/cancel-permintaan/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'cancelPermintaan']);
+    Route::get('/hapus-detail-kebutuhan/{id_detail_kebutuhan}', [PermintaanBarangUserController::class, 'hapusBarangKebutuhan']); 
     // Route::get('/detail-permintaan-barang/{id_permintaan_barang}', [PermintaanBarangUserController::class, 'getDetailBarang']);
     Route::get('/form-barang',[PermintaanBarangUserController::class, 'getTambahBarang']);
     Route::post('/tambah-permintaan-barang',[PermintaanBarangUserController::class, 'setTambah'])->name('tambah-permintaan-barang');

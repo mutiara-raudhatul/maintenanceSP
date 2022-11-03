@@ -63,7 +63,7 @@
 														<td>{{$data->jumlah_permintaan}}</td>
 														<td class="actions">
 
-															<a href="#" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
+															<a href="{{url('/hapus-detail-kebutuhan',$data->id_detail_kebutuhan)}}" class="on-default remove-row"onclick="return confirm('Apakah Yakin Hapus Data Ini?')"><i class="fa fa-trash-o"></i></a>
 														</td>
 												
 													</tr>

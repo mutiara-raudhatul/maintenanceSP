@@ -53,8 +53,16 @@
 													<td>{{ $dth->jenis_barang }}</td>
 													<td>{{ $dth->unit_kerja }}</td>
 													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
-													<td>{{ $dth->status_permintaan }}</td>
-												</tr>
+													<td>
+														@if ($dth->status_permintaan=='Diajukan')
+															<span class="label label-info">{{ $dth->status_permintaan }}</span>
+														@elseif ($dth->status_permintaan=='Diterima')
+															<span class="label label-success">{{ $dth->status_permintaan }}</span>
+														@elseif ($dth->status_permintaan=='Ditolak')
+															<span class="label label-danger">{{ $dth->status_permintaan }}</span>
+														@endif
+															
+													</td>												</tr>
 											@endforeach
 											</tbody>
 										</table>

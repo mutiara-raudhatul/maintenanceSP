@@ -50,7 +50,7 @@
                                     <tbody>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tanggal</th>
+                                            <th>Tanggal Diajukan</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
