@@ -70,11 +70,20 @@ class MaintenanceTeknisiController extends Controller
         ->where('id_permintaan_maintenance','=', $id_permintaan_maintenance)
         ->first();
 
-        $jenis_barang = Jenis_barang::join('jenis_maintenance','jenis_maintenance.id_jenis_maintenance','=','jenis_barang.id_jenis_maintenance')
-        ->select('jenis_barang.jenis_barang', 'jenis_maintenance.id_jenis_maintenance', 'jenis_barang.id_jenis_barang')
-        ->get();
+        $jenis_barang = Permintaan_maintenance::select('id_jenis_barang')
+        ->where('id_permintaan_maintenance','=', $id_permintaan_maintenance)
+        ->first();
+        $id_jenis_barang = $jenis_barang->id_jenis_barang;
+        //dd($id_jenis_barang);
+        $barang = Barang::join('model_barang', 'model_barang.id_model_barang', '=', 'barang.id_model_barang')
+        ->join('jenis_barang', 'jenis_barang.id_jenis_barang','=','model_barang.id_jenis_barang')
+        ->select('barang.id_serial_number','model_barang.model_barang','jenis_barang.jenis_barang','jenis_barang.id_jenis_barang','barang.id_barang')
+        ->where('jenis_barang.id_jenis_barang', '=', $id_jenis_barang)
+        ->orderBy('jenis_barang.jenis_barang', 'asc')
+        ->paginate(15);
+        
 
-        return view('maintenance.form-maintenance-teknisi', ['jenis_barang' => $jenis_barang, 'permintaan' => $permintaan]);
+        return view('maintenance.form-maintenance-teknisi', ['jenis_barang' => $jenis_barang, 'permintaan' => $permintaan, 'barang' => $barang]);
     }
 
      public function setTambah(Request $request, $id_permintaan_maintenance)
@@ -90,9 +99,9 @@ class MaintenanceTeknisiController extends Controller
         $template_name = $request->upload_form_maintenance->getClientOriginalName() . '-' . time() . '-' . $request->upload_form_maintenance->extension();
         $request->upload_form_maintenance->move(public_path('dokumen-hasil'), $template_name);
 
-        $id_barang = Barang::where('id_serial_number','=', $request->id_barang)
-        ->select('id_barang') 
-        ->first();
+        // $id_barang = Barang::where('id_serial_number','=', $request->id_barang)
+        // ->select('id_barang') 
+        // ->first();
         //$id_barang=1;
         Maintenance_teknisi::create([
             'lama_pengerjaan' => $request->lama_pengerjaan,
@@ -100,13 +109,17 @@ class MaintenanceTeknisiController extends Controller
             'note' =>$request->note,
             'id_permintaan_maintenance' => $id_permintaan_maintenance,
             'upload_form_maintenance' =>$template_name,
-            'id_barang' => $id_barang->id_barang,
+            'id_barang' => $request->id_barang,
         ]);
 
         $id_status_maintenance = 3;
         Permintaan_maintenance::where('id_permintaan_maintenance', $id_permintaan_maintenance)->update([
             'id_status_maintenance' => $id_status_maintenance,
         ]);
+        $id_status_barang = $request->status;
+        $status_barang = Barang::where('id_barang','=', $request ->id_barang)->update([
+            'id_status_barang' => $id_status_barang
+        ]); 
         //dd($id_barang);
         return redirect('list-maintenance-teknisi-respon')->with('toast_success', 'Data Berhasil Tersimpan');
     }
@@ -120,12 +133,26 @@ class MaintenanceTeknisiController extends Controller
         ->join('users','users.id','=','permintaan_maintenance.id_user')
         ->join('status_maintenance','status_maintenance.id_status_maintenance','=','permintaan_maintenance.id_status_maintenance')
         ->select('maintenance_teknisi.lama_pengerjaan','maintenance_teknisi.lokasi','maintenance_teknisi.note','maintenance_teknisi.upload_form_maintenance',
-            'maintenance_teknisi.id_maintenance_teknisi','jenis_barang.jenis_barang', 'barang.id_serial_number', 'permintaan_maintenance.id_permintaan_maintenance')
+            'maintenance_teknisi.id_maintenance_teknisi','jenis_barang.jenis_barang','jenis_barang.id_jenis_barang', 'barang.id_serial_number', 'permintaan_maintenance.id_permintaan_maintenance','model_barang.model_barang')
         ->where('id_maintenance_teknisi', '=', $id_maintenance_teknisi)
         ->first();
         $jenis_barang = Jenis_barang::all();
+
+        $jenis_barang = Permintaan_maintenance::join('maintenance_teknisi', 'maintenance_teknisi.id_permintaan_maintenance','=','permintaan_maintenance.id_permintaan_maintenance')
+        ->select('permintaan_maintenance.id_jenis_barang')
+        ->where('id_maintenance_teknisi','=', $id_maintenance_teknisi)
+        ->first();
+        $id_jenis_barang = $jenis_barang->id_jenis_barang;
+        //dd($id_jenis_barang);
+        $barang = Barang::join('model_barang', 'model_barang.id_model_barang', '=', 'barang.id_model_barang')
+        ->join('jenis_barang', 'jenis_barang.id_jenis_barang','=','model_barang.id_jenis_barang')
+        ->select('barang.id_serial_number','model_barang.model_barang','jenis_barang.jenis_barang','jenis_barang.id_jenis_barang','barang.id_barang')
+        ->where('jenis_barang.id_jenis_barang', '=', $id_jenis_barang)
+        ->orderBy('jenis_barang.jenis_barang', 'asc')
+        ->whereNotIn('barang.id_serial_number', [$edit->id_serial_number])
+        ->paginate(15);
         //dd($editSt);
-        return view('maintenance.update-maintenance-teknisi', ['jenis_barang' => $jenis_barang, 'edit' => $edit]);
+        return view('maintenance.update-maintenance-teknisi', ['jenis_barang' => $jenis_barang, 'edit' => $edit, 'barang' => $barang]);
         
     }
 

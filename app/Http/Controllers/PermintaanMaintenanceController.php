@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Permintaan_maintenance;
 use App\Models\Jenis_barang;
 use App\Models\Status_maintenance;
+use App\Models\Barang;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Foundation\Auth\Users;
 use App\Models\Users;
@@ -62,11 +63,18 @@ class PermintaanMaintenanceController extends Controller
     public function getTambah()
     {
         $jenis_barang = Jenis_barang::all();
-        
         $id_user = Auth::user()->id;
+        $nipuser = Auth::user()->nip;
+        
+        $barang = Barang::join('model_barang', 'model_barang.id_model_barang', '=', 'barang.id_model_barang')
+        ->join('jenis_barang', 'jenis_barang.id_jenis_barang','=','model_barang.id_jenis_barang')
+        ->select('barang.id_serial_number','model_barang.model_barang','jenis_barang.jenis_barang','jenis_barang.id_jenis_barang','barang.id_barang')
+        ->where('hostname', 'like', '%'.$nipuser.'%')
+        ->orderBy('jenis_barang.jenis_barang', 'asc')
+        ->paginate(15);
+      // dd($nipuser);
 
-
-        return view('maintenance.form-permintaan-maintenance', ['jenis_barang' => $jenis_barang, 'id_user'=>$id_user]);
+        return view('maintenance.form-permintaan-maintenance', ['jenis_barang' => $jenis_barang, 'id_user'=>$id_user, 'barang'=>$barang]);
     }
 
     public function setTambah(Request $request)
@@ -76,20 +84,33 @@ class PermintaanMaintenanceController extends Controller
         $request->validate([
             'tanggal_permintaan' => 'required',
             'keterangan' => 'required',
-            'id_jenis_barang' => 'required',
+            'id_barang' => 'required',
             'id_user' => 'required',
         ]); 
         //$id_user = Auth::user()->id;
+        $id_barang = $request->id_barang;
+        $id_jenis_barang = Barang::join('model_barang', 'model_barang.id_model_barang', '=', 'barang.id_model_barang')
+        ->join('jenis_barang', 'jenis_barang.id_jenis_barang','=','model_barang.id_jenis_barang')
+        ->where('barang.id_barang', '=', $id_barang)
+        ->select('jenis_barang.id_jenis_barang')
+        ->first();
         
+        $jenis_barang =  $id_jenis_barang->id_jenis_barang;
+        //dd($jenis_barang);
         $date = strtotime($request->tanggal_permintaan);
         $time = date('Y-m-d', $date);
         Permintaan_maintenance::create([
             'tanggal_permintaan' => $time,
             'keterangan' => $request->keterangan,
-            'id_jenis_barang' =>$request->id_jenis_barang,
+            'id_jenis_barang' =>$jenis_barang,
             'id_user' => $request->id_user,
             'id_status_maintenance' =>$id_status_maintenance,
         ]);
+
+        $id_status_barang = 4;
+        $status_barang = Barang::where('id_barang','=', $request ->id_barang)->update([
+            'id_status_barang' => $id_status_barang
+        ]); 
         
         return redirect('list-permintaan-maintenance-user')->with('toast_success', 'Data Berhasil Tersimpan');
     }
@@ -103,9 +124,16 @@ class PermintaanMaintenanceController extends Controller
                 'status_maintenance.status_maintenance','users.name','jenis_barang.jenis_barang','permintaan_maintenance.id_jenis_barang')
         ->where('id_permintaan_maintenance', '=', $id_permintaan_maintenance)
         ->first();
-        $jenis_barang = Jenis_barang::all();
+        
+        $nipuser = Auth::user()->nip;
+        $barang = Barang::join('model_barang', 'model_barang.id_model_barang', '=', 'barang.id_model_barang')
+        ->join('jenis_barang', 'jenis_barang.id_jenis_barang','=','model_barang.id_jenis_barang')
+        ->select('barang.id_serial_number','model_barang.model_barang','jenis_barang.jenis_barang')
+        ->where('hostname', 'like', '%'.$nipuser.'%')
+        ->orderBy('jenis_barang.jenis_barang', 'asc')
+        ->paginate(15);
         //dd($editSt);
-        return view('maintenance.update-permintaan-maintenance', ['jenis_barang' => $jenis_barang, 'editSt' => $editSt]);
+        return view('maintenance.update-permintaan-maintenance', ['barang' => $barang, 'editSt' => $editSt]);
         
     }
 

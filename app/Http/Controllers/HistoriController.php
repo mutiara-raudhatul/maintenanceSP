@@ -22,7 +22,8 @@ class HistoriController extends Controller
         $fromDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
 
-        $dtHistory = DB::table('permintaan_barang')->join ('users', 'users.id', '=', 'permintaan_barang.id_user')
+        $dtHistory = DB::table('permintaan_barang')
+        ->join ('users', 'users.id', '=', 'permintaan_barang.id_user')
         -> join ('detail_kebutuhan', 'detail_kebutuhan.id_permintaan_barang', '=', 'permintaan_barang.id_permintaan_barang')
         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang', '=', 'jenis_barang.id_jenis_barang')
         -> join ('status_permintaan', 'permintaan_barang.id_status_permintaan', '=', 'status_permintaan.id_status_permintaan')

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
 use App\Models\Respon_maintenance;
 use App\Models\Jenis_maintenance;
+use App\Models\Barang;
 use App\Models\Permintaan_maintenance;
 
 class ResponMaintenanceController extends Controller
@@ -50,6 +51,7 @@ class ResponMaintenanceController extends Controller
         Permintaan_maintenance::where('id_permintaan_maintenance', $id_permintaan_maintenance)->update([
             'id_status_maintenance' => $id_status_maintenance,
         ]);
+
         return redirect('list-respon-maintenance')->with('toast_success', 'Data Berhasil Tersimpan');
     }
 
@@ -60,7 +62,8 @@ class ResponMaintenanceController extends Controller
         ->where('id_respon_maintenance', '=', $id_respon_maintenance)
         ->first();
         //dd($editSt);
-        $user= Users::whereNotIn('id',[$edit->id]);
+        $user= Users::whereNotIn('id',[$edit->id])
+        ->get();
         return view('maintenance.update-respon-maintenance', ['edit' => $edit, 'user'=>$user]);
         
     }
