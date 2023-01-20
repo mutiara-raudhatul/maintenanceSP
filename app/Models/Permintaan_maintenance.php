@@ -14,7 +14,7 @@ class Permintaan_maintenance extends Model
     protected $primaryKey = "id_permintaan_maintenance"; //cek
 
     protected $fillable = [
-        'id_permintaan_maintenance', 'id_serial_number', 'tanggal_permintaan', 'keterangan_maintenance', 'id_status_maintenance', 'nip_teknisi', 'jadwal_perbaikan', 'note', 'lokasi', 'tanggal_selesai', 'upload_form_maintenance', 'id_status_maintenance'    
+        'id_permintaan_maintenance', 'id_serial_number', 'tanggal_permintaan', 'keterangan_maintenance', 'nip_teknisi', 'jadwal_perbaikan', 'note', 'lokasi', 'tanggal_selesai', 'upload_form_maintenance', 'id_status_maintenance'    
     ];
 
     public function status_maintenance (){
