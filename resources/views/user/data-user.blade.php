@@ -58,8 +58,8 @@
 									<thead>
 										<tr>
 											<th>Nama</th>
-											<th class="center">Username</th>
 											<th class="center">NIP</th>
+											<th class="center">role</th>
                                             <th class="center">Work Unit</th>
 											<th class="center">Email</th>
 											<th class="center">Action</th>
@@ -69,8 +69,8 @@
 										@foreach($dtUsers as $item)
 										<tr class="gradeX">
 											<td>{{ $item -> name}}</td>
-											<td class="center">{{ $item -> username}}</td>
-											<td class="center">{{ $item -> nip}}</td>
+											<td class="center">{{ $item -> id}}</td>
+											<td class="center">{{ $item -> role}}</td>
 											<td class="center">{{ $item -> unit_kerja}}</td>
 											<td class="center">{{ $item -> email}}</td>
 											<td class="center">

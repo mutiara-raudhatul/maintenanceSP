@@ -18,10 +18,10 @@ class RegistrasiController extends Controller
     public function store (Request $request)
     {
         $validateData=$request->validate([
+            'id'=>'required|unique:users',
             'role'=>'required',
             'username'=>'required|max:255',
             'name'=>'required|max:255',
-            'nip'=>'required|unique:users',
             'email'=> 'required|email|unique:users',
             'password'=>'required|min:6|max:255',
             'unit_kerja'=>'required',
@@ -33,7 +33,7 @@ class RegistrasiController extends Controller
 
         $validateData['password']=Hash::make($validateData['password']);
         Users::create($validateData);
-        return redirect('/login');
+        return redirect('/data-user');
     }
 
     //menampilkan data user yang sudah terdaftar

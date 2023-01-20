@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Permintaan_maintenance;
-use App\Models\Detail_kebutuhan;
+use App\Models\Detail_permintaan_barang;
 use App\Models\Permintaan_barang;
 use App\Models\Status_permintaan;
 use App\Models\Jenis_barang;
@@ -24,27 +24,28 @@ class DashboardController extends Controller
 
     public function dashAT()
     {
-        $id_user = Auth::user()->id;
+        // $nip = \Auth::user()->nip;
+        $nip = '3324';
 
         //jumlahhh
         $jumjenisbarang = Jenis_barang::count();
         $jumperminbarang = Permintaan_maintenance::count();
         $mintabarang = Permintaan_maintenance::where('id_status_maintenance','=','1')->count();
         $teknisi = Users::where('role','=','Teknisi')->count();
-        $jumperbaikan = Respon_maintenance::count();
+        $jumperbaikan = Permintaan_maintenance::where('id_status_maintenance','=','2')->count();
 
         //grafik 1
-        $jenis_barang= Detail_kebutuhan :: select ('detail_kebutuhan.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','detail_kebutuhan.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
+        $jenis_barang= Detail_permintaan_barang :: select ('detail_permintaan_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','detail_permintaan_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
         -> distinct()
         -> get();
 
         $categories_jenis = [];
         foreach($jenis_barang as $jj){
-            $categories_jenis[]=$jj->jenis_barang;
-            $cate_jenis=$jj->id_jenis_barang;
-            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_kebutuhan where id_jenis_barang='$cate_jenis'"))->first();
+            $categories_jenis[]=$jj->nama;
+            $cate_jenis=$jj->kode_jenis;
+            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_permintaan_barang where kode_jenis='$cate_jenis'"))->first();
             $jumlah_jenis[] = $chartuser_jenis->jumlah;
         }
 
@@ -58,10 +59,10 @@ class DashboardController extends Controller
         foreach($tahun as $tt){
             $categories[]=$tt->byear;
             $cate=$tt->byear;
-            $chartuser_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
+            $chartuser_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
             $jumlah_user_pb[] = $chartuser_pb->jumlah;
 
-            $chartuser_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where year(tanggal_permintaan)='$cate'"))->first();
+            $chartuser_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where year(permintaan_maintenance.tanggal_permintaan)='$cate'"))->first();
             $jumlah_user_pm[] = $chartuser_pm->jumlah;
         }
 
@@ -84,25 +85,27 @@ class DashboardController extends Controller
             $categories_bulan[]=$nb->nmonth;
             }
             $catem=$bb->bmonth;
-            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pb[] = $chartuser_bulan_pb->jumlah;
 
-            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pm[] = $chartuser_bulan_pm->jumlah;
         }
 
         //grafik 4
-        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','permintaan_maintenance.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
+        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_serial_number', 'jenis_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('barang', 'barang.id_serial_number','=','permintaan_maintenance.id_serial_number')
+        -> join ('model_barang', 'model_barang.id_model_barang','=','barang.id_model_barang')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','model_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
         -> distinct()
         -> get();
 
         $categories_maint = [];
         foreach($jenis_maintenance as $jm){
-            $categories_maint[]=$jm->jenis_barang;
-            $cate_maint=$jm->id_jenis_barang;
-            $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance where id_jenis_barang='$cate_maint'"))->first();
+            $categories_maint[]=$jm->nama;
+            $cate_maint=$jm->kode_jenis;
+            $chartuser_maint  = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance join barang on barang.id_serial_number=permintaan_maintenance.id_serial_number join model_barang on model_barang.id_model_barang=barang.id_model_barang join jenis_barang on jenis_barang.kode_jenis=model_barang.kode_jenis where jenis_barang.kode_jenis='$cate_maint'"))->first();
             $jumlah_maint[] = $chartuser_maint->jumlah;
         }
 
@@ -133,41 +136,43 @@ class DashboardController extends Controller
 
     public function dashT()
     {
-        $id_user = Auth::user()->id;
+        // $nip = \Auth::user()->nip;
+        $nip = '5671';
 
         //jumlahhh
         $jumjenisbarang = Jenis_barang::count();
  
-        $jumperminbarang = Permintaan_barang:: join ('users','permintaan_barang.id_user','=','users.id') 
-        -> where('permintaan_barang.id_user','=',$id_user)
+        $jumperminbarang = Permintaan_barang:: join ('users','permintaan_barang.nip_peminta','=','users.id') 
+        -> where('permintaan_barang.nip_peminta','=',$nip)
         -> count();
 
-        $jumperminmaintenance = Permintaan_maintenance::join ('users','permintaan_maintenance.id_user','=','users.id') 
-        -> where('permintaan_maintenance.id_user','=',$id_user)
+        $jumperminmaintenance = Permintaan_maintenance::join ('barang','barang.id_serial_number','=','permintaan_maintenance.id_serial_number')
+        ->join ('users','barang.nip','=','users.id')  
+        -> where('barang.nip','=',$nip)
         -> count();
 
-        $jumperbaikan = Respon_maintenance::where('id_user','=','3')->count();
-        $jumpenugasan = Respon_permintaan::where('id_user_teknisi','=','3')->count();
+        $jumperbaikan = Permintaan_maintenance::where('nip_teknisi','=',$nip)->count();
+        $jumpenugasan = Permintaan_maintenance::where('nip_teknisi','=',$nip)->count();
 
  //grafik 1
-        $jenis_barang= Detail_kebutuhan :: select ('detail_kebutuhan.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','detail_kebutuhan.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
+        $jenis_barang= Detail_permintaan_barang :: select ('detail_permintaan_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','detail_permintaan_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
         -> distinct()
         -> get();
 
         $categories_jenis = [];
         foreach($jenis_barang as $jj){
-            $categories_jenis[]=$jj->jenis_barang;
-            $cate_jenis=$jj->id_jenis_barang;
-            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_kebutuhan where id_jenis_barang='$cate_jenis'"))->first();
+            $categories_jenis[]=$jj->nama;
+            $cate_jenis=$jj->kode_jenis;
+            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_permintaan_barang where kode_jenis='$cate_jenis'"))->first();
             $jumlah_jenis[] = $chartuser_jenis->jumlah;
         }
 
         //grafik 2
 
         $tahun= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
-        -> where('permintaan_barang.id_user','=',$id_user)
+        // -> where('permintaan_barang.nip_peminta','=',$nip)
         -> orderBy('byear', 'asc')
         -> distinct()
         -> get();
@@ -176,10 +181,10 @@ class DashboardController extends Controller
         foreach($tahun as $tt){
             $categories[]=$tt->byear;
             $cate=$tt->byear;
-            $chartuser_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
+            $chartuser_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
             $jumlah_user_pb[] = $chartuser_pb->jumlah;
 
-            $chartuser_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where year(tanggal_permintaan)='$cate'"))->first();
+            $chartuser_pm    = collect(DB::SELECT("SELECT count(barang.nip) AS jumlah from barang join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where year(tanggal_permintaan)='$cate'"))->first();
             $jumlah_user_pm[] = $chartuser_pm->jumlah;
         }
 
@@ -202,25 +207,27 @@ class DashboardController extends Controller
             $categories_bulan[]=$nb->nmonth;
             }
             $catem=$bb->bmonth;
-            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pb[] = $chartuser_bulan_pb->jumlah;
 
-            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(barang.nip) AS jumlah from barang join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pm[] = $chartuser_bulan_pm->jumlah;
         }
 
         //grafik 4
-        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','permintaan_maintenance.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
+        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_serial_number', 'jenis_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('barang', 'barang.id_serial_number','=','permintaan_maintenance.id_serial_number')
+        -> join ('model_barang', 'model_barang.id_model_barang','=','barang.id_model_barang')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','model_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
         -> distinct()
         -> get();
 
         $categories_maint = [];
         foreach($jenis_maintenance as $jm){
-            $categories_maint[]=$jm->jenis_barang;
-            $cate_maint=$jm->id_jenis_barang;
-            $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance where id_jenis_barang='$cate_maint'"))->first();
+            $categories_maint[]=$jm->nama;
+            $cate_maint=$jm->kode_jenis;
+            $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance join barang on barang.id_serial_number=permintaan_maintenance.id_serial_number join model_barang on model_barang.id_model_barang=barang.id_model_barang join jenis_barang on jenis_barang.kode_jenis=model_barang.kode_jenis where jenis_barang.kode_jenis='$cate_maint'"))->first();
             $jumlah_maint[] = $chartuser_maint->jumlah;
         }
 
@@ -250,38 +257,40 @@ class DashboardController extends Controller
     }
 
     public function dashK(){
-        $id_user = Auth::user()->id;
+        // $nip = \Auth::user()->nip;
+        $nip = '3030';
 
         //jumlahhh
         $jumjenisbarang = Jenis_barang::count();
  
-        $jumperminbarang = Permintaan_barang:: join ('users','permintaan_barang.id_user','=','users.id') 
-        -> where('permintaan_barang.id_user','=',$id_user)
+        $jumperminbarang = Permintaan_barang:: join ('users','permintaan_barang.nip_peminta','=','users.id') 
+        -> where('permintaan_barang.nip_peminta','=',$nip)
         -> count();
 
-        $jumperminmaintenance = Permintaan_maintenance::join ('users','permintaan_maintenance.id_user','=','users.id') 
-        -> where('permintaan_maintenance.id_user','=',$id_user)
+        $jumperminmaintenance = Permintaan_maintenance::join ('barang','barang.id_serial_number','=','permintaan_maintenance.id_serial_number') 
+        -> join ('users','barang.nip','=','users.id') 
+        -> where('barang.nip','=',$nip)
         -> count();
 
 
     //grafik 1
-       $jenis_barang= Detail_kebutuhan :: select ('detail_kebutuhan.id_jenis_barang', 'jenis_barang.jenis_barang')
-       -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','detail_kebutuhan.id_jenis_barang')
-       -> orderBy('id_jenis_barang', 'asc')
+       $jenis_barang= detail_permintaan_barang :: select ('detail_permintaan_barang.kode_jenis', 'jenis_barang.nama')
+       -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','detail_permintaan_barang.kode_jenis')
+       -> orderBy('kode_jenis', 'asc')
        -> distinct()
        -> get();
 
        $categories_jenis = [];
        foreach($jenis_barang as $jj){
-           $categories_jenis[]=$jj->jenis_barang;
-           $cate_jenis=$jj->id_jenis_barang;
-           $chartuser_jenis    = collect(DB::SELECT("SELECT count(detail_kebutuhan.id_permintaan_barang) AS jumlah from detail_kebutuhan join permintaan_barang ON permintaan_barang.id_permintaan_barang=detail_kebutuhan.id_permintaan_barang where detail_kebutuhan.id_jenis_barang='$cate_jenis' and permintaan_barang.id_user=$id_user"))->first();
+           $categories_jenis[]=$jj->nama;
+           $cate_jenis=$jj->kode_jenis;
+           $chartuser_jenis    = collect(DB::SELECT("SELECT count(detail_permintaan_barang.id_permintaan_barang) AS jumlah from detail_permintaan_barang join permintaan_barang ON permintaan_barang.id_permintaan_barang=detail_permintaan_barang.id_permintaan_barang where detail_permintaan_barang.kode_jenis='$cate_jenis' and permintaan_barang.nip_peminta=$nip"))->first();
            $jumlah_jenis[] = $chartuser_jenis->jumlah;
        }
 
        //grafik 2
        $tahun= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
-       -> where('permintaan_barang.id_user','=',$id_user)
+    //    -> where('permintaan_barang.nip_peminta','=',$nip)
        -> orderBy('byear', 'asc')
        -> distinct()
        -> get();
@@ -290,10 +299,10 @@ class DashboardController extends Controller
        foreach($tahun as $tt){
            $categories[]=$tt->byear;
            $cate=$tt->byear;
-           $chartuser_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate' and id_user=$id_user"))->first();
+           $chartuser_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate' and nip_peminta=$nip"))->first();
            $jumlah_user_pb[] = $chartuser_pb->jumlah;
 
-           $chartuser_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where year(tanggal_permintaan)='$cate' and id_user=$id_user"))->first();
+           $chartuser_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where year(tanggal_permintaan)='$cate' and barang.nip=$nip"))->first();
            $jumlah_user_pm[] = $chartuser_pm->jumlah;
        }
 
@@ -316,28 +325,32 @@ class DashboardController extends Controller
            $categories_bulan[]=$nb->nmonth;
            }
            $catem=$bb->bmonth;
-           $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem' and id_user=$id_user"))->first();
+           $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem' and nip_peminta=$nip"))->first();
            $jumlah_user_bulan_pb[] = $chartuser_bulan_pb->jumlah;
 
-           $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where month(tanggal_permintaan)='$catem' and id_user=$id_user"))->first();
+           $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where month(tanggal_permintaan)='$catem' and barang.nip=$nip"))->first();
            $jumlah_user_bulan_pm[] = $chartuser_bulan_pm->jumlah;
        }
 
        //grafik 4
-       $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_jenis_barang', 'jenis_barang.jenis_barang')
-       -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','permintaan_maintenance.id_jenis_barang')
-       -> orderBy('id_jenis_barang', 'asc')
-       -> where('permintaan_maintenance.id_user','=',$id_user)
+       $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_serial_number', 'jenis_barang.kode_jenis', 'jenis_barang.nama')
+       -> join ('barang', 'barang.id_serial_number','=','permintaan_maintenance.id_serial_number')
+       -> join ('model_barang', 'model_barang.id_model_barang','=','barang.id_model_barang')
+       -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','model_barang.kode_jenis')
+       -> orderBy('kode_jenis', 'asc')
+    //    -> where('permintaan_maintenance.nip','=',$nip)
        -> distinct()
        -> get();
 
-       $categories_maint = [];
-       foreach($jenis_maintenance as $jm){
-           $categories_maint[]=$jm->jenis_barang;
-           $cate_maint=$jm->id_jenis_barang;
-           $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance where id_jenis_barang='$cate_maint' and id_user=$id_user"))->first();
-           $jumlah_maint[] = $chartuser_maint->jumlah;
-       }
+
+            $categories_maint = [];
+            foreach($jenis_maintenance as $jm){
+                $categories_maint[]=$jm->nama;
+                $cate_maint=$jm->kode_jenis;
+                $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance join barang on barang.id_serial_number=permintaan_maintenance.id_serial_number join model_barang on model_barang.id_model_barang=barang.id_model_barang join jenis_barang on jenis_barang.kode_jenis=model_barang.kode_jenis where jenis_barang.kode_jenis='$cate_maint' and nip='$nip'"))->first();
+                $jumlah_maint[] = $chartuser_maint->jumlah;
+            }
+
 
        return view('Dashboard.dashboard-karyawan',
            compact(
@@ -368,44 +381,14 @@ class DashboardController extends Controller
         $jumjenisbarang = Jenis_barang::count();
         $jumbarang = Barang::count();
         $jumperminbarang = Permintaan_barang::count();
-        $belumdiproses = Permintaan_barang::where('id_status_permintaan','=','1')->count();
+        $belumdiproses = Permintaan_barang:: join ('detail_permintaan_barang', 'permintaan_barang.id_permintaan_barang','=','detail_permintaan_barang.id_permintaan_barang') 
+        -> where('id_status_permintaan','=','1')->count();
         $jumperminmaintenance = Permintaan_maintenance::count();
         $jumuser = Users::count();
 
-        $jenis_barang= Detail_kebutuhan :: select ('detail_kebutuhan.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','detail_kebutuhan.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
-        -> distinct()
-        -> get();
-
-        $categories_jenis = [];
-        foreach($jenis_barang as $jj){
-            $categories_jenis[]=$jj->jenis_barang;
-            $cate_jenis=$jj->id_jenis_barang;
-            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_kebutuhan where id_jenis_barang='$cate_jenis'"))->first();
-            $jumlah_jenis[] = $chartuser_jenis->jumlah;
-        }
-
-        //ini betul
-        $tahun= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
-        -> orderBy('byear', 'asc')
-        -> distinct()
-        -> get();
-
-        $categories = [];
-        foreach($tahun as $tt){
-            $categories[]=$tt->byear;
-            $cate=$tt->byear;
-            $chartuser_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
-            $jumlah_user_pb[] = $chartuser_pb->jumlah;
-
-            $chartuser_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where year(tanggal_permintaan)='$cate'"))->first();
-            $jumlah_user_pm[] = $chartuser_pm->jumlah;
-        }
-
-        //ini bulannya belum muncul
         $tahun_now=date('Y');
 
+        //grafik 1 permintaan perbulan
         $bulan= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%m')) as bmonth"))
         -> orderBy('bmonth', 'asc')
         -> distinct()
@@ -422,104 +405,60 @@ class DashboardController extends Controller
             $categories_bulan[]=$nb->nmonth;
             }
             $catem=$bb->bmonth;
-            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pb[] = $chartuser_bulan_pb->jumlah;
 
-            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(id_user) AS jumlah from permintaan_maintenance where month(tanggal_permintaan)='$catem'"))->first();
+            $chartuser_bulan_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where month(tanggal_permintaan)='$catem'"))->first();
             $jumlah_user_bulan_pm[] = $chartuser_bulan_pm->jumlah;
         }
 
-        // $jenis= Permintaan_barang :: join ('detail_kebutuhan', 'permintaan_barang.id_permintaan_barang','=','detail_kebutuhan.id_permintaan_barang')
-        // -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang','=','jenis_barang.id_jenis_barang') 
-        // -> get();
+        // grafik 2 permintaan pertahun
+        $tahun= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
+        -> orderBy('byear', 'asc')
+        -> distinct()
+        -> get();
 
-//         $jenis= Detail_kebutuhan :: select ('jenis_barang.id_jenis_barang', 'jenis_barang.jenis_barang')
-//         -> join ('jenis_barang', 'detail_kebutuhan.id_jenis_barang','=','jenis_barang.id_jenis_barang')
-//         -> orderBy('id_jenis_barang', 'asc')
-//         -> distinct()
-//         -> get();
+        $categories = [];
+        foreach($tahun as $tt){
+            $categories[]=$tt->byear;
+            $cate=$tt->byear;
+            $chartuser_pb     = collect(DB::SELECT("SELECT count(nip_peminta) AS jumlah from permintaan_barang where year(tanggal_permintaan)='$cate'"))->first();
+            $jumlah_user_pb[] = $chartuser_pb->jumlah;
+            
+            $chartuser_pm    = collect(DB::SELECT("SELECT count(users.id) AS jumlah from users join barang on barang.nip=users.id join permintaan_maintenance on permintaan_maintenance.id_serial_number=barang.id_serial_number where year(tanggal_permintaan)='$cate'"))->first();
+            $jumlah_user_pm[] = $chartuser_pm->jumlah;
+        }
 
-//         $c_jenis = [];
-//         foreach($jenis as $jj){
-//             $c_jenis[]=$jj->jenis_barang;
-//             $cate_j=$jj->id_jenis_barang;
-//             $jumlah_j=[];
-//             $chart_j = Detail_kebutuhan::select ('id_detail_kebutuhan')
-//             -> where('id_jenis_barang','=',$cate_j)
-//             -> count();
-//             // $chart_j    = collect(DB::SELECT("SELECT count(id_detail_kebutuhan) AS jum from detail_kebutuhan where id_jenis_barang='$cate_j'"))->first();            
-//             $jumlah_j[] = $chart_j;
-//         }
-// dd($chart_j);
-
-
-
-        //Jumlah permintaan barang
-        // $tot_permintaan_barang = Permintaan_barang::where(\DB::raw("DATE_FORMAT(tanggal_permintaan, '%Y')"),$value)->count();
-
-
-        // $year = ['06-2022','07-2022','08-2022','09-2022'];
-
-        //menyiapkan data untuk chart
-
-        // $permintaan_maintenance = [];
-        // foreach ($permintaan_maintenance as $key => $value) {
-        //     $permintaan_maintenance[] = Permintaan_maintenance::where(\DB::raw("DATE_FORMAT(tanggal_permintaan, '%Y')"),$value)->count();
-        // }
-
-        // $permintaan_barang = [];
-        // foreach ($permintaan_barang as $key => $value) {
-        //     $permintaan_barang[] = Permintaan_barang::where(\DB::raw("DATE_FORMAT(tanggal_permintaan, '%Y')"),$value)->count();
-        // }
-
-
-// ------------------------------ini
-        // $tahun= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
-        // -> orderBy('byear', 'desc')
-        // -> distinct()
-        // -> get();
-
-
-        // $categories=[];
-        // foreach($tahun as $by){
-        //     $categories=$by->byear;
-
-        //     $pb=Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"),'=',$categories)
-        //     -> count();
-        // }
-// ------------------------------------sampai ini
-
-        // $tt= Permintaan_barang :: select (DB::raw("(DATE_FORMAT(tanggal_permintaan, '%Y')) as byear"))
-        // -> orderBy('byear', 'desc')
-        // -> distinct()
-        // -> get();
-
-        
-
-        // $pm = [];
-        // foreach ($tt as $key => $value) {
-        //     $pm[] = Permintaan_maintenance::where(\DB::raw("DATE_FORMAT(tanggal_permintaan, '%Y')"),$value)->count();
-        // }
-
-        // $user = [];
-        // foreach ($year as $key => $value) {
-        //     $user[] = Permintaan_barang::where(\DB::raw("DATE_FORMAT(tanggal_permintaan, '%m-%Y')"),$value)->count();
-        // }
-        // return view('Dashboard.dashboard-admingudang',['$tahun'=>$tahun])->with('year',json_encode($year,JSON_NUMERIC_CHECK))->with('user',json_encode($user,JSON_NUMERIC_CHECK));
-
-        //grafik 4
-        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_jenis_barang', 'jenis_barang.jenis_barang')
-        -> join ('jenis_barang', 'jenis_barang.id_jenis_barang','=','permintaan_maintenance.id_jenis_barang')
-        -> orderBy('id_jenis_barang', 'asc')
+        //grafik 3 permintaan maintenance berdasarkan jenis
+        $jenis_maintenance= Permintaan_maintenance :: select ('permintaan_maintenance.id_serial_number', 'jenis_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('barang', 'barang.id_serial_number','=','permintaan_maintenance.id_serial_number')
+        -> join ('model_barang', 'model_barang.id_model_barang','=','barang.id_model_barang')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','model_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
         -> distinct()
         -> get();
 
         $categories_maint = [];
         foreach($jenis_maintenance as $jm){
-            $categories_maint[]=$jm->jenis_barang;
-            $cate_maint=$jm->id_jenis_barang;
-            $chartuser_maint    = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance where id_jenis_barang='$cate_maint'"))->first();
+            $categories_maint[]=$jm->nama;
+            $cate_maint=$jm->kode_jenis;
+            $chartuser_maint  = collect(DB::SELECT("SELECT count(id_permintaan_maintenance) AS jumlah from permintaan_maintenance join barang on barang.id_serial_number=permintaan_maintenance.id_serial_number join model_barang on model_barang.id_model_barang=barang.id_model_barang join jenis_barang on jenis_barang.kode_jenis=model_barang.kode_jenis where jenis_barang.kode_jenis='$cate_maint'"))->first();
             $jumlah_maint[] = $chartuser_maint->jumlah;
+        }
+
+        //Grafik 4 permintaan barang berdasarkan jenis
+        $jenis_barang= Detail_permintaan_barang :: select ('detail_permintaan_barang.kode_jenis', 'jenis_barang.nama')
+        -> join ('jenis_barang', 'jenis_barang.kode_jenis','=','detail_permintaan_barang.kode_jenis')
+        -> orderBy('kode_jenis', 'asc')
+        -> distinct()
+        -> get();
+
+        $categories_jenis = [];
+        foreach($jenis_barang as $jj){
+            $categories_jenis[]=$jj->nama;
+            $cate_jenis=$jj->kode_jenis;
+            $chartuser_jenis    = collect(DB::SELECT("SELECT count(id_permintaan_barang) AS jumlah from detail_permintaan_barang where kode_jenis='$cate_jenis'"))->first();
+            $jumlah_jenis[] = $chartuser_jenis->jumlah;
         }
 
     	return view('Dashboard.dashboard-admingudang', 

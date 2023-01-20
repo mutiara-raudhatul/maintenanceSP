@@ -45,7 +45,7 @@
 												<div class="col-md-6">
 													<input  type="text" value="{{$updt->name}}"  id="name" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Name" required>
 												</div>
-</div>
+										</div>
 											<div class="form-group">
 												<label class="col-md-3 control-label" for="nip">NIP</label>
 												<div class="col-md-6">
@@ -53,7 +53,7 @@
 														<span class="input-group-addon">
 																<!-- <i class="fa fa-plus"></i> -->
 														</span>
-														<input required type="number" value="{{$updt->nip}}"  id="nip" name="nip" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control @error('nip') is-invalid @enderror">
+														<input required type="number" value="{{$updt->id}}"  id="nip" name="id" data-plugin-masked-input data-input-mask="9999" placeholder="__ __ __ __" class="form-control @error('id') is-invalid @enderror">
 													</div>
 												</div>
 											</div>

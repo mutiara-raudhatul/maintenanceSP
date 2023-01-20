@@ -18,9 +18,7 @@ class Users extends Authenticatable
     protected $primaryKey = "id"; //cek
 
     protected $fillable = [
-        'id', 'role', 'username', 'name', 'nip',  'email', 'email_verified_at', 'password', 'unit_kerja', 'eselon', 'nohp'     
+        'id', 'role', 'username', 'name', 'email', 'password', 'unit_kerja', 'eselon', 'nohp'     
     ];
-
-    // protected $guarded=[];
     
 }

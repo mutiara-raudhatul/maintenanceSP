@@ -50,7 +50,7 @@
 											@foreach ($dtHistory as $dth)
 												<tr>
 													<td>{{ $loop->iteration }}</td>
-													<td>{{ $dth->jenis_barang }}</td>
+													<td>{{ $dth->nama }}</td>
 													<td>{{ $dth->unit_kerja }}</td>
 													<td>{{ date('d M Y', strtotime($dth->tanggal_permintaan)) }}</td>
 													<td>
@@ -97,7 +97,7 @@
 															</div>
 															<div class="tm-box appear-animation" data-appear-animation="fadeInRight"data-appear-animation-delay="100">
 																<p>
-																	{{ $dh->name }} mengajukan permintaan barang {{ $dh->jenis_barang }}  di  {{ $dh->unit_kerja }}. 
+																	{{ $dh->name }} mengajukan permintaan barang {{ $dh->nama }}  di  {{ $dh->unit_kerja }}. 
 																	<br>Status permintaan <span class="text-primary"> #{{ $dh->status_permintaan}}</span>
 																</p>
 																<div class="tm-meta">
