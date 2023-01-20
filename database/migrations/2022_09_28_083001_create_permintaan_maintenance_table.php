@@ -20,7 +20,7 @@ class CreatePermintaanMaintenanceTable extends Migration
             $table->date('tanggal_permintaan')->nullable($value=false);
             $table->string('keterangan_maintenance')->nullable($value=false);
             $table->string('nip_teknisi',4)->nullable($value=true);
-            $table->foreign('nip_teknisi')->references('nip')->on('users');
+            $table->foreign('nip_teknisi')->references('id')->on('users');
             $table->date('jadwal_perbaikan')->nullable($value=true);
             $table->string('note')->nullable($value=true);
             $table->string('lokasi',30)->nullable($value=true);

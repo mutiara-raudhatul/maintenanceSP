@@ -16,7 +16,7 @@ class CreateBarangTable extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->string('id_serial_number', 6)->primary();
             $table->string('nip', 4)->nullable();
-            $table->foreign('nip')->references('nip')->on('users');
+            $table->foreign('nip')->references('id')->on('users');
             $table->string('asset_tag', 11)->unique();
             $table->string('id_model_barang', 2);
             $table->foreign('id_model_barang')->references('id_model_barang')->on('model_barang');

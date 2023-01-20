@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-        	'nip' => '3733',
+        	'id' => '3733',
             'role' => 'karyawan',
         	'username' => 'zulfahman',
             'name' => 'Zulfahman',
@@ -30,7 +30,7 @@ class UsersSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
-        	'nip' => '3276',
+        	'id' => '3276',
             'role' => 'admin_gudang',
         	'username' => 'alghazali',
             'name' => 'Alghazali',
@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-        	'nip' => '3324',
+        	'id' => '3324',
             'role' => 'admin_teknisi',
         	'username' => 'wismalda',
             'name' => 'Wismalda',
@@ -55,7 +55,7 @@ class UsersSeeder extends Seeder
 
 
         DB::table('users')->insert([
-        	'nip' => '5671',
+        	'id' => '5671',
             'role' => 'teknisi',
         	'username' => 'povita',
             'name' => 'Povita',
@@ -69,7 +69,7 @@ class UsersSeeder extends Seeder
         
 
         DB::table('users')->insert([
-        	'nip' => '3030',
+        	'id' => '3030',
             'role' => 'karyawan',
         	'username' => 'danizen',
             'name' => 'Dani Zen',

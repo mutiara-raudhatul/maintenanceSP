@@ -16,7 +16,7 @@ class CreatePermintaanBarangTable extends Migration
         Schema::create('permintaan_barang', function (Blueprint $table) {
             $table->string('id_permintaan_barang', 11)->primary();
             $table->string('nip_peminta',4);
-            $table->foreign('nip_peminta')->references('nip')->on('users');
+            $table->foreign('nip_peminta')->references('id')->on('users');
             $table->date('tanggal_permintaan')->nullable($value=false);
             $table->string('surat_izin')->nullable($value=true);
             $table->string('nip_teknisi',4)->nullable($value=true);
