@@ -13,6 +13,6 @@ class Permintaan_barang extends Model
     protected $primaryKey = "id_permintaan_barang"; //cek
 
     protected $fillable = [
-        'id_permintaan_barang', 'nip_peminta', 'tanggal_permintaan', 'surat_izin'   
+        'id_permintaan_barang', 'nip_peminta', 'tanggal_permintaan', 'surat_izin', 'nip_teknisi', 'catatan'   
     ];
 }

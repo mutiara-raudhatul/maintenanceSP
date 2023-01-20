@@ -11,8 +11,9 @@ class Barang extends Model
     public $timestamps = false;
     protected $table = "barang"; //cek
     protected $primaryKey = "id_serial_number"; //cek
+    public $incrementing=false;
 
     protected $fillable = [
-        'id_serial_number', 'asset_tag', 'id_model_barang', 'id_status_barang'
+        'id_serial_number', 'nip', 'asset_tag', 'id_model_barang', 'id_status_barang'
     ];
 }

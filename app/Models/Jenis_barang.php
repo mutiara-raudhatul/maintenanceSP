@@ -10,8 +10,9 @@ class Jenis_barang extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = "jenis_barang"; //cek
-    protected $primaryKey = "kode_jenis"; //cek
+    protected $table = "jenis_barang"; 
+    protected $primaryKey = "kode_jenis"; 
+    public $incrementing=false;
 
     protected $fillable = [
         'kode_jenis', 'nama', 'template_form_maintenance', 'id_jenis_maintenance'
